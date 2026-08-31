@@ -1,3 +1,6 @@
+// 장비 관리 시스템
+// GitHub 개발 환경 테스트
+
 import java.util.Scanner;
 import java.util.InputMismatchException;
 public class KKC_System {
