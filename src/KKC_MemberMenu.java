@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class KKC_MemberMenu {
-	ArrayList <KKC_Member> memberList = new ArrayList <KKC_Member>();
+	private ArrayList <KKC_Member> memberList = new ArrayList <KKC_Member>();
 	
 	public void addMember(String name, String gender, String studentID, String phone) {
 		KKC_Member newMember = new KKC_Member(name, gender, studentID, phone);
@@ -11,35 +11,44 @@ public class KKC_MemberMenu {
 		
 	}
 	
+	public ArrayList <KKC_Member> getMemberList () {
+		return this.memberList;
+	}
+	
+	
+	public KKC_Member findMemberNoComment (String studentID) {
+		for(int i=0; i<memberList.size(); i++) {
+			if(memberList.get(i).getStudentID().equals(studentID)) {
+				KKC_Member findMember = memberList.get(i);
+
+				return findMember;
+			}
+		}
+		return null;
+	}
+	
 	public KKC_Member findMember (String studentID) {
 		for(int i=0; i<memberList.size(); i++) {
 			if(memberList.get(i).getStudentID().equals(studentID)) {
 				System.out.println("부원의 정보를 찾았습니다.");
-				System.out.println("이름: "+memberList.get(i).getName()+
-								 " | 성별: "+memberList.get(i).getGender()+
-								 " | 학번: "+memberList.get(i).getStudentID()+
-								 " | 전화번호: "+memberList.get(i).getPhone());
-				
 				KKC_Member findMember = memberList.get(i);
+				findMember.showMember();
 				
 				return findMember;
 			}
 		}
-		System.out.println("등록되지 않은 부원입니다.");
+		System.out.println("등록된 부원을 찾을 수 없습니다. 학번을 확인하세요.");
 		return null;
 	}
 	
 	public void deleteMember(KKC_Member findMember) {
 		memberList.remove(findMember);
-		System.out.println("부원 정보를 제거하였습니다.");
+		System.out.println("등록된 부원 정보를 제거하였습니다.");
 	}
 	
 	public void showMemberList() {
 		for(int i=0; i<memberList.size(); i++) {
-			System.out.println("이름: "+memberList.get(i).getName()+
-					 " | 성별: "+memberList.get(i).getGender()+
-					 " | 학번: "+memberList.get(i).getStudentID()+
-					 " | 전화번호: "+memberList.get(i).getPhone());
+			memberList.get(i).showMember();
 		}
 		System.out.println("-------- 끝 ---------");
 	}
