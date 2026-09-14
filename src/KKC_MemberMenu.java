@@ -1,3 +1,5 @@
+// v1.0 - 기본 장비 관리 기능 완성
+
 import java.util.ArrayList;
 public class KKC_MemberMenu {
 	private ArrayList <KKC_Member> memberList = new ArrayList <KKC_Member>();

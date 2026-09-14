@@ -1,3 +1,5 @@
+// v1.0 - 기본 장비 관리 기능 완성
+
 import java.util.ArrayList;
 public class KKC_EquipmentMenu {
 	KKC_MemberMenu memberMenu;
@@ -73,7 +75,11 @@ public class KKC_EquipmentMenu {
 		
 		addMember = memberMenu.findMemberNoComment(StudentID);
 		System.out.print("등록할 사용자 >>");
-		addMember.showMember();
+		if(addMember != null)
+			addMember.showMember();
+		
+		else
+			System.out.println("등록할 사용자를 찾을 수 없습니다.");
 				
 		
 		if(addEquipment == null)
@@ -95,6 +101,16 @@ public class KKC_EquipmentMenu {
 			equipmentList.get(i).showEquipment();
 		}
 		System.out.println("-------- 끝 ---------");
+	}
+	
+	public void deleteEquipmentUser(KKC_Member findMember) {
+		for(int i=0; i<equipmentList.size(); i++) {
+			if(equipmentList.get(i).getUser().equals(findMember)) {
+				System.out.println(equipmentList.get(i).getUser().getName()+"의 장비 "+equipmentList.get(i).getNumber()+"을 미등록 상태로 변경하였습니다.");
+				equipmentList.get(i).setUser(null);
+				break;
+			}
+		}
 	}
 
 }

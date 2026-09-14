@@ -1,5 +1,4 @@
-// 장비 관리 시스템
-// GitHub 개발 환경 테스트
+// v1.0 - 기본 장비 관리 기능 완성
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -16,7 +15,17 @@ public class KKC_System {
 		System.out.println("            Equipment Management");
 		System.out.println();
 		System.out.print("choice... 1(Member) | 2(Equipment) | 3(Close) >>");
+		
+		try {
 		answer = scanner.nextInt();
+		}
+		catch (InputMismatchException e) {
+			System.out.println();
+			System.out.println("잘못된 입력입니다.");
+			System.out.println("다시 입력하세요.");
+			scanner.nextLine();
+			continue;
+		}
 		
 		if(answer == 1) {
 			while (true) {
@@ -26,7 +35,16 @@ public class KKC_System {
 			System.out.println("            Find member information");
 			System.out.println("            Delete member information");
 			System.out.print("choice... 1(View List) | 2(Register) | 3(Find) | 4(Delete) | 5(Back)>>");
+			try {
 			answer = scanner.nextInt();
+			}
+			catch (InputMismatchException e) {
+				System.out.println();
+				System.out.println("잘못된 입력입니다.");
+				System.out.println("다시 입력하세요.");
+				scanner.nextLine();
+				continue;
+			}
 			scanner.nextLine();
 			
 			if(answer == 1) {
@@ -78,27 +96,45 @@ public class KKC_System {
 					scanner.nextLine();
 					continue;
 				}
+				
+				while (true) {
 				System.out.print("위의 부원의 정보를 삭제하시겠습니까? (Y/N)");
-				String answer = scanner.nextLine();
-				if(answer.equals("y") || answer.equals("Y")) {
+				String YesOrNo = scanner.nextLine();
+				if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
+					equipmentMenu.deleteEquipmentUser(findMember);
 					memberMenu.deleteMember(findMember);
-					System.out.print("Enter to back...");
-					scanner.nextLine();
-					continue;
+					break;
+				}
+				
+				else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
+					System.out.println("부원 삭제를 취소하였습니다.");
+					break;
 				}
 				
 				else {
-					System.out.println("부원 삭제를 취소하였습니다.");
-					System.out.print("Enter to back...");
-					scanner.nextLine();
+					System.out.println();
+					System.out.println("잘못된 입력입니다.");
+					System.out.println("다시 입력하세요.");
 					continue;
 				}
+				}
+				System.out.print("Enter to back...");
+				scanner.nextLine();
+				continue;
 			}
 			
 			else if(answer == 5) {
 				break;
 			}
-		}
+			
+			else {
+				System.out.println();
+				System.out.println("잘못된 입력입니다.");
+				System.out.println("다시 입력하세요.");
+				continue;
+			}
+			}
+			
 		}
 		
 		if(answer == 2) {
@@ -110,7 +146,17 @@ public class KKC_System {
 				System.out.println("            Find equipment information");
 				System.out.println("            Delete equipment information");
 				System.out.print("choice... 1(View List) | 2(Equipment Register) | 3(User Register) | 4(Find) | 5(Delete) | 6(Back)>>");
+				
+				try {
 				answer = scanner.nextInt();
+				}
+				catch (InputMismatchException e) {
+					System.out.println();
+					System.out.println("잘못된 입력입니다.");
+					System.out.println("다시 입력하세요.");
+					scanner.nextLine();
+					continue;
+				}
 				scanner.nextLine();
 				
 				if(answer == 1) { //view list
@@ -149,16 +195,30 @@ public class KKC_System {
 				
 				else if(answer == 3) { //User Register
 					System.out.println("장비 이용자를 등록합니다.");
+					while (true) {
 					System.out.print("이용자 미등록 장비 목록을 보시겠습니까? (Y/N) >>");
-					String answer = scanner.nextLine();
+					String YesOrNo = scanner.nextLine();
 					
-					if(answer.equals("y") || answer.equals("Y")) {
+					if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
 						System.out.println("현재 이용자 미등록 장비는 "+equipmentMenu.EquipmentNullUserCount()+"개 입니다.");
 						System.out.println("            미등록 장비 목록");
 						System.out.println();
 						equipmentMenu.showEquipmentNullUserList();
 						System.out.print("Enter to continue...");
 						scanner.nextLine();
+						break;
+					}
+					
+					else if(YesOrNo.equals("n") || YesOrNo.equals("N"))
+						break;
+					
+					else {
+						System.out.println();
+						System.out.println("잘못된 입력입니다.");
+						System.out.println("다시 입력하세요.");
+						continue;
+					}
+					
 					}
 					
 					if(equipmentMenu.EquipmentNullUserCount() == 0) {
@@ -203,20 +263,29 @@ public class KKC_System {
 						scanner.nextLine();
 						continue;
 					}
+					while (true) {
 					System.out.print("위 장비의 정보를 삭제하시겠습니까? (Y/N)");
-					String answer = scanner.nextLine();
-					if(answer.equals("y") || answer.equals("Y")) {
+					String YesOrNo = scanner.nextLine();
+					if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
 						equipmentMenu.deleteEquipment(findEquipment);
 						System.out.print("Enter to back...");
 						scanner.nextLine();
-						continue;
+						break;
 					}
 					
-					else {
+					else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
 						System.out.println("장비 삭제를 취소하였습니다.");
 						System.out.print("Enter to back...");
 						scanner.nextLine();
+						break;
+					}
+					
+					else {
+						System.out.println();
+						System.out.println("잘못된 입력입니다.");
+						System.out.println("다시 입력하세요.");
 						continue;
+					}
 					}
 					
 				}
@@ -225,12 +294,25 @@ public class KKC_System {
 					break;
 				}
 				
+				else {
+					System.out.println();
+					System.out.println("잘못된 입력입니다.");
+					System.out.println("다시 입력하세요.");
+					continue;
+				}
 			}
 		}
 		
 		if(answer == 3) {
 			System.out.println("KKC Management Close");
 			break;
+		}
+		
+		else {
+			System.out.println();
+			System.out.println("잘못된 입력입니다.");
+			System.out.println("다시 입력하세요.");
+			continue;
 		}
 			
 	}

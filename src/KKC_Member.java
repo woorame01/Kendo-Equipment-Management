@@ -1,3 +1,4 @@
+// v1.0 - 기본 장비 관리 기능 완성
 
 public class KKC_Member {
 	private String name, gender, studentID, phone;

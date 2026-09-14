@@ -1,3 +1,4 @@
+// v1.0 - 기본 장비 관리 기능 완성
 
 public class KKC_Equipment {
 	private String number, type, gender, date;
@@ -44,7 +45,13 @@ public class KKC_Equipment {
 	}
 	
 	public void showEquipment() {
-		System.out.println("장비번호: "+number+" | 장비종류: "+type+" | 성별: "+gender+" | 등록일: "+date+" | 사용자: "+user.getName());
+		if(user != null) {
+			System.out.println("장비번호: "+number+" | 장비종류: "+type+" | 성별: "+gender+" | 등록일: "+date+" | 사용자: "+user.getName());
+		}
+		
+		else {
+			System.out.println("장비번호: "+number+" | 장비종류: "+type+" | 성별: "+gender+" | 등록일: "+date+" | 사용자: 미등록");
+		}
 	}
 
 }
