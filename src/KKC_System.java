@@ -1,4 +1,5 @@
 // v1.0 - 기본 장비 관리 기능 완성
+// 장비 상태 변경 기능만 구연하면 됨
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -6,6 +7,7 @@ public class KKC_System {
 	Scanner scanner = new Scanner(System.in);
 	private  KKC_MemberMenu memberMenu;
 	private KKC_EquipmentMenu equipmentMenu;
+	private EquipmentStatusList statusList;
 	int answer;
 	
 	public void getMenu() {
@@ -142,10 +144,11 @@ public class KKC_System {
 				System.out.println();
 				System.out.println("            View Equipment list");
 				System.out.println("            Register new equipment");
-				System.out.println("            Equipment User Registration");
+				System.out.println("            Equipment User Registration/Change");
+				System.out.println("            Change equipment status");
 				System.out.println("            Find equipment information");
 				System.out.println("            Delete equipment information");
-				System.out.print("choice... 1(View List) | 2(Equipment Register) | 3(User Register) | 4(Find) | 5(Delete) | 6(Back)>>");
+				System.out.print("choice... 1(View List) | 2(Equipment Register) | 3(User Register/Change) | 4(Changer Status) | 5(Find) | 6(Delete) | 7(Back)>>");
 				
 				try {
 				answer = scanner.nextInt();
@@ -185,15 +188,40 @@ public class KKC_System {
 					String date = scanner.nextLine();
 					System.out.print("이용자 학번 (없다면 Enter)>>");
 					String studentID = scanner.nextLine();
+					statusList.showStatusList();
+					System.out.print("장비 상태 >>");
+					String nowStatus = scanner.nextLine();
 					
-					equipmentMenu.addEquipment(Number, type, gender, date, studentID);
+					equipmentMenu.addEquipment(Number, type, gender, date, studentID, nowStatus);
 					System.out.print("Enter to back...");
 					scanner.nextLine();
 					continue;
 					
 				}
 				
-				else if(answer == 3) { //User Register
+				else if(answer == 3) { //User Register or Change
+					
+					while (true) {
+						System.out.println();
+						System.out.println("            Equipment User Registration/Change");
+						System.out.println("            Equipment User Registration");
+						System.out.println("            Equipment User Change");
+						System.out.print("choice... 1(User Registration) | 2(User Change) | 3(Back) >>");
+						
+						try {
+						answer = scanner.nextInt();
+						}
+						catch (InputMismatchException e) {
+							System.out.println();
+							System.out.println("잘못된 입력입니다.");
+							System.out.println("다시 입력하세요.");
+							scanner.nextLine();
+							continue;
+						}
+						scanner.nextLine();
+						break;
+					}
+					if(answer == 1) {
 					System.out.println("장비 이용자를 등록합니다.");
 					while (true) {
 					System.out.print("이용자 미등록 장비 목록을 보시겠습니까? (Y/N) >>");
@@ -237,10 +265,65 @@ public class KKC_System {
 					System.out.print("Enter to back...");
 					scanner.nextLine();
 					continue;
+					}
+					
+					else if(answer == 2) {
+						System.out.println("장비 이용자를 변경합니다.");
+						System.out.print("변경할 장비 번호를 입력하세요 >>");
+						String number = scanner.nextLine();
+						KKC_Equipment findEquipment = equipmentMenu.findEquipmentNoComment(number);
+						findEquipment.showEquipment();
+						
+						System.out.print("새로 등록할 이용자의 학번을 입력하세요(미등록으로 변경 시 미등록 입력) >>");
+						String studentID = scanner.nextLine();
+						
+						if(studentID.equals("미등록")) {
+							findEquipment = null;
+						}
+						
+						else {
+							KKC_Member findMember = memberMenu.findMemberNoComment(studentID);
+							findMember.showMember();
+							
+							findEquipment.setUser(findMember);
+						}
+						
+						System.out.println("변경 완료");
+						findEquipment.showEquipment();
+						System.out.print("Enter to back...");
+						scanner.nextLine();
+						continue;
+					
+					}
+					
+					else if(answer == 3)
+						break;
+					
+					else {
+						System.out.println();
+						System.out.println("잘못된 입력입니다.");
+						System.out.println("다시 입력하세요.");
+						continue;
+					}
 					
 				}
 				
-				else if(answer == 4) { //Find Equipment
+				else if(answer == 4) { // Changer Status
+					System.out.println("장비 상태를 변경합니다.");
+					System.out.print("변경할 장비 번호를 입력하세요 >>");
+					String number = scanner.nextLine();
+					statusList.showStatusList();
+					System.out.print("장비의 상태를 입력하세요 >>");
+					String nowstatus = scanner.nextLine();
+					
+					equipmentMenu.setEquipmentStauts(number, nowstatus);
+					System.out.print("Enter to back...");
+					scanner.nextLine();
+					continue;
+					
+				}
+				
+				else if(answer == 5) { //Find Equipment
 					System.out.println("등록된 장비 정보를 찾습니다.");
 					System.out.print("찾을 장비 번호를 입력하세요 >>");
 					String number = scanner.nextLine();
@@ -252,7 +335,7 @@ public class KKC_System {
 	
  				}
 				
-				else if(answer == 5) { //Delete Equipment
+				else if(answer == 6) { //Delete Equipment
 					System.out.println("등록된 장비 정보를 삭제합니다.");
 					System.out.print("삭제할 장비 번호를 입력하세요 >>");
 					String number = scanner.nextLine();
@@ -290,8 +373,39 @@ public class KKC_System {
 					
 				}
 				
-				else if(answer == 6) { //Back to main
+				else if(answer == 7) { //Back to main
 					break;
+				}
+				
+				else if(answer == 0) {
+					System.out.println("장비 상태를 등록합니다.");
+					System.out.print("등록할 상태 입력 >>");
+					String statusType = scanner.nextLine();
+					boolean canUsing;
+					while (true) {
+						System.out.print("상태에 대한 사용 가능 여부를 입력하세요(O/X).");
+						String OorX = scanner.nextLine();
+						if(OorX.equals("O") || OorX.equals("o")) {
+							canUsing = true;
+							break;
+						}
+					
+						else if(OorX.equals("X") || OorX.equals("x")) {
+							canUsing = false;
+							break;
+						}
+						
+						else {
+							System.out.println();
+							System.out.println("잘못된 입력입니다.");
+							System.out.println("다시 입력하세요.");
+							continue;
+						}
+					}
+					
+					equipmentMenu.statusList.addStatus(statusType, canUsing);
+					continue;
+					
 				}
 				
 				else {
@@ -319,9 +433,19 @@ public class KKC_System {
 		
 	}
 	
-	public void run(KKC_MemberMenu memberMenu, KKC_EquipmentMenu equipmentMenu) {
+	public void firstSet() {
+		statusList.addStatus("양호", true);
+		statusList.addStatus("최상", true);
+		statusList.addStatus("파손", false);
+		statusList.addStatus("폐기", false);
+	}
+	
+	public void run(KKC_MemberMenu memberMenu, KKC_EquipmentMenu equipmentMenu, EquipmentStatusList statusList) {
 		this.equipmentMenu = equipmentMenu;
 		this.memberMenu = memberMenu;
+		this.statusList = statusList;
+		
+		firstSet();
 		
 		System.out.println("******** KKC Management System ********");
 		getMenu();
@@ -333,9 +457,10 @@ public class KKC_System {
 	
 	public static void main(String[] args) {
 		KKC_System open = new KKC_System();
+		EquipmentStatusList statusList = new EquipmentStatusList();
 		KKC_MemberMenu memberMenu = new KKC_MemberMenu();
-		KKC_EquipmentMenu equipmentMenu = new KKC_EquipmentMenu(memberMenu);
-		open.run(memberMenu, equipmentMenu);
+		KKC_EquipmentMenu equipmentMenu = new KKC_EquipmentMenu(memberMenu, statusList);
+		open.run(memberMenu, equipmentMenu, statusList);
 		
 	}
 
