@@ -1,3 +1,4 @@
+// v1.1 - 장비 상태 관리
 
 public class EquipmentStatus {
 	private String statusType;

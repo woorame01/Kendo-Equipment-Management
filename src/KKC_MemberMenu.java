@@ -1,4 +1,5 @@
 // v1.0 - 기본 장비 관리 기능 완성
+// v1.1 - 장비 상태 관리
 
 import java.util.ArrayList;
 public class KKC_MemberMenu {

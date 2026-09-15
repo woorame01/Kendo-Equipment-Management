@@ -1,4 +1,5 @@
 // v1.0 - 기본 장비 관리 기능 완성
+// v1.1 - 장비 상태 관리
 
 import java.util.ArrayList;
 public class KKC_EquipmentMenu {
@@ -15,7 +16,7 @@ public class KKC_EquipmentMenu {
 		return this.equipmentList;
 	}
 	
-	public void addEquipment (String number, String type, String gender, String date, String studentID, String nowStatus) {
+	public void addEquipment (String number, String type, String gender, String date, String studentID, int nowStatus) {
 		KKC_Member user = memberMenu.findMemberNoComment(studentID);
 		EquipmentStatus status = statusList.findStatusNoComment(nowStatus);
 		KKC_Equipment newEquipment = new KKC_Equipment(number, type, gender, date, user, status);
@@ -34,7 +35,6 @@ public class KKC_EquipmentMenu {
 				return findEquipment;
 			}
 		}
-		System.out.println("등록된 장비를 찾을 수 없습니다. 장비번호를 확인하세요.");
 		return null;
 	}
 	
@@ -121,20 +121,35 @@ public class KKC_EquipmentMenu {
 	
 	public void deleteEquipmentUser(KKC_Member findMember) {
 		for(int i=0; i<equipmentList.size(); i++) {
-			if(equipmentList.get(i).getUser().equals(findMember)) {
+			if(equipmentList.get(i).getUser() == null) {
+				continue;
+			}
+			
+			else if(equipmentList.get(i).getUser().equals(findMember)) {
 				System.out.println(equipmentList.get(i).getUser().getName()+"의 장비 "+equipmentList.get(i).getNumber()+"을 미등록 상태로 변경하였습니다.");
 				equipmentList.get(i).setUser(null);
 			}
 		}
 	}
 	
-	public void setEquipmentStauts(String number, String nowStatus) {
-		KKC_Equipment findEquipment = findEquipment(number);
+	public void setEquipmentStauts(String number, int nowStatus) {
+		KKC_Equipment findEquipment = findEquipmentNoComment(number);
 		EquipmentStatus findStatus = statusList.findStatusNoComment(nowStatus);
 		
-		System.out.print(findEquipment.getNumber()+"의 상태를 "+findEquipment.getStatus().getStatusType()+" 에서 ");
-		findEquipment.setStatus(findStatus);
-		System.out.println(findEquipment.getStatus().getStatusType()+" 으로 변경하였습니다.");
+		if(findEquipment == null) {
+			System.out.println("등록된 장비를 찾을 수 없습니다. 장비번호를 확인하세요.");
+		}
+		
+		else if(findStatus == null) {
+			System.out.println("등록할 상태 정보를 찾을 수 없습니다. 상태 정보를 확인하세요.");
+		}
+		
+		else {
+			System.out.print(findEquipment.getNumber()+"의 상태를 "+findEquipment.getStatus().getStatusType()+" 에서 ");
+			findEquipment.setStatus(findStatus);
+			System.out.println(findEquipment.getStatus().getStatusType()+" 으로 변경하였습니다.");
+		}
+		
 	}
 
 }

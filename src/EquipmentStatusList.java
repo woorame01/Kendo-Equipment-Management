@@ -1,7 +1,9 @@
+// v1.1 - 장비 상태 관리
+
 import java.util.ArrayList;
 public class EquipmentStatusList {
 	
-	ArrayList <EquipmentStatus> StatusList  = new ArrayList <EquipmentStatus>();
+	private ArrayList <EquipmentStatus> StatusList  = new ArrayList <EquipmentStatus>();
 	
 	public int addStatus(String statusType, boolean canUsing) {
 		for(int i=0; i<StatusList.size(); i++) {
@@ -19,23 +21,26 @@ public class EquipmentStatusList {
 		return 0;	
 	}
 	
-	public EquipmentStatus findStatusNoComment (String statusType) {
-		for(int i=0; i<StatusList.size(); i++) {
-			if(StatusList.get(i).getStatusType().equals(statusType)) {
-				EquipmentStatus findStatus = StatusList.get(i);
-
-				return findStatus;
-			}
+	public EquipmentStatus findStatusNoComment (int statusType) {
+		if(StatusList.size() > statusType-1 && statusType-1 >= 0) {
+			EquipmentStatus findStatus = StatusList.get(statusType-1);
+			return findStatus;
 		}
-		return null;
+		
+		else
+			return null;
 	}
 	
 	public void showStatusList() {
 		System.out.print("장비 상태 목록 : ");
 		for(int i=0; i<StatusList.size(); i++) {
-			System.out.print(StatusList.get(i).getStatusType()+" ");
+			System.out.print(i+1+"("+StatusList.get(i).getStatusType()+") ");
 		}
 		System.out.println();
+	}
+	
+	public int getSize() {
+		return StatusList.size();
 	}
 	
 }

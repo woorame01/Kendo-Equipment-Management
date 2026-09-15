@@ -1,5 +1,5 @@
 // v1.0 - 기본 장비 관리 기능 완성
-// 장비 상태 변경 기능만 구연하면 됨
+// v1.1 - 장비 상태 관리
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -178,6 +178,7 @@ public class KKC_System {
 					System.out.println("현재 등록된 마지막 장비 번호는 "+equipmentMenu.getEquipmentList().getLast().getNumber()+" 입니다."); }
 					
 					else {System.out.println("첫 장비 등록입니다. 장비번호는 죽도-001 입니다.");}
+					
 					System.out.print("장비번호 >>");
 					String Number = scanner.nextLine();
 					System.out.print("장비종류 >>");
@@ -188,9 +189,35 @@ public class KKC_System {
 					String date = scanner.nextLine();
 					System.out.print("이용자 학번 (없다면 Enter)>>");
 					String studentID = scanner.nextLine();
+					int nowStatus;
+					while (true) {
 					statusList.showStatusList();
 					System.out.print("장비 상태 >>");
-					String nowStatus = scanner.nextLine();
+					try {
+					nowStatus = scanner.nextInt();
+					}
+					
+					catch (InputMismatchException e) {
+						System.out.println();
+						System.out.println("잘못된 입력입니다.");
+						System.out.println("다시 입력하세요.");
+						scanner.nextLine();
+						continue;
+					}
+					
+					if(nowStatus > statusList.getSize() || nowStatus < 0) {
+						System.out.println();
+						System.out.println("잘못된 입력입니다.");
+						System.out.println("다시 입력하세요.");
+						scanner.nextLine();
+						continue;
+					}
+					
+					break;
+					
+					}
+					
+					scanner.nextLine();
 					
 					equipmentMenu.addEquipment(Number, type, gender, date, studentID, nowStatus);
 					System.out.print("Enter to back...");
@@ -269,23 +296,59 @@ public class KKC_System {
 					
 					else if(answer == 2) {
 						System.out.println("장비 이용자를 변경합니다.");
+						KKC_Equipment findEquipment;
+						String studentID;
+						
+						while (true) {
 						System.out.print("변경할 장비 번호를 입력하세요 >>");
 						String number = scanner.nextLine();
-						KKC_Equipment findEquipment = equipmentMenu.findEquipmentNoComment(number);
-						findEquipment.showEquipment();
 						
+						if(number.equals("취소")) {
+							findEquipment = null;
+							break;
+						}
+						
+						findEquipment = equipmentMenu.findEquipmentNoComment(number);
+						
+						if(findEquipment == null) {
+							System.out.println();
+							continue;
+						}
+						
+						findEquipment.showEquipment();
+						break;
+						
+						}
+						
+						if(findEquipment == null) {
+							System.out.print("Enter to back...");
+							scanner.nextLine();
+							continue;
+						}
+						
+						while (true) {
 						System.out.print("새로 등록할 이용자의 학번을 입력하세요(미등록으로 변경 시 미등록 입력) >>");
-						String studentID = scanner.nextLine();
+						studentID = scanner.nextLine();
 						
 						if(studentID.equals("미등록")) {
-							findEquipment = null;
+							findEquipment.setUser(null);
 						}
 						
 						else {
 							KKC_Member findMember = memberMenu.findMemberNoComment(studentID);
+							if(findMember == null) {
+								System.out.println("등록할 이용자를 찾을 수 없습니다. 다시 입력하세요.");
+								System.out.println();
+								continue;
+							}
+							
 							findMember.showMember();
 							
 							findEquipment.setUser(findMember);
+							
+							break;
+						}
+						
 						}
 						
 						System.out.println("변경 완료");
@@ -312,11 +375,37 @@ public class KKC_System {
 					System.out.println("장비 상태를 변경합니다.");
 					System.out.print("변경할 장비 번호를 입력하세요 >>");
 					String number = scanner.nextLine();
-					statusList.showStatusList();
-					System.out.print("장비의 상태를 입력하세요 >>");
-					String nowstatus = scanner.nextLine();
 					
-					equipmentMenu.setEquipmentStauts(number, nowstatus);
+					int nowStatus;
+					while (true) {
+					statusList.showStatusList();
+					System.out.print("장비 상태를 입력하세요 >>");
+					try {
+					nowStatus = scanner.nextInt();
+					}
+					
+					catch (InputMismatchException e) {
+						System.out.println();
+						System.out.println("잘못된 입력입니다.");
+						System.out.println("다시 입력하세요.");
+						scanner.nextLine();
+						continue;
+					}
+					
+					if(nowStatus > statusList.getSize() || nowStatus < 0) {
+						System.out.println();
+						System.out.println("잘못된 입력입니다.");
+						System.out.println("다시 입력하세요.");
+						scanner.nextLine();
+						continue;
+					}
+					
+					break;
+					
+					}
+					scanner.nextLine();
+					
+					equipmentMenu.setEquipmentStauts(number, nowStatus);
 					System.out.print("Enter to back...");
 					scanner.nextLine();
 					continue;
@@ -433,6 +522,32 @@ public class KKC_System {
 		
 	}
 	
+	/*
+	public void testSet() {
+		memberMenu.addMember("김우람", "남성", "5753764", "010-6645-3909");
+		memberMenu.addMember("이민준", "남성", "5754123", "010-2378-4512");
+		memberMenu.addMember("박서연", "여성", "5756891", "010-5832-7164");
+		memberMenu.addMember("최현우", "남성", "5757342", "010-9461-3287");
+		memberMenu.addMember("정다은", "여성", "5758015", "010-3157-8924");
+		memberMenu.addMember("한지훈", "남성", "5759236", "010-7284-1635");
+		memberMenu.addMember("윤서진", "여성", "5761048", "010-4529-6371");
+		memberMenu.addMember("강민석", "남성", "5762387", "010-8916-2543");
+		memberMenu.addMember("오지아", "여성", "5763519", "010-6742-5189");
+		memberMenu.addMember("배준호", "남성", "5764672", "010-3265-7491");
+		
+		equipmentMenu.addEquipment("죽도-001", "죽도", "여성용", "26-09-16", null, 1);
+		equipmentMenu.addEquipment("죽도-002", "죽도", "남성용", "26-09-16", null, 1);
+		equipmentMenu.addEquipment("죽도-003", "죽도", "여성용", "26-09-16", null, 1);
+		equipmentMenu.addEquipment("죽도-004", "죽도", "남성용", "26-09-16", null, 1);
+		equipmentMenu.addEquipment("죽도-005", "죽도", "남성용", "26-09-16", null, 1);
+		equipmentMenu.addEquipment("죽도-006", "죽도", "여성용", "26-09-16", null, 1);
+		equipmentMenu.addEquipment("죽도-007", "죽도", "남성용", "26-09-16", null, 1);
+		equipmentMenu.addEquipment("죽도-008", "죽도", "여성용", "26-09-16", null, 1);
+		equipmentMenu.addEquipment("죽도-009", "죽도", "남성용", "26-09-16", null, 1);
+		equipmentMenu.addEquipment("죽도-010", "죽도", "여성용", "26-09-16", null, 1);
+	}
+	*/
+	
 	public void firstSet() {
 		statusList.addStatus("양호", true);
 		statusList.addStatus("최상", true);
@@ -446,6 +561,8 @@ public class KKC_System {
 		this.statusList = statusList;
 		
 		firstSet();
+		
+		/* testSet(); */
 		
 		System.out.println("******** KKC Management System ********");
 		getMenu();
