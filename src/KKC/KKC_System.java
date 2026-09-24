@@ -1,7 +1,12 @@
 // v1.0 - 기본 장비 관리 기능 완성
 // v1.1 - 장비 상태 관리
+package KKC;
 
 import java.util.Scanner;
+
+import Equipment.EquipmentStatusList;
+import Equipment.KKC_Equipment;
+
 import java.util.InputMismatchException;
 public class KKC_System {
 	Scanner scanner = new Scanner(System.in);
