@@ -1,6 +1,11 @@
 package Equipment;
 import KKC.KKC_Member;
 
+/*① 호구 생성 시 4개 장비 + 이용자가 반드시 존재
+② 개별 장비는 호구에 귀속되지만 이용자는 가지지 않음
+③ 이용자는 호구가 가짐
+④ 새로운 장비로 변경할 수 있지만 구성된 장비가 'null'이 될 수 없음*/
+
 public class Equipment_Hogu {
 	private String number;
 	private EquipmentStatus status;
