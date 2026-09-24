@@ -1,4 +1,5 @@
 package Equipment;
+import KKC.KKC_Member;
 
 /* 이거 처리를 검도 하나의 EquipmentStatus를 두고 각각의 부위별로 상태를 입력한 뒤에
 하나라도 수리필요가 있으면 수리필요로 바꾸고 어떤 부위에 수리가 필요한지 조회할 수 있게 하는게
@@ -6,6 +7,7 @@ package Equipment;
 하는거임.*/
 
 public class Equipment_Shinai extends KKC_Equipment {
+	private KKC_Member member;          // 이용자
 	private EquipmentStatus Sakigawa;   // 선혁
 	private EquipmentStatus Sakigomu;   // 선고무
 	private EquipmentStatus Nakayui;    // 중혁
@@ -17,6 +19,20 @@ public class Equipment_Shinai extends KKC_Equipment {
 	public Equipment_Shinai(String number, String date) {
 		super(number, date);
 		
+		this.member = null;
+		this.Sakigawa = EquipmentStatus.사용가능;
+		this.Sakigomu = EquipmentStatus.사용가능;
+		this.Nakayui = EquipmentStatus.사용가능;
+		this.Tsukagawa = EquipmentStatus.사용가능;
+		this.Tsuru = EquipmentStatus.사용가능;
+		this.Tsuba = EquipmentStatus.사용가능;
+		this.TsubaDome = EquipmentStatus.사용가능;
+	}
+	
+	public Equipment_Shinai(KKC_Member member, String number, String date) {
+		super(number, date);
+		
+		this.member = member;
 		this.Sakigawa = EquipmentStatus.사용가능;
 		this.Sakigomu = EquipmentStatus.사용가능;
 		this.Nakayui = EquipmentStatus.사용가능;
@@ -67,6 +83,10 @@ public class Equipment_Shinai extends KKC_Equipment {
 				
 	}
 	
+	public KKC_Member getMember() {
+		return member;
+	}
+	
 	public EquipmentStatus getSakiawa() {
 		return Sakigawa;
 	}
@@ -93,6 +113,10 @@ public class Equipment_Shinai extends KKC_Equipment {
 	
 	public EquipmentStatus getTsubaDome() {
 		return TsubaDome;
+	}
+	
+	public void setMember(KKC_Member member) {
+		this.member = member;
 	}
 	
 	public void setStatus(String part, String statusType) {
