@@ -8,70 +8,70 @@ import KKC.KKC_Member;
 
 public class Equipment_Shinai extends KKC_Equipment {
 	private KKC_Member member;          // 이용자
-	private EquipmentStatus Sakigawa;   // 선혁
-	private EquipmentStatus Sakigomu;   // 선고무
-	private EquipmentStatus Nakayui;    // 중혁
-	private EquipmentStatus Tsukagawa;  // 병혁
-	private EquipmentStatus Tsuru;      // 등줄
-	private EquipmentStatus Tsuba;      // 코등이
-	private EquipmentStatus TsubaDome;  // 코등이 받침
+	private Equipment_Status Sakigawa;   // 선혁
+	private Equipment_Status Sakigomu;   // 선고무
+	private Equipment_Status Nakayui;    // 중혁
+	private Equipment_Status Tsukagawa;  // 병혁
+	private Equipment_Status Tsuru;      // 등줄
+	private Equipment_Status Tsuba;      // 코등이
+	private Equipment_Status TsubaDome;  // 코등이 받침
 
 	public Equipment_Shinai(String number, String date) {
 		super(number, date);
 		
 		this.member = null;
-		this.Sakigawa = EquipmentStatus.사용가능;
-		this.Sakigomu = EquipmentStatus.사용가능;
-		this.Nakayui = EquipmentStatus.사용가능;
-		this.Tsukagawa = EquipmentStatus.사용가능;
-		this.Tsuru = EquipmentStatus.사용가능;
-		this.Tsuba = EquipmentStatus.사용가능;
-		this.TsubaDome = EquipmentStatus.사용가능;
+		this.Sakigawa = Equipment_Status.사용가능;
+		this.Sakigomu = Equipment_Status.사용가능;
+		this.Nakayui = Equipment_Status.사용가능;
+		this.Tsukagawa = Equipment_Status.사용가능;
+		this.Tsuru = Equipment_Status.사용가능;
+		this.Tsuba = Equipment_Status.사용가능;
+		this.TsubaDome = Equipment_Status.사용가능;
 	}
 	
 	public Equipment_Shinai(KKC_Member member, String number, String date) {
 		super(number, date);
 		
 		this.member = member;
-		this.Sakigawa = EquipmentStatus.사용가능;
-		this.Sakigomu = EquipmentStatus.사용가능;
-		this.Nakayui = EquipmentStatus.사용가능;
-		this.Tsukagawa = EquipmentStatus.사용가능;
-		this.Tsuru = EquipmentStatus.사용가능;
-		this.Tsuba = EquipmentStatus.사용가능;
-		this.TsubaDome = EquipmentStatus.사용가능;
+		this.Sakigawa = Equipment_Status.사용가능;
+		this.Sakigomu = Equipment_Status.사용가능;
+		this.Nakayui = Equipment_Status.사용가능;
+		this.Tsukagawa = Equipment_Status.사용가능;
+		this.Tsuru = Equipment_Status.사용가능;
+		this.Tsuba = Equipment_Status.사용가능;
+		this.TsubaDome = Equipment_Status.사용가능;
 	}
 	
 	public void shinaiStatus() {
-		if(Sakigawa == EquipmentStatus.폐기 || 
-		   Sakigomu == EquipmentStatus.폐기 || 
-		   Nakayui == EquipmentStatus.폐기 ||
-		   Tsukagawa == EquipmentStatus.폐기 || 
-		   Tsuru == EquipmentStatus.폐기 || 
-		   Tsuba == EquipmentStatus.폐기 ||
-		   TsubaDome == EquipmentStatus.폐기) {
+		if(Sakigawa == Equipment_Status.폐기 || 
+		   Sakigomu == Equipment_Status.폐기 || 
+		   Nakayui == Equipment_Status.폐기 ||
+		   Tsukagawa == Equipment_Status.폐기 || 
+		   Tsuru == Equipment_Status.폐기 || 
+		   Tsuba == Equipment_Status.폐기 ||
+		   TsubaDome == Equipment_Status.폐기) {
 			this.setStatus("폐기");
 			
 		}
 		
-		else if(Sakigawa == EquipmentStatus.수리불가능 || 
-				Sakigomu == EquipmentStatus.수리불가능 || 
-				Nakayui == EquipmentStatus.수리불가능 ||
-				Tsukagawa == EquipmentStatus.수리불가능 || 
-				Tsuru == EquipmentStatus.수리불가능 || 
-				Tsuba == EquipmentStatus.수리불가능 ||
-				TsubaDome == EquipmentStatus.수리불가능) {
+		else if(Sakigawa == Equipment_Status.수리불가능 || 
+				Sakigomu == Equipment_Status.수리불가능 || 
+				Nakayui == Equipment_Status.수리불가능 ||
+				Tsukagawa == Equipment_Status.수리불가능 || 
+				Tsuru == Equipment_Status.수리불가능 || 
+				Tsuba == Equipment_Status.수리불가능 ||
+				TsubaDome == Equipment_Status.수리불가능) {
 				 this.setStatus("수리불가능");
 				 
 		}
 		
-		else if(Sakigawa == EquipmentStatus.수리필요 || 
-				Sakigomu == EquipmentStatus.수리필요 || 
-				Nakayui == EquipmentStatus.수리필요 ||
-				Tsukagawa == EquipmentStatus.수리필요 || 
-				Tsuru == EquipmentStatus.수리필요 || 
-				Tsuba == EquipmentStatus.수리필요 ||
-				TsubaDome == EquipmentStatus.수리필요) {
+		else if(Sakigawa == Equipment_Status.수리필요 || 
+				Sakigomu == Equipment_Status.수리필요 || 
+				Nakayui == Equipment_Status.수리필요 ||
+				Tsukagawa == Equipment_Status.수리필요 || 
+				Tsuru == Equipment_Status.수리필요 || 
+				Tsuba == Equipment_Status.수리필요 ||
+				TsubaDome == Equipment_Status.수리필요) {
 				 this.setStatus("수리필요");
 				 
 		}
@@ -87,31 +87,31 @@ public class Equipment_Shinai extends KKC_Equipment {
 		return member;
 	}
 	
-	public EquipmentStatus getSakiawa() {
+	public Equipment_Status getSakiawa() {
 		return Sakigawa;
 	}
 	
-	public EquipmentStatus getSakigomu() {
+	public Equipment_Status getSakigomu() {
 		return Sakigomu;
 	}
 	
-	public EquipmentStatus getNakayui() {
+	public Equipment_Status getNakayui() {
 		return Nakayui;
 	}
 	
-	public EquipmentStatus getTsukagawa() {
+	public Equipment_Status getTsukagawa() {
 		return Tsukagawa;
 	}
 	
-	public EquipmentStatus getTsuru() {
+	public Equipment_Status getTsuru() {
 		return Tsuru;
 	}
 	
-	public EquipmentStatus getTsuba() {
+	public Equipment_Status getTsuba() {
 		return Tsuba;
 	}
 	
-	public EquipmentStatus getTsubaDome() {
+	public Equipment_Status getTsubaDome() {
 		return TsubaDome;
 	}
 	
@@ -124,19 +124,19 @@ public class Equipment_Shinai extends KKC_Equipment {
 		case "선혁" :
 			switch (statusType) {
 			case "사용가능" :
-				this.Sakigawa = EquipmentStatus.사용가능;
+				this.Sakigawa = Equipment_Status.사용가능;
 				break;
 				
 			case "수리필요" :
-				this.Sakigawa = EquipmentStatus.수리필요;
+				this.Sakigawa = Equipment_Status.수리필요;
 				break;
 				
 			case "수리불가능" :
-				this.Sakigawa = EquipmentStatus.수리불가능;
+				this.Sakigawa = Equipment_Status.수리불가능;
 				break;
 				
 			case "폐기" :
-				this.Sakigawa = EquipmentStatus.폐기;
+				this.Sakigawa = Equipment_Status.폐기;
 				break;
 		}
 			break;
@@ -144,19 +144,19 @@ public class Equipment_Shinai extends KKC_Equipment {
 		case "선고무" :
 			switch (statusType) {
 			case "사용가능" :
-				this.Sakigomu = EquipmentStatus.사용가능;
+				this.Sakigomu = Equipment_Status.사용가능;
 				break;
 				
 			case "수리필요" :
-				this.Sakigomu = EquipmentStatus.수리필요;
+				this.Sakigomu = Equipment_Status.수리필요;
 				break;
 				
 			case "수리불가능" :
-				this.Sakigomu = EquipmentStatus.수리불가능;
+				this.Sakigomu = Equipment_Status.수리불가능;
 				break;
 				
 			case "폐기" :
-				this.Sakigomu = EquipmentStatus.폐기;
+				this.Sakigomu = Equipment_Status.폐기;
 				break;
 		}
 			break;
@@ -164,19 +164,19 @@ public class Equipment_Shinai extends KKC_Equipment {
 		case "중혁" :
 			switch (statusType) {
 			case "사용가능" :
-				this.Nakayui = EquipmentStatus.사용가능;
+				this.Nakayui = Equipment_Status.사용가능;
 				break;
 				
 			case "수리필요" :
-				this.Nakayui = EquipmentStatus.수리필요;
+				this.Nakayui = Equipment_Status.수리필요;
 				break;
 				
 			case "수리불가능" :
-				this.Nakayui = EquipmentStatus.수리불가능;
+				this.Nakayui = Equipment_Status.수리불가능;
 				break;
 				
 			case "폐기" :
-				this.Nakayui = EquipmentStatus.폐기;
+				this.Nakayui = Equipment_Status.폐기;
 				break;
 		}
 			break;
@@ -184,19 +184,19 @@ public class Equipment_Shinai extends KKC_Equipment {
 		case "병혁" :
 			switch (statusType) {
 			case "사용가능" :
-				this.Tsukagawa = EquipmentStatus.사용가능;
+				this.Tsukagawa = Equipment_Status.사용가능;
 				break;
 				
 			case "수리필요" :
-				this.Tsukagawa = EquipmentStatus.수리필요;
+				this.Tsukagawa = Equipment_Status.수리필요;
 				break;
 				
 			case "수리불가능" :
-				this.Tsukagawa = EquipmentStatus.수리불가능;
+				this.Tsukagawa = Equipment_Status.수리불가능;
 				break;
 				
 			case "폐기" :
-				this.Tsukagawa = EquipmentStatus.폐기;
+				this.Tsukagawa = Equipment_Status.폐기;
 				break;
 		}
 			break;
@@ -204,19 +204,19 @@ public class Equipment_Shinai extends KKC_Equipment {
 		case "등줄" :
 			switch (statusType) {
 			case "사용가능" :
-				this.Tsuru = EquipmentStatus.사용가능;
+				this.Tsuru = Equipment_Status.사용가능;
 				break;
 				
 			case "수리필요" :
-				this.Tsuru = EquipmentStatus.수리필요;
+				this.Tsuru = Equipment_Status.수리필요;
 				break;
 				
 			case "수리불가능" :
-				this.Tsuru = EquipmentStatus.수리불가능;
+				this.Tsuru = Equipment_Status.수리불가능;
 				break;
 				
 			case "폐기" :
-				this.Tsuru = EquipmentStatus.폐기;
+				this.Tsuru = Equipment_Status.폐기;
 				break;
 		}
 			break;
@@ -224,19 +224,19 @@ public class Equipment_Shinai extends KKC_Equipment {
 		case "코등이" :
 			switch (statusType) {
 			case "사용가능" :
-				this.Tsuba = EquipmentStatus.사용가능;
+				this.Tsuba = Equipment_Status.사용가능;
 				break;
 				
 			case "수리필요" :
-				this.Tsuba = EquipmentStatus.수리필요;
+				this.Tsuba = Equipment_Status.수리필요;
 				break;
 				
 			case "수리불가능" :
-				this.Tsuba = EquipmentStatus.수리불가능;
+				this.Tsuba = Equipment_Status.수리불가능;
 				break;
 				
 			case "폐기" :
-				this.Tsuba = EquipmentStatus.폐기;
+				this.Tsuba = Equipment_Status.폐기;
 				break;
 		}
 			break;
@@ -244,19 +244,19 @@ public class Equipment_Shinai extends KKC_Equipment {
 		case "코등이 받침" :
 			switch (statusType) {
 			case "사용가능" :
-				this.TsubaDome = EquipmentStatus.사용가능;
+				this.TsubaDome = Equipment_Status.사용가능;
 				break;
 				
 			case "수리필요" :
-				this.TsubaDome = EquipmentStatus.수리필요;
+				this.TsubaDome = Equipment_Status.수리필요;
 				break;
 				
 			case "수리불가능" :
-				this.TsubaDome = EquipmentStatus.수리불가능;
+				this.TsubaDome = Equipment_Status.수리불가능;
 				break;
 				
 			case "폐기" :
-				this.TsubaDome = EquipmentStatus.폐기;
+				this.TsubaDome = Equipment_Status.폐기;
 				break;
 		}
 			break;

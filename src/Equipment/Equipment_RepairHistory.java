@@ -2,7 +2,7 @@ package Equipment;
 import java.util.ArrayList;
 import KKC.KKC_Member;
 
-public class repairHistory {
+public class Equipment_RepairHistory {
 	private KKC_Member user;
 	private String date;
 	private String details;
@@ -10,7 +10,7 @@ public class repairHistory {
 	private Equipment_Shinai shinai = null;
 	private Equipment_Hogu hogu = null;
 	
-	private ArrayList <repairHistory> history = new ArrayList<>();
+	private ArrayList <Equipment_RepairHistory> history = new ArrayList<>();
 	
 	public Equipment_Shinai getShinai() {
 		return shinai;
@@ -65,29 +65,29 @@ public class repairHistory {
 							 String date, String details, String result) {
 		
 		if(hogu != null) {
-			repairHistory newHistory = new repairHistory(hogu, date, details, result);
+			Equipment_RepairHistory newHistory = new Equipment_RepairHistory(hogu, date, details, result);
 			history.add(newHistory);
 		}
 		
 		else if(shinai != null) {
-			repairHistory newHistory = new repairHistory(shinai, date, details, result);
+			Equipment_RepairHistory newHistory = new Equipment_RepairHistory(shinai, date, details, result);
 			history.add(newHistory);
 		}
 	}
 	
 	public void addHistory(String date, String details, String result) {
 		if(hogu != null) {
-			repairHistory newHistory = new repairHistory(this.hogu, date, details, result);
+			Equipment_RepairHistory newHistory = new Equipment_RepairHistory(this.hogu, date, details, result);
 			history.add(newHistory);
 		}
 		
 		else if(shinai != null) {
-			repairHistory newHistory = new repairHistory(this.shinai, date, details, result);
+			Equipment_RepairHistory newHistory = new Equipment_RepairHistory(this.shinai, date, details, result);
 			history.add(newHistory);
 		}
 	}
 	
-	public repairHistory(Equipment_Hogu hogu, String date,
+	public Equipment_RepairHistory(Equipment_Hogu hogu, String date,
 						 String details, String result) {
 
 		this.hogu = hogu;
@@ -98,7 +98,7 @@ public class repairHistory {
 
 }
 	
-	public repairHistory(Equipment_Shinai shinai, String date, 
+	public Equipment_RepairHistory(Equipment_Shinai shinai, String date, 
 						 String details, String result) {
 		
 		this.shinai = shinai;

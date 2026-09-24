@@ -8,7 +8,7 @@ import KKC.KKC_Member;
 
 public class Equipment_Hogu {
 	private String number;
-	private EquipmentStatus status;
+	private Equipment_Status status;
 	private Equipment_Homen homen;
 	private Equipment_Howan howan;
 	private Equipment_Gap gap;
@@ -25,7 +25,7 @@ public class Equipment_Hogu {
 		this.gap = gap;
 		this.gapsang = gapsang;
 		this.member = member;
-		this.status = EquipmentStatus.사용가능;
+		this.status = Equipment_Status.사용가능;
 	}
 	
 	public void setMember(KKC_Member member) {
@@ -72,7 +72,7 @@ public class Equipment_Hogu {
 		return number;
 	}
 	
-	public EquipmentStatus getStatus() {
+	public Equipment_Status getStatus() {
 		return status;
 	}
 	
@@ -96,29 +96,29 @@ public class Equipment_Hogu {
 	}
 	
 	public void checkStatus() {
-		if(homen.getStatus() == EquipmentStatus.폐기 ||
-		   howan.getStatus() == EquipmentStatus.폐기 ||
-		   gap.getStatus() == EquipmentStatus.폐기 ||
-		   gapsang.getStatus() == EquipmentStatus.폐기) {
-			this.status = EquipmentStatus.폐기;
+		if(homen.getStatus() == Equipment_Status.폐기 ||
+		   howan.getStatus() == Equipment_Status.폐기 ||
+		   gap.getStatus() == Equipment_Status.폐기 ||
+		   gapsang.getStatus() == Equipment_Status.폐기) {
+			this.status = Equipment_Status.폐기;
 		}
 		
-		else if(homen.getStatus() == EquipmentStatus.수리불가능 ||
-				howan.getStatus() == EquipmentStatus.수리불가능 ||
-				gap.getStatus() == EquipmentStatus.수리불가능 ||
-				gapsang.getStatus() == EquipmentStatus.수리불가능) {
-				 this.status = EquipmentStatus.수리불가능;
+		else if(homen.getStatus() == Equipment_Status.수리불가능 ||
+				howan.getStatus() == Equipment_Status.수리불가능 ||
+				gap.getStatus() == Equipment_Status.수리불가능 ||
+				gapsang.getStatus() == Equipment_Status.수리불가능) {
+				 this.status = Equipment_Status.수리불가능;
 			}
 		
-		else if(homen.getStatus() == EquipmentStatus.수리필요 ||
-				howan.getStatus() == EquipmentStatus.수리필요 ||
-				gap.getStatus() == EquipmentStatus.수리필요 ||
-				gapsang.getStatus() == EquipmentStatus.수리필요) {
-				 this.status = EquipmentStatus.수리필요;
+		else if(homen.getStatus() == Equipment_Status.수리필요 ||
+				howan.getStatus() == Equipment_Status.수리필요 ||
+				gap.getStatus() == Equipment_Status.수리필요 ||
+				gapsang.getStatus() == Equipment_Status.수리필요) {
+				 this.status = Equipment_Status.수리필요;
 			}
 		
 		else {
-			this.status = EquipmentStatus.사용가능;
+			this.status = Equipment_Status.사용가능;
 		}
 	}
 	
