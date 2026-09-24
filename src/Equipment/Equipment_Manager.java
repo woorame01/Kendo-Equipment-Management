@@ -73,7 +73,7 @@ public class Equipment_Manager {
 		
 				System.out.println("장비세부상태 | 선혁 : " + shinaiList.get(i).getSakiawa() +
 								   " 선고무 : " + shinaiList.get(i).getSakigomu() +
-								   " 중력 : " + shinaiList.get(i).getNakayui() +
+								   " 중혁 : " + shinaiList.get(i).getNakayui() +
 								   " 병혁 : " + shinaiList.get(i).getTsukagawa() +
 								   " 등줄 : " + shinaiList.get(i).getTsuru() +
 								   " 코등이 : " + shinaiList.get(i).getTsuba() +
@@ -90,7 +90,7 @@ public class Equipment_Manager {
 			
 				System.out.println("장비세부상태 | 선혁 : " + shinaiList.get(i).getSakiawa() +
 								   "| 선고무 : " + shinaiList.get(i).getSakigomu() +
-								   "| 중력 : " + shinaiList.get(i).getNakayui() +
+								   "| 중혁 : " + shinaiList.get(i).getNakayui() +
 								   "| 병혁 : " + shinaiList.get(i).getTsukagawa() +
 								   "| 등줄 : " + shinaiList.get(i).getTsuru() +
 								   "| 코등이 : " + shinaiList.get(i).getTsuba() +
@@ -105,7 +105,7 @@ public class Equipment_Manager {
 		for(int i=0; i<hoguList.size(); i++) {
 			System.out.println("장비번호 : " + hoguList.get(i).getNumber() +
 							   " | 장비상태 : " + hoguList.get(i).getStatus() +
-							   " | 이용자 : " + hoguList.get(i).getMember());
+							   " | 이용자 : " + hoguList.get(i).getMember().getName()+"("+hoguList.get(i).getMember().getStudentID()+")");
 			
 			System.out.println("세부정보 | 호면 : " + hoguList.get(i).getHomen() +
 							   "| 호완 : " + hoguList.get(i).getHowan() +
