@@ -26,7 +26,7 @@ public class Equipment_Shinai extends KKC_Equipment {
 		this.TsubaDome = EquipmentStatus.사용가능;
 	}
 	
-	public int shinaiStatus() {
+	public void shinaiStatus() {
 		if(Sakigawa == EquipmentStatus.폐기 || 
 		   Sakigomu == EquipmentStatus.폐기 || 
 		   Nakayui == EquipmentStatus.폐기 ||
@@ -35,7 +35,7 @@ public class Equipment_Shinai extends KKC_Equipment {
 		   Tsuba == EquipmentStatus.폐기 ||
 		   TsubaDome == EquipmentStatus.폐기) {
 			this.setStatus("폐기");
-			return 0;
+			
 		}
 		
 		else if(Sakigawa == EquipmentStatus.수리불가능 || 
@@ -46,7 +46,7 @@ public class Equipment_Shinai extends KKC_Equipment {
 				Tsuba == EquipmentStatus.수리불가능 ||
 				TsubaDome == EquipmentStatus.수리불가능) {
 				 this.setStatus("수리불가능");
-				 return 0;
+				 
 		}
 		
 		else if(Sakigawa == EquipmentStatus.수리필요 || 
@@ -57,12 +57,12 @@ public class Equipment_Shinai extends KKC_Equipment {
 				Tsuba == EquipmentStatus.수리필요 ||
 				TsubaDome == EquipmentStatus.수리필요) {
 				 this.setStatus("수리필요");
-				 return 0;
+				 
 		}
 		
 		else {
 			this.setStatus("사용가능");
-			return 0;
+			
 		}
 				
 	}
