@@ -27,34 +27,34 @@ public class Equipment_Shinai extends KKC_Equipment {
 	}
 	
 	public int shinaiStatus() {
-		if(Sakigawa == EquipmentStatus.폐기 && 
-		   Sakigomu == EquipmentStatus.폐기 && 
-		   Nakayui == EquipmentStatus.폐기 &&
-		   Tsukagawa == EquipmentStatus.폐기 && 
-		   Tsuru == EquipmentStatus.폐기 && 
-		   Tsuba == EquipmentStatus.폐기 &&
+		if(Sakigawa == EquipmentStatus.폐기 || 
+		   Sakigomu == EquipmentStatus.폐기 || 
+		   Nakayui == EquipmentStatus.폐기 ||
+		   Tsukagawa == EquipmentStatus.폐기 || 
+		   Tsuru == EquipmentStatus.폐기 || 
+		   Tsuba == EquipmentStatus.폐기 ||
 		   TsubaDome == EquipmentStatus.폐기) {
 			this.setStatus("폐기");
 			return 0;
 		}
 		
-		else if(Sakigawa == EquipmentStatus.수리불가능 && 
-				Sakigomu == EquipmentStatus.수리불가능 && 
-				Nakayui == EquipmentStatus.수리불가능 &&
-				Tsukagawa == EquipmentStatus.수리불가능 && 
-				Tsuru == EquipmentStatus.수리불가능 && 
-				Tsuba == EquipmentStatus.수리불가능 &&
+		else if(Sakigawa == EquipmentStatus.수리불가능 || 
+				Sakigomu == EquipmentStatus.수리불가능 || 
+				Nakayui == EquipmentStatus.수리불가능 ||
+				Tsukagawa == EquipmentStatus.수리불가능 || 
+				Tsuru == EquipmentStatus.수리불가능 || 
+				Tsuba == EquipmentStatus.수리불가능 ||
 				TsubaDome == EquipmentStatus.수리불가능) {
 				 this.setStatus("수리불가능");
 				 return 0;
 		}
 		
-		else if(Sakigawa == EquipmentStatus.수리필요 && 
-				Sakigomu == EquipmentStatus.수리필요 && 
-				Nakayui == EquipmentStatus.수리필요 &&
-				Tsukagawa == EquipmentStatus.수리필요 && 
-				Tsuru == EquipmentStatus.수리필요 && 
-				Tsuba == EquipmentStatus.수리필요 &&
+		else if(Sakigawa == EquipmentStatus.수리필요 || 
+				Sakigomu == EquipmentStatus.수리필요 || 
+				Nakayui == EquipmentStatus.수리필요 ||
+				Tsukagawa == EquipmentStatus.수리필요 || 
+				Tsuru == EquipmentStatus.수리필요 || 
+				Tsuba == EquipmentStatus.수리필요 ||
 				TsubaDome == EquipmentStatus.수리필요) {
 				 this.setStatus("수리필요");
 				 return 0;
