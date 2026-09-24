@@ -43,7 +43,12 @@ public class Equipment_RepairHistory {
 				System.out.println("수리부위 : " + history.get(i).hogu.getNumber());
 				System.out.println("수리내용 : " + history.get(i).details);
 				System.out.println("수리결과 : " + history.get(i).result);
+				if(history.get(i).user == null) {
+					System.out.println("이용자 : 탈퇴한 부원");
+				}
+				else {
 				System.out.println("이용자 : " + history.get(i).user.getName() + " " + history.get(i).user.getStudentID());
+				}
 				System.out.println("*********************************************");
 			}
 		}
@@ -54,7 +59,12 @@ public class Equipment_RepairHistory {
 				System.out.println("수리부위 : " + history.get(i).shinai.getNumber());
 				System.out.println("수리내용 : " + history.get(i).details);
 				System.out.println("수리결과 : " + history.get(i).result);
+				if(history.get(i).user == null) {
+					System.out.println("이용자 : 탈퇴한 부원");
+				}
+				else {
 				System.out.println("이용자 : " + history.get(i).user.getName() + " " + history.get(i).user.getStudentID());
+				}
 				System.out.println("*********************************************");
 			}
 		}
