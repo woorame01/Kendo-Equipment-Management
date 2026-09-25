@@ -325,6 +325,7 @@ public class Equipment_Manager {
 			for(int i=0; i<shinaiList.size(); i++) {
 				if(shinaiList.get(i).getNumber().equals(EquipmentNumber)) {
 					shinaiList.get(i).setMember(member);
+					break;
 				}
 				
 				else {
@@ -332,12 +333,13 @@ public class Equipment_Manager {
 					System.out.println();
 				}
 					
-			}
+			} break;
 		
 		case "호구" :
 			for(int i=0; i<hoguList.size(); i++) {
 				if(hoguList.get(i).getNumber().equals(EquipmentNumber)) {
 					hoguList.get(i).setMember(member);
+					break;
 				}
 				
 				else {
@@ -385,6 +387,25 @@ public class Equipment_Manager {
 				if(hoguList.get(i).getNumber().equals(Number)) {
 					hoguList.get(i).getHistory().showHistory();
 					break;
+				}
+			} break;
+		}
+	}
+	
+	public void deleteRepairUser(String EquipmentType, String Number, KKC_Member user) {
+		switch (EquipmentType) {
+		case "죽도" :
+			for(int i=0; i<shinaiList.size(); i++) {
+				if(shinaiList.get(i).getNumber().equals(Number)) {
+					shinaiList.get(i).getHistory().deleteUser(user);
+				}
+			} break; 
+			
+			
+		case "호구" :
+			for(int i=0; i<hoguList.size(); i++) {
+				if(hoguList.get(i).getNumber().equals(Number)) {
+					hoguList.get(i).getHistory().deleteUser(user);
 				}
 			} break;
 		}
