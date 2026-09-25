@@ -15,7 +15,11 @@ public class Equipment_Shinai extends KKC_Equipment {
 	private Equipment_Status Tsuru;      // 등줄
 	private Equipment_Status Tsuba;      // 코등이
 	private Equipment_Status TsubaDome;  // 코등이 받침
-
+	private Equipment_RepairHistory history = new Equipment_RepairHistory(this);
+	
+	public Equipment_RepairHistory getHistory() {
+		return this.history;
+	}
 	public Equipment_Shinai(String number, String date) {
 		super(number, date);
 		

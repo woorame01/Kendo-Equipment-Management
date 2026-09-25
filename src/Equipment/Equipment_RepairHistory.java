@@ -68,7 +68,7 @@ public class Equipment_RepairHistory {
 				System.out.println("수리내용 : " + history.get(i).details);
 				System.out.println("수리결과 : " + history.get(i).result);
 				if(history.get(i).user == null) {
-					System.out.println("이용자 : 탈퇴한 부원");
+					System.out.println("이용자 : 탈퇴");
 				}
 				else {
 				System.out.println("이용자 : " + history.get(i).user.getName() + " " + history.get(i).user.getStudentID());
@@ -84,7 +84,7 @@ public class Equipment_RepairHistory {
 				System.out.println("수리내용 : " + history.get(i).details);
 				System.out.println("수리결과 : " + history.get(i).result);
 				if(history.get(i).user == null) {
-					System.out.println("이용자 : 탈퇴한 부원");
+					System.out.println("이용자 : 탈퇴 또는 미등록");
 				}
 				else {
 				System.out.println("이용자 : " + history.get(i).user.getName() + " " + history.get(i).user.getStudentID());
@@ -95,6 +95,7 @@ public class Equipment_RepairHistory {
 		
 	}
 	
+	/*
 	public void firstHistory(Equipment_Hogu hogu, Equipment_Shinai shinai,
 							 String date, String details, String result) {
 		
@@ -108,6 +109,7 @@ public class Equipment_RepairHistory {
 			history.add(newHistory);
 		}
 	}
+	*/
 	
 	public void addHistory(String date, String details, String result) {
 		if(hogu != null) {
@@ -121,8 +123,27 @@ public class Equipment_RepairHistory {
 		}
 	}
 	
-	public Equipment_RepairHistory(Equipment_Hogu hogu, String date,
-						 String details, String result) {
+	public Equipment_RepairHistory(Equipment_Hogu hogu) {
+
+		this.hogu = hogu;
+		this.user = hogu.getMember();
+		this.date = "이력 없음";
+		this.details = "이력 없음";
+		this.result = "이력 없음";
+
+	}
+	
+	public Equipment_RepairHistory(Equipment_Shinai shinai) {
+		
+		this.shinai = shinai;
+		this.user = shinai.getMember();
+		this.date = "이력 없음";
+		this.details = "이력 없음";
+		this.result = "이력 없음";
+		 
+	}
+	
+	public Equipment_RepairHistory(Equipment_Hogu hogu, String date,String details, String result) {
 
 		this.hogu = hogu;
 		this.user = hogu.getMember();
@@ -130,10 +151,9 @@ public class Equipment_RepairHistory {
 		this.details = details;
 		this.result = result;
 
-}
+	}
 	
-	public Equipment_RepairHistory(Equipment_Shinai shinai, String date, 
-						 String details, String result) {
+	public Equipment_RepairHistory(Equipment_Shinai shinai, String date,  String details, String result) {
 		
 		this.shinai = shinai;
 		this.user = shinai.getMember();
