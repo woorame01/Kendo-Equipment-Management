@@ -5,9 +5,9 @@ import java.util.ArrayList;
 /* 기능 목록
  * 장비 등록 v
  * 장비 조회 v
- * 장비 삭제
- * 장비 상태 변경
- * 호구 구성
+ * 장비 삭제 v
+ * 장비 상태 변경 v
+ * 호구 구성 
  * 죽도 이용자 등록
  * 수리 내역 등록/조회
  * */
@@ -103,14 +103,16 @@ public class Equipment_Manager {
 	
 	public void showHoguList() {
 		for(int i=0; i<hoguList.size(); i++) {
+			hoguList.get(i).checkStatus();
+			
 			System.out.println("장비번호 : " + hoguList.get(i).getNumber() +
 							   " | 장비상태 : " + hoguList.get(i).getStatus() +
 							   " | 이용자 : " + hoguList.get(i).getMember().getName()+"("+hoguList.get(i).getMember().getStudentID()+")");
 			
-			System.out.println("세부정보 | 호면 : " + hoguList.get(i).getHomen() +
-							   "| 호완 : " + hoguList.get(i).getHowan() +
-							   "| 갑 : " + hoguList.get(i).getGap() +
-							   "| 갑상 : " + hoguList.get(i).getGapsang());
+			System.out.println("세부정보 | 호면 : " + hoguList.get(i).getHomen().getNumber() +"("+ hoguList.get(i).getHomen().getStatus() +")"+
+							   "| 호완 : " + hoguList.get(i).getHowan().getNumber() +"("+ hoguList.get(i).getHowan().getStatus() +")"+
+							   "| 갑 : " + hoguList.get(i).getGap().getNumber() +"("+ hoguList.get(i).getGap().getStatus() +")"+
+							   "| 갑상 : " + hoguList.get(i).getGapsang().getNumber() +"("+ hoguList.get(i).getGapsang().getStatus()+")"); 
 			
 			System.out.println();
 		}
@@ -142,7 +144,6 @@ public class Equipment_Manager {
 			System.out.println();
 		}
 	}
-	
 	public void ShowGapsangList() {
 		for(int i=0; i<gapsangList.size(); i++) {
 			System.out.println("장비번호 : " + gapsangList.get(i).getNumber() +
@@ -161,5 +162,113 @@ public class Equipment_Manager {
 		}
 	}
 	
-
+	public void deleteShinai(String delete_EquipmentNumber) {
+		for(int i=0; i<shinaiList.size(); i++) {
+			if(shinaiList.get(i).getNumber() == delete_EquipmentNumber) {
+				shinaiList.remove(i);
+				break;
+			}
+		}
+	}
+	
+	public void deleteHogu(String delete_EquipmentNumber) {
+		for(int i=0; i<hoguList.size(); i++) {
+			if(hoguList.get(i).getNumber() == delete_EquipmentNumber) {
+				hoguList.remove(i);
+				break;
+			}
+		}
+	}
+	
+	public void deleteHomen(String delete_EquipmentNumber) {
+		for(int i=0; i<homenList.size(); i++) {
+			if(homenList.get(i).getNumber() == delete_EquipmentNumber) {
+				homenList.remove(i);
+				break;
+			}
+		}
+	}
+	
+	public void deleteHowan(String delete_EquipmentNumber) {
+		for(int i=0; i<howanList.size(); i++) {
+			if(howanList.get(i).getNumber() == delete_EquipmentNumber) {
+				howanList.remove(i);
+				break;
+			}
+		}
+	}
+	
+	public void deleteGap(String delete_EquipmentNumber) {
+		for(int i=0; i<gapList.size(); i++) {
+			if(gapList.get(i).getNumber() == delete_EquipmentNumber) {
+				gapList.remove(i);
+				break;
+			}
+		}
+	}
+	
+	public void deleteGapsang(String delete_EquipmentNumber) {
+		for(int i=0; i<gapsangList.size(); i++) {
+			if(gapsangList.get(i).getNumber() == delete_EquipmentNumber) {
+				gapsangList.remove(i);
+				break;
+			}
+		}
+	}
+	
+	public void deleteDobok(String delete_EquipmentNumber) {
+		for(int i=0; i<dobokList.size(); i++) {
+			if(dobokList.get(i).getNumber() == delete_EquipmentNumber) {
+				dobokList.remove(i);
+				break;
+			}
+		}
+	}
+	
+	public void setShinai_Status(String number, String part, String statusType) {
+		for(int i=0; i<shinaiList.size(); i++) {
+			if(shinaiList.get(i).getNumber() == number) {
+				shinaiList.get(i).setStatus(part, statusType);
+				shinaiList.get(i).shinaiStatus();
+				break;
+			}
+		}
+	}
+	
+	public void setHomen_Status(String number, String statusType) {
+		for(int i=0; i<homenList.size(); i++) {
+			if(homenList.get(i).getNumber() == number) {
+				homenList.get(i).setStatus(statusType);
+				break;
+			}
+		}
+	}
+	
+	public void setHowan_Status(String number, String statusType) {
+		for(int i=0; i<howanList.size(); i++) {
+			if(howanList.get(i).getNumber() == number) {
+				howanList.get(i).setStatus(statusType);
+				break;
+			}
+		}
+	}
+	
+	public void setGap_Status(String number, String statusType) {
+		for(int i=0; i<gapList.size(); i++) {
+			if(gapList.get(i).getNumber() == number) {
+				gapList.get(i).setStatus(statusType);
+				break;
+			}
+		}
+	}
+	
+	public void setGapsang_Status(String number, String statusType) {
+		for(int i=0; i<gapsangList.size(); i++) {
+			if(gapsangList.get(i).getNumber() == number) {
+				gapsangList.get(i).setStatus(statusType);
+				break;
+			}
+		}
+	}
+	
 }
