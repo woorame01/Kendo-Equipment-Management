@@ -3,16 +3,14 @@
 package KKC;
 
 import java.util.Scanner;
-
-import Equipment.EquipmentStatusList;
-import Equipment.KKC_Equipment;
+import Equipment.Equipment_Manager;
 
 import java.util.InputMismatchException;
 public class KKC_System {
 	Scanner scanner = new Scanner(System.in);
-	private  KKC_MemberMenu memberMenu;
-	private KKC_EquipmentMenu equipmentMenu;
-	private EquipmentStatusList statusList;
+	private  KKC_Member_Manager memberManager;
+	private Equipment_Manager equipmentManager;
+	
 	int answer;
 	
 	public void getMenu() {
@@ -55,10 +53,10 @@ public class KKC_System {
 			scanner.nextLine();
 			
 			if(answer == 1) {
-				System.out.println("등록된 총 부원은 "+memberMenu.getMemberList().size()+"명 입니다.");
+				System.out.println("등록된 총 부원은 "+memberManager.getMemberList().size()+"명 입니다.");
 				System.out.println("            부원 목록");
 				System.out.println();
-				memberMenu.showMemberList();
+				memberManager.showMemberList();
 				System.out.print("Enter to back...");
 				scanner.nextLine();
 				continue;
@@ -75,7 +73,7 @@ public class KKC_System {
 				System.out.print("전화번호 >>");
 				String phone = scanner.nextLine();
 				
-				memberMenu.addMember(name, gender, studentID, phone);
+				memberManager.addMember(name, gender, studentID, phone);
 				System.out.print("Enter to back...");
 				scanner.nextLine();
 				continue;
@@ -86,7 +84,7 @@ public class KKC_System {
 				System.out.print("찾을 부원의 학번을 입력하세요 >>");
 				String studentID = scanner.nextLine();
 				System.out.println();
-				memberMenu.findMember(studentID);
+				memberManager.findMember(studentID);
 				System.out.print("Enter to back...");
 				scanner.nextLine();
 				continue;
@@ -96,7 +94,7 @@ public class KKC_System {
 				System.out.println("등록된 부원 정보를 삭제합니다.");
 				System.out.print("삭제할 부원의 학번을 입력하세요 >>");
 				String studentID = scanner.nextLine();
-				KKC_Member findMember = memberMenu.findMember(studentID);
+				KKC_Member findMember = memberManager.findMember(studentID);
 				
 				if(findMember == null) {
 					System.out.print("Enter to back...");
@@ -108,8 +106,12 @@ public class KKC_System {
 				System.out.print("위의 부원의 정보를 삭제하시겠습니까? (Y/N)");
 				String YesOrNo = scanner.nextLine();
 				if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
-					equipmentMenu.deleteEquipmentUser(findMember);
-					memberMenu.deleteMember(findMember);
+					memberManager.deleteMember(findMember);
+					for(int i=0; i<equipmentManager.getHoguList().size(); i++) {
+						if(equipmentManager.getHoguList().get(i).getMember() == findMember) {
+							equipmentManager.deleteHomen(equipmentManager.getHoguList().get(i).getNumber());
+						}
+					}
 					break;
 				}
 				
@@ -168,10 +170,103 @@ public class KKC_System {
 				scanner.nextLine();
 				
 				if(answer == 1) { //view list
-					System.out.println("등록된 총 장비는 "+equipmentMenu.getEquipmentList().size()+"개 입니다.");
-					System.out.println("            장비 목록");
-					System.out.println();
-					equipmentMenu.showEquipmentList();
+					boolean running = true;
+					while(running) {
+						System.out.print("어떤 장비를 보시겠습니까 (죽도 / 호구 / 호면 / 호완 / 갑 / 갑상 / 도복)>>");
+						String EquipmentType = scanner.nextLine();
+						switch (EquipmentType) {
+						case "죽도" : {
+							if(equipmentManager.getShinaiList().size() == 0) {
+								System.out.println("현재 등록되어 있는 죽도가 없습니다.");
+								break;
+							}
+							
+							System.out.println("현재 " + equipmentManager.getShinaiList().size() + "개의 죽도가 등록되어 있습니다.");
+							System.out.println();
+							equipmentManager.showShinaiList();
+							System.out.println("*****************************************");
+							break; }
+						
+						case "호구" : {
+							if(equipmentManager.getHoguList().size() == 0) {
+								System.out.println("현재 등록되어 있는 호구가 없습니다.");
+								break;
+							}
+							
+							System.out.println("현재 " + equipmentManager.getHoguList().size() + "개의 호구가 등록되어 있습니다.");
+							System.out.println();
+							equipmentManager.showHoguList();
+							System.out.println("*****************************************");
+							break; }
+							
+						case "호면" : {
+							if(equipmentManager.getHomenList().size() == 0) {
+								System.out.println("현재 등록되어 있는 호면이 없습니다.");
+								break;
+							}
+							
+							System.out.println("현재 " + equipmentManager.getHomenList().size() + "개의 호면이 등록되어 있습니다.");
+							System.out.println();
+							equipmentManager.showHomenList();
+							System.out.println("*****************************************");
+							break; }
+							
+						case "호완" : {
+							if(equipmentManager.getHowanList().size() == 0) {
+								System.out.println("현재 등록되어 있는 호완이 없습니다.");
+								break;
+							}
+							
+							System.out.println("현재 " + equipmentManager.getHowanList().size() + "개의 호완이 등록되어 있습니다.");
+							System.out.println();
+							equipmentManager.showHowanList();
+							System.out.println("*****************************************");
+							break; }
+							
+						case "갑" : {
+							if(equipmentManager.getGapList().size() == 0) {
+								System.out.println("현재 등록되어 있는 갑이 없습니다.");
+								break;
+							}
+							
+							System.out.println("현재 " + equipmentManager.getGapList().size() + "개의 갑이 등록되어 있습니다.");
+							System.out.println();
+							equipmentManager.showGapList();
+							System.out.println("*****************************************");
+							break; }
+							
+						
+						case "갑상" : {
+							if(equipmentManager.getGapsangList().size() == 0) {
+								System.out.println("현재 등록되어 있는 갑상이 없습니다.");
+								break;
+							}
+							
+							System.out.println("현재 " + equipmentManager.getGapsangList().size() + "개의 갑상이 등록되어 있습니다.");
+							System.out.println();
+							equipmentManager.showGapsangList();
+							System.out.println("*****************************************");
+							break; }
+						
+						case "도복" : {
+							if(equipmentManager.getDobokList().size() == 0) {
+								System.out.println("현재 등록되어 있는 도복이 없습니다.");
+								break;
+							}
+							
+							System.out.println("현재 " + equipmentManager.getDobokList().size() + "개의 도복이 등록되어 있습니다.");
+							System.out.println();
+							equipmentManager.showDobokList();
+							System.out.println("*****************************************");
+							break; }
+						
+						case "종료" : {
+							running = false; }
+							
+						default :
+							System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+						} 
+					}
 					System.out.print("Enter to back...");
 					scanner.nextLine();
 					continue;
@@ -179,56 +274,207 @@ public class KKC_System {
 				
 				else if(answer == 2) { //Equipment Register
 					System.out.println("장비 등록을 시작합니다.");
-					if(equipmentMenu.getEquipmentList().size() != 0) {
-					System.out.println("현재 등록된 마지막 장비 번호는 "+equipmentMenu.getEquipmentList().getLast().getNumber()+" 입니다."); }
-					
-					else {System.out.println("첫 장비 등록입니다. 장비번호는 죽도-001 입니다.");}
-					
-					System.out.print("장비번호 >>");
-					String Number = scanner.nextLine();
-					System.out.print("장비종류 >>");
-					String type = scanner.nextLine();
-					System.out.print("성별 >>");
-					String gender = scanner.nextLine();
-					System.out.print("등록일 >>");
-					String date = scanner.nextLine();
-					System.out.print("이용자 학번 (없다면 Enter)>>");
-					String studentID = scanner.nextLine();
-					int nowStatus;
-					while (true) {
-					statusList.showStatusList();
-					System.out.print("장비 상태 >>");
-					try {
-					nowStatus = scanner.nextInt();
+					System.out.println("등록할 장비 종류를 입력하세요 (죽도 / 호구 / 호면 / 호완 / 갑 / 갑상 / 도복)>>");
+					String EquipmentType = scanner.nextLine();
+					switch (EquipmentType) {
+					case "죽도" : {
+						if(equipmentManager.getShinaiList().size() != 0) {
+							System.out.println("현재 등록된 마지막 죽도 번호는 "+equipmentManager.getShinaiList().getLast().getNumber()+" 입니다."); }
+							
+							else {System.out.println("첫 장비 등록입니다. 장비번호는 1 입니다.");}
+							
+							System.out.print("장비번호 >>");
+							String number = scanner.nextLine();
+							System.out.print("등록일 >>");
+							String date = scanner.nextLine();
+							while (true)
+							System.out.print("이용자 학번 (없다면 Enter)>>");
+							String studentID = scanner.nextLine();
+							if(studentID.isEmpty()) {
+								equipmentManager.addShinai(number, date); 
+								break;
+							}
+							else {
+								KKC_Member setMember = memberManager.findMember(studentID);
+								System.out.println();
+								if(setMember != null) {
+									equipmentManager.addShinai(setMember, number, date);
+									break;
+								}
+								
+								else {
+									continue;
+								}
+							} 
+							break;
+					}
+							
+					case "호구" : {
+						String setHomenNumber;
+						String setHowanNumber;
+						String setGapNumber;
+						String setGapsangNumber;
+						
+						if(equipmentManager.getHoguList().size() != 0) {
+							System.out.println("현재 등록된 마지막 호구 번호는 "+equipmentManager.getHoguList().getLast().getNumber()+" 입니다."); }
+							
+							else {System.out.println("첫 장비 등록입니다. 장비번호는 1 입니다.");}
+							
+							System.out.print("장비번호 >>");
+							String number = scanner.nextLine();
+							while (true) {
+								System.out.print("등록할 호면번호 >>");
+								setHomenNumber = scanner.nextLine();
+								if(equipmentManager.findHomen(setHomenNumber) == null) {
+									System.out.println("찾을 수 없습니다. 장비번호를 확인하세요.");
+									continue;
+								}
+								else
+									break;
+								}
+							
+							while (true) {
+								System.out.print("등록할 호완번호 >>");
+								setHowanNumber = scanner.nextLine();
+								if(equipmentManager.findHowan(setHowanNumber) == null) {
+									System.out.println("찾을 수 없습니다. 장비번호를 확인하세요.");
+									continue;
+								}
+								else
+									break;
+								}
+							
+							while (true) {
+								System.out.print("등록할 갑번호 >>");
+								setGapNumber = scanner.nextLine();
+								if(equipmentManager.findGap(setGapNumber) == null) {
+									System.out.println("찾을 수 없습니다. 장비번호를 확인하세요.");
+									continue;
+								}
+								else
+									break;
+								}
+							
+							while (true) {
+								System.out.print("등록할 갑상번호 >>");
+								setGapsangNumber = scanner.nextLine();
+								if(equipmentManager.findGapsang(setGapsangNumber) == null) {
+									System.out.println("찾을 수 없습니다. 장비번호를 확인하세요.");
+									continue;
+								}
+								else
+									break;
+								}
+							
+							while (true)
+							System.out.print("이용자 학번>>");
+							String studentID = scanner.nextLine();
+							KKC_Member setMember = memberManager.findMember(studentID);
+							System.out.println();
+							if(setMember != null) {
+								equipmentManager.addHogu(number, equipmentManager.findHomen(setHomenNumber), equipmentManager.findHowan(setHowanNumber), equipmentManager.findGap(setGapNumber), equipmentManager.findGapsang(setGapsangNumber), setMember);
+								break;
+							}
+								
+								else {
+									continue;
+								}
+							break;
 					}
 					
-					catch (InputMismatchException e) {
-						System.out.println();
-						System.out.println("잘못된 입력입니다.");
-						System.out.println("다시 입력하세요.");
-						scanner.nextLine();
-						continue;
+					case "호면" : {
+						if(equipmentManager.getHomenList().size() != 0) {
+							System.out.println("현재 등록된 마지막 호면 번호는 "+equipmentManager.getHomenList().getLast().getNumber()+" 입니다."); }
+							
+							else {System.out.println("첫 장비 등록입니다. 장비번호는 1 입니다.");}
+							
+							System.out.print("장비번호 >>");
+							String number = scanner.nextLine();
+							System.out.print("등록일 >>");
+							String date = scanner.nextLine();
+							
+							equipmentManager.addHomen(number, date);
+							
+							break;
 					}
 					
-					if(nowStatus > statusList.getSize() || nowStatus < 0) {
-						System.out.println();
-						System.out.println("잘못된 입력입니다.");
-						System.out.println("다시 입력하세요.");
-						scanner.nextLine();
-						continue;
+
+					case "호완" : {
+						if(equipmentManager.getHowanList().size() != 0) {
+							System.out.println("현재 등록된 마지막 호완 번호는 "+equipmentManager.getHowanList().getLast().getNumber()+" 입니다."); }
+							
+							else {System.out.println("첫 장비 등록입니다. 장비번호는 1 입니다.");}
+							
+							System.out.print("장비번호 >>");
+							String number = scanner.nextLine();
+							System.out.print("등록일 >>");
+							String date = scanner.nextLine();
+							
+							equipmentManager.addHowan(number, date);
+							
+							break;
+						
 					}
 					
-					break;
-					
+
+					case "갑" : {
+						if(equipmentManager.getGapList().size() != 0) {
+							System.out.println("현재 등록된 마지막 갑 번호는 "+equipmentManager.getGapList().getLast().getNumber()+" 입니다."); }
+							
+							else {System.out.println("첫 장비 등록입니다. 장비번호는 1 입니다.");}
+							
+							System.out.print("장비번호 >>");
+							String number = scanner.nextLine();
+							System.out.print("등록일 >>");
+							String date = scanner.nextLine();
+							
+							equipmentManager.addGap(number, date);
+							
+							break;
+						
 					}
 					
-					scanner.nextLine();
+
+					case "갑상" : {
+						if(equipmentManager.getGapsangList().size() != 0) {
+							System.out.println("현재 등록된 마지막 갑상 번호는 "+equipmentManager.getGapsangList().getLast().getNumber()+" 입니다."); }
+							
+							else {System.out.println("첫 장비 등록입니다. 장비번호는 1 입니다.");}
+							
+							System.out.print("장비번호 >>");
+							String number = scanner.nextLine();
+							System.out.print("등록일 >>");
+							String date = scanner.nextLine();
+							
+							equipmentManager.addGapsang(number, date);
+							
+							break;
+						
+					}
 					
-					equipmentMenu.addEquipment(Number, type, gender, date, studentID, nowStatus);
+
+					case "도복" : {
+						if(equipmentManager.getDobokList().size() != 0) {
+							System.out.println("현재 등록된 마지막 도복 번호는 "+equipmentManager.getDobokList().getLast().getNumber()+" 입니다."); }
+							
+							else {System.out.println("첫 장비 등록입니다. 장비번호는 1 입니다.");}
+							
+							System.out.print("장비번호 >>");
+							String number = scanner.nextLine();
+							System.out.print("등록일 >>");
+							String date = scanner.nextLine();
+							
+							equipmentManager.addDobok(number, date);
+							
+							break;
+						
+					}
+					
+				}
+					
 					System.out.print("Enter to back...");
 					scanner.nextLine();
 					continue;
-					
 				}
 				
 				else if(answer == 3) { //User Register or Change
@@ -340,7 +586,7 @@ public class KKC_System {
 						}
 						
 						else {
-							KKC_Member findMember = memberMenu.findMemberNoComment(studentID);
+							KKC_Member findMember = memberManager.findMemberNoComment(studentID);
 							if(findMember == null) {
 								System.out.println("등록할 이용자를 찾을 수 없습니다. 다시 입력하세요.");
 								System.out.println();
@@ -553,19 +799,9 @@ public class KKC_System {
 	}
 	*/
 	
-	public void firstSet() {
-		statusList.addStatus("양호", true);
-		statusList.addStatus("최상", true);
-		statusList.addStatus("파손", false);
-		statusList.addStatus("폐기", false);
-	}
-	
-	public void run(KKC_MemberMenu memberMenu, KKC_EquipmentMenu equipmentMenu, EquipmentStatusList statusList) {
-		this.equipmentMenu = equipmentMenu;
-		this.memberMenu = memberMenu;
-		this.statusList = statusList;
-		
-		firstSet();
+	public void run(KKC_Member_Manager memberManager, Equipment_Manager equipmentManager) {
+		this.equipmentManager = equipmentManager;
+		this.memberManager = memberManager;
 		
 		/* testSet(); */
 		
@@ -579,10 +815,9 @@ public class KKC_System {
 	
 	public static void main(String[] args) {
 		KKC_System open = new KKC_System();
-		EquipmentStatusList statusList = new EquipmentStatusList();
-		KKC_MemberMenu memberMenu = new KKC_MemberMenu();
-		KKC_EquipmentMenu equipmentMenu = new KKC_EquipmentMenu(memberMenu, statusList);
-		open.run(memberMenu, equipmentMenu, statusList);
+		KKC_Member_Manager memberManager = new KKC_Member_Manager();
+		Equipment_Manager equipmentManager = new Equipment_Manager();
+		open.run(memberManager, equipmentManager);
 		
 	}
 

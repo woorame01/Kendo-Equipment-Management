@@ -21,6 +21,34 @@ public class Equipment_Manager {
 	private ArrayList <Equipment_Hogu> hoguList = new ArrayList <Equipment_Hogu>();
 	private ArrayList <Equipment_Dobok> dobokList = new ArrayList <Equipment_Dobok>();
 	
+	public ArrayList <Equipment_Shinai> getShinaiList() {
+		return shinaiList;
+	}
+	
+	public ArrayList <Equipment_Homen> getHomenList() {
+		return homenList;
+	}
+	
+	public ArrayList <Equipment_Howan> getHowanList() {
+		return howanList;
+	}
+	
+	public ArrayList <Equipment_Gap> getGapList() {
+		return gapList;
+	}
+	
+	public ArrayList <Equipment_Gapsang> getGapsangList() {
+		return gapsangList;
+	}
+	
+	public ArrayList <Equipment_Hogu> getHoguList() {
+		return hoguList;
+	}
+	
+	public ArrayList <Equipment_Dobok> getDobokList() {
+		return dobokList;
+	}
+	
 	public void addShinai(KKC_Member member, String number, String date) {
 		Equipment_Shinai newShinai = new Equipment_Shinai(member, number, date);
 		shinaiList.add(newShinai);	
@@ -118,7 +146,7 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void ShowHomenList() {
+	public void showHomenList() {
 		for(int i=0; i<homenList.size(); i++) {
 			System.out.println("장비번호 : " + homenList.get(i).getNumber() +
 							   " | 등록일자 : " + homenList.get(i).getDate());
@@ -127,7 +155,7 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void ShowHowanList() {
+	public void showHowanList() {
 		for(int i=0; i<howanList.size(); i++) {
 			System.out.println("장비번호 : " + howanList.get(i).getNumber() +
 							   " | 등록일자 : " + howanList.get(i).getDate());
@@ -136,7 +164,7 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void ShowGapList() {
+	public void showGapList() {
 		for(int i=0; i<gapList.size(); i++) {
 			System.out.println("장비번호 : " + gapList.get(i).getNumber() +
 							   " | 등록일자 : " + gapList.get(i).getDate());
@@ -144,7 +172,7 @@ public class Equipment_Manager {
 			System.out.println();
 		}
 	}
-	public void ShowGapsangList() {
+	public void showGapsangList() {
 		for(int i=0; i<gapsangList.size(); i++) {
 			System.out.println("장비번호 : " + gapsangList.get(i).getNumber() +
 							   " | 등록일자 : " + gapsangList.get(i).getDate());
@@ -153,7 +181,7 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void ShowDobokList() {
+	public void showDobokList() {
 		for(int i=0; i<dobokList.size(); i++) {
 			System.out.println("장비번호 : " + dobokList.get(i).getNumber() +
 							   " | 등록일자 : " + dobokList.get(i).getDate());
@@ -405,6 +433,42 @@ public class Equipment_Manager {
 				hoguList.get(i).getHistory().deleteUser(user);
 			} break;
 		}
+	}
+	
+	public Equipment_Homen findHomen(String find_EquipmentNumber) {
+		for(int i=0; i<homenList.size(); i++) {
+			if(homenList.get(i).getNumber().equals(find_EquipmentNumber)) {
+				return homenList.get(i);
+			}
+		}
+		return null;
+	}
+	
+	public Equipment_Howan findHowan(String find_EquipmentNumber) {
+		for(int i=0; i<howanList.size(); i++) {
+			if(howanList.get(i).getNumber().equals(find_EquipmentNumber)) {
+				return howanList.get(i);
+			}
+		}
+		return null;
+	}
+	
+	public Equipment_Gap findGap(String find_EquipmentNumber) {
+		for(int i=0; i<gapList.size(); i++) {
+			if(gapList.get(i).getNumber().equals(find_EquipmentNumber)) {
+				return gapList.get(i);
+			}
+		}
+		return null;
+	}
+	
+	public Equipment_Gapsang findGapsang(String find_EquipmentNumber) {
+		for(int i=0; i<gapsangList.size(); i++) {
+			if(gapsangList.get(i).getNumber().equals(find_EquipmentNumber)) {
+				return gapsangList.get(i);
+			}
+		}
+		return null;
 	}
 	
 }

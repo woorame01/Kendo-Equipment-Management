@@ -3,7 +3,8 @@
 package KKC;
 
 import java.util.ArrayList;
-public class KKC_MemberMenu {
+
+public class KKC_Member_Manager {
 	private ArrayList <KKC_Member> memberList = new ArrayList <KKC_Member>();
 	
 	public void addMember(String name, String gender, String studentID, String phone) {
@@ -54,7 +55,7 @@ public class KKC_MemberMenu {
 		for(int i=0; i<memberList.size(); i++) {
 			memberList.get(i).showMember();
 		}
-		System.out.println("-------- 끝 ---------");
+		System.out.println("*********************************************");
 	}
 
 }

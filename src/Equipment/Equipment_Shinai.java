@@ -123,6 +123,10 @@ public class Equipment_Shinai extends KKC_Equipment {
 		this.member = member;
 	}
 	
+	public void deleteMember() {
+		this.member = null;
+	}
+	
 	public void setStatus(String part, String statusType) {
 		switch (part) {
 		case "선혁" :
