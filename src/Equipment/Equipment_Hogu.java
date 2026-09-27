@@ -14,7 +14,7 @@ public class Equipment_Hogu {
 	private Equipment_Gap gap;
 	private Equipment_Gapsang gapsang;
 	private KKC_Member member;
-	private Equipment_RepairHistory history = new Equipment_RepairHistory(this);
+	private Equipment_RepairHistory history;
 	
 	public Equipment_Hogu(String number, Equipment_Homen homen, 
 						  Equipment_Howan howan, Equipment_Gap gap, 
@@ -27,6 +27,7 @@ public class Equipment_Hogu {
 		this.gapsang = gapsang;
 		this.member = member;
 		this.status = Equipment_Status.사용가능;
+		this.history = new Equipment_RepairHistory(this);
 	
 	}
 	

@@ -238,9 +238,9 @@ public class Equipment_Manager {
 	
 	public void showHowanList() {
 		for(int i=0; i<howanList.size(); i++) {
-			System.out.println("장비번호 : " + homenList.get(i).getNumber() +
-					" | 등록일자 : " + homenList.get(i).getDate() +
-					" | 장비상태 : " + homenList.get(i).getStatus());
+			System.out.println("장비번호 : " + howanList.get(i).getNumber() +
+					" | 등록일자 : " + howanList.get(i).getDate() +
+					" | 장비상태 : " + howanList.get(i).getStatus());
 
 			System.out.println();
 		}
@@ -261,9 +261,9 @@ public class Equipment_Manager {
 	
 	public void showGapList() {
 		for(int i=0; i<gapList.size(); i++) {
-			System.out.println("장비번호 : " + homenList.get(i).getNumber() +
-					" | 등록일자 : " + homenList.get(i).getDate() +
-					" | 장비상태 : " + homenList.get(i).getStatus());
+			System.out.println("장비번호 : " + gapList.get(i).getNumber() +
+					" | 등록일자 : " + gapList.get(i).getDate() +
+					" | 장비상태 : " + gapList.get(i).getStatus());
 
 			System.out.println();
 		}
@@ -284,9 +284,9 @@ public class Equipment_Manager {
 	
 	public void showGapsangList() {
 		for(int i=0; i<gapsangList.size(); i++) {
-			System.out.println("장비번호 : " + homenList.get(i).getNumber() +
-					" | 등록일자 : " + homenList.get(i).getDate() +
-					" | 장비상태 : " + homenList.get(i).getStatus());
+			System.out.println("장비번호 : " + gapsangList.get(i).getNumber() +
+					" | 등록일자 : " + gapsangList.get(i).getDate() +
+					" | 장비상태 : " + gapsangList.get(i).getStatus());
 
 			System.out.println();
 		}
@@ -500,33 +500,41 @@ public class Equipment_Manager {
 	}
 	
 	public void setEquipment_User(String EquipmentType, String EquipmentNumber, KKC_Member member) {
+		
+		boolean okey = false;
+		
 		switch (EquipmentType) {
 		case "죽도" :
 			for(int i=0; i<shinaiList.size(); i++) {
 				if(shinaiList.get(i).getNumber().equals(EquipmentNumber)) {
 					shinaiList.get(i).setMember(member);
+					okey = true;
 					break;
 				}
-				
-				else {
-					System.out.println("정보를 찾을 수 없습니다.");
-					System.out.println();
-				}
 					
-			} break;
+			}
+			
+			if(okey == false) {
+			System.out.println("정보를 찾을 수 없습니다.");
+			System.out.println();
+			}
+			
+			break;
 		
 		case "호구" :
 			for(int i=0; i<hoguList.size(); i++) {
 				if(hoguList.get(i).getNumber().equals(EquipmentNumber)) {
 					hoguList.get(i).setMember(member);
+					okey = true;
 					break;
 				}
 				
-				else {
-					System.out.println("정보를 찾을 수 없습니다.");
-					System.out.println();
-				}
 			}
+			
+			if(okey == false) {
+				System.out.println("정보를 찾을 수 없습니다.");
+				System.out.println();
+				}
 		}
 	}
 	
