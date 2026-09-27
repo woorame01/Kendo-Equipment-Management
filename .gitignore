@@ -1,1 +1,4 @@
-/bin/
+# Eclipse
+.metadata/
+bin/
+.settings/
