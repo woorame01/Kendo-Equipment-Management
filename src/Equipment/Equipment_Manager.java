@@ -433,6 +433,7 @@ public class Equipment_Manager {
 	
 	public void setHogu(String setHogu_Number, String setPart, String setEquipment_Number) {
 		
+		boolean Nooo = false;
 		boolean okey = false;
 		
 		for(int i=0; i<hoguList.size(); i++) {
@@ -443,9 +444,13 @@ public class Equipment_Manager {
 					for(int ii=0; ii<hoguList.size(); ii++) {
 						if(hoguList.get(ii).getHomen().getNumber().equals(setEquipment_Number)) {
 							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
+							Nooo = true;
 							break;
 						}
 					}
+					
+					if(Nooo == true)
+						break;
 						
 						
 					if(hoguList.get(i).getHomen() != null) {
@@ -475,9 +480,13 @@ public class Equipment_Manager {
 					for(int ii=0; ii<hoguList.size(); ii++) {
 						if(hoguList.get(ii).getHowan().getNumber().equals(setEquipment_Number)) {
 							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
+							Nooo = true;
 							break;
 						}
 					}
+					
+					if(Nooo == true)
+						break;
 				
 						if(hoguList.get(i).getHowan() != null) {
 							hoguList.get(i).getHowan().getHistory().setOffHogu();
@@ -506,9 +515,13 @@ public class Equipment_Manager {
 					for(int ii=0; ii<hoguList.size(); ii++) {
 						if(hoguList.get(ii).getGap().getNumber().equals(setEquipment_Number)) {
 							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
+							Nooo = true;
 							break;
 						}
 					}
+				
+					if(Nooo == true)
+						break;
 					
 						if(hoguList.get(i).getGap() != null) {
 							hoguList.get(i).getGap().getHistory().setOffHogu();
@@ -537,9 +550,13 @@ public class Equipment_Manager {
 					for(int ii=0; ii<hoguList.size(); ii++) {
 						if(hoguList.get(ii).getGapsang().getNumber().equals(setEquipment_Number)) {
 							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
+							Nooo = true;
 							break;
 						}
 					}
+				
+					if(Nooo == true)
+						break;
 						
 						if(hoguList.get(i).getGapsang() != null) {
 							hoguList.get(i).getGapsang().getHistory().setOffHogu();
