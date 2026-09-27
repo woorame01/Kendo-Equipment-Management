@@ -84,6 +84,10 @@ public class Equipment_Manager {
 						Equipment_Gapsang gapsang, KKC_Member member) {
 		Equipment_Hogu newHogu = new Equipment_Hogu(number, homen, howan, gap, gapsang, member);
 		hoguList.add(newHogu);
+		homen.getHistory().setHogu(newHogu);
+		howan.getHistory().setHogu(newHogu);
+		gap.getHistory().setHogu(newHogu);
+		gapsang.getHistory().setHogu(newHogu);
 	}
 	
 	public void addDobok(String number, String date) {
@@ -326,6 +330,10 @@ public class Equipment_Manager {
 	public void deleteHogu(String delete_EquipmentNumber) {
 		for(int i=0; i<hoguList.size(); i++) {
 			if(hoguList.get(i).getNumber().equals(delete_EquipmentNumber)) {
+				hoguList.get(i).getHomen().getHistory().setOffHogu();
+				hoguList.get(i).getHowan().getHistory().setOffHogu();
+				hoguList.get(i).getGap().getHistory().setOffHogu();
+				hoguList.get(i).getGapsang().getHistory().setOffHogu();
 				hoguList.remove(i);
 				break;
 			}
@@ -431,13 +439,26 @@ public class Equipment_Manager {
 			if(hoguList.get(i).getNumber().equals(setHogu_Number)) {
 				switch (setPart) {
 				case "호면" :
-					for(int ii=0; ii<homenList.size(); ii++) {
-						if(homenList.get(ii).getNumber().equals(setEquipment_Number)) {
-							Equipment_Homen setEquipment = homenList.get(ii);
-							hoguList.get(i).setHomen(setEquipment);
-							System.out.println("구성 변경 완료");
-							okey = true;
+					
+					for(int ii=0; ii<hoguList.size(); ii++) {
+						if(hoguList.get(ii).getHomen().getNumber().equals(setEquipment_Number)) {
+							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
 							break;
+						}
+						
+						if(hoguList.get(i).getHomen() != null) {
+							hoguList.get(i).getHomen().getHistory().setOffHogu();
+						}
+						
+						for(int iii=0; iii<homenList.size(); iii++) {
+							if(homenList.get(iii).getNumber().equals(setEquipment_Number)) {
+								Equipment_Homen setEquipment = homenList.get(iii);
+								hoguList.get(i).setHomen(setEquipment);
+								setEquipment.getHistory().setHogu(hoguList.get(i));
+								System.out.println("구성 변경 완료");
+								okey = true;
+								break;
+							}
 						}
 					}
 					
@@ -447,13 +468,26 @@ public class Equipment_Manager {
 					break;
 					
 				case "호완" :
-					for(int ii=0; ii<howanList.size(); ii++) {
-						if(howanList.get(ii).getNumber().equals(setEquipment_Number)) {
-							Equipment_Howan setEquipment = howanList.get(ii);
-							hoguList.get(i).setHowan(setEquipment);
-							System.out.println("구성 변경 완료");
-							okey = true;
+					
+					for(int ii=0; ii<hoguList.size(); ii++) {
+						if(hoguList.get(ii).getHowan().getNumber().equals(setEquipment_Number)) {
+							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
 							break;
+						}
+				
+						if(hoguList.get(i).getHowan() != null) {
+							hoguList.get(i).getHowan().getHistory().setOffHogu();
+						}
+						
+						for(int iii=0; iii<howanList.size(); iii++) {
+							if(howanList.get(iii).getNumber().equals(setEquipment_Number)) {
+								Equipment_Howan setEquipment = howanList.get(iii);
+								hoguList.get(i).setHowan(setEquipment);
+								setEquipment.getHistory().setHogu(hoguList.get(i));
+								System.out.println("구성 변경 완료");
+								okey = true;
+								break;
+							}
 						}
 					}
 					
@@ -463,13 +497,26 @@ public class Equipment_Manager {
 					break;
 					
 				case "갑" :
-					for(int ii=0; ii<gapList.size(); ii++) {
-						if(gapList.get(ii).getNumber().equals(setEquipment_Number)) {
-							Equipment_Gap setEquipment = gapList.get(ii);
-							hoguList.get(i).setGap(setEquipment);
-							System.out.println("구성 변경 완료");
-							okey = true;
+					
+					for(int ii=0; ii<hoguList.size(); ii++) {
+						if(hoguList.get(ii).getGap().getNumber().equals(setEquipment_Number)) {
+							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
 							break;
+						}
+					
+						if(hoguList.get(i).getGap() != null) {
+							hoguList.get(i).getGap().getHistory().setOffHogu();
+						}
+						
+						for(int iii=0; iii<gapList.size(); iii++) {
+							if(gapList.get(iii).getNumber().equals(setEquipment_Number)) {
+								Equipment_Gap setEquipment = gapList.get(iii);
+								hoguList.get(i).setGap(setEquipment);
+								setEquipment.getHistory().setHogu(hoguList.get(i));
+								System.out.println("구성 변경 완료");
+								okey = true;
+								break;
+							}
 						}
 					}
 					
@@ -479,15 +526,28 @@ public class Equipment_Manager {
 					break;
 					
 				case "갑상" :
-					for(int ii=0; ii<gapsangList.size(); ii++) {
-						if(gapsangList.get(ii).getNumber().equals(setEquipment_Number)) {
-							Equipment_Gapsang setEquipment = gapsangList.get(ii);
-							hoguList.get(i).setGapsang(setEquipment);
-							System.out.println("구성 변경 완료");
-							okey = true;
+					
+					for(int ii=0; ii<hoguList.size(); ii++) {
+						if(hoguList.get(ii).getGapsang().getNumber().equals(setEquipment_Number)) {
+							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
 							break;
 						}
-					} 
+						
+						if(hoguList.get(i).getGapsang() != null) {
+							hoguList.get(i).getGapsang().getHistory().setOffHogu();
+						}
+						
+						for(int iii=0; iii<gapsangList.size(); iii++) {
+							if(gapsangList.get(iii).getNumber().equals(setEquipment_Number)) {
+								Equipment_Gapsang setEquipment = gapsangList.get(iii);
+								hoguList.get(i).setGapsang(setEquipment);
+								setEquipment.getHistory().setHogu(hoguList.get(i));
+								System.out.println("구성 변경 완료");
+								okey = true;
+								break;
+							}
+						}
+					}
 					
 					if(okey == false) 
 					System.out.println("변경 실패 | 장비 번호를 확인하세요.");
@@ -538,26 +598,86 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void addRepairHistory(String EquipmentType, String Number, String date, String detail, String result) {
-		switch (EquipmentType) {
-		case "죽도" :
+	public void addShinaiRepairHistory(String Number, String date, String detail, String result) {
 			for(int i=0; i<shinaiList.size(); i++) {
 				if(shinaiList.get(i).getNumber().equals(Number)) {
 					shinaiList.get(i).getHistory().addHistory(date, detail, result);
 					break;
 				}
-			} break; 
-			
-			
-		case "호구" :
-			for(int i=0; i<hoguList.size(); i++) {
-				if(hoguList.get(i).getNumber().equals(Number)) {
-					hoguList.get(i).getHistory().addHistory(date, detail, result);
+			} 
+	}
+	
+	public void addHoguRepairHistory(String hoguNumber, String part, String date, String details, String result) {
+		for(int i=0; i<hoguList.size(); i++) {
+			if(hoguList.get(i).getNumber().equals(hoguNumber)) {
+				switch (part) {
+				case "호면" : {
+					hoguList.get(i).getHomen().getHistory().addHistory(date, details, result);
 					break;
 				}
-			} break;
+			
+				case "호완" : {
+					hoguList.get(i).getHowan().getHistory().addHistory(date, details, result);
+					break;
+				}
+
+				case "갑" : {
+					hoguList.get(i).getGap().getHistory().addHistory(date, details, result);
+					break;
+				}
+
+				case "갑상" : {
+					hoguList.get(i).getGapsang().getHistory().addHistory(date, details, result);
+					break;
+				}
+				
+				} break;
+			} 
 		}
 	}
+	
+	public void addNullHoguRepairHistory(String number, String part, String date, String details, String result) {
+				switch (part) {
+				case "호면" : {
+					for(int i=0; i<homenList.size(); i++) {
+						if(homenList.get(i).getNumber().equals(number)) {
+							homenList.get(i).getHistory().addHistory(date, details, result);
+							break;
+						}
+					}
+				}
+			
+				case "호완" : {
+					for(int i=0; i<howanList.size(); i++) {
+						if(howanList.get(i).getNumber().equals(number)) {
+							howanList.get(i).getHistory().addHistory(date, details, result);
+							break;
+						}
+					}
+				}
+
+				case "갑" : {
+					for(int i=0; i<gapList.size(); i++) {
+						if(gapList.get(i).getNumber().equals(number)) {
+							gapList.get(i).getHistory().addHistory(date, details, result);
+							break;
+						}
+					}
+				}
+
+				case "갑상" : {
+					for(int i=0; i<gapsangList.size(); i++) {
+						if(gapsangList.get(i).getNumber().equals(number)) {
+							gapsangList.get(i).getHistory().addHistory(date, details, result);
+							break;
+						}
+					}
+				}
+				
+				} 
+			} 
+		
+	
 	
 	public void showRepairHistory(String EquipmentType, String Number) {
 		switch (EquipmentType) {
@@ -570,13 +690,38 @@ public class Equipment_Manager {
 			} break; 
 			
 			
-		case "호구" :
-			for(int i=0; i<hoguList.size(); i++) {
-				if(hoguList.get(i).getNumber().equals(Number)) {
-					hoguList.get(i).getHistory().showHistory();
+		case "호면" :
+			for(int i=0; i<homenList.size(); i++) {
+				if(homenList.get(i).getNumber().equals(Number)) {
+					homenList.get(i).getHistory().showHistory();
 					break;
 				}
 			} break;
+			
+		case "호완" :
+			for(int i=0; i<howanList.size(); i++) {
+				if(howanList.get(i).getNumber().equals(Number)) {
+					howanList.get(i).getHistory().showHistory();
+					break;
+				}
+			} break;
+			
+		case "갑" :
+			for(int i=0; i<gapList.size(); i++) {
+				if(gapList.get(i).getNumber().equals(Number)) {
+					gapList.get(i).getHistory().showHistory();
+					break;
+				}
+			} break;
+			
+		case "갑상" :
+			for(int i=0; i<gapsangList.size(); i++) {
+				if(gapsangList.get(i).getNumber().equals(Number)) {
+					gapsangList.get(i).getHistory().showHistory();
+					break;
+				}
+			} break;
+			
 		}
 	}
 	
@@ -585,8 +730,20 @@ public class Equipment_Manager {
 				shinaiList.get(i).getHistory().deleteUser(user);
 			}
 			
-			for(int i=0; i<hoguList.size(); i++) {
-				hoguList.get(i).getHistory().deleteUser(user);
+			for(int i=0; i<homenList.size(); i++) {
+				homenList.get(i).getHistory().deleteUser(user);
+			}
+			
+			for(int i=0; i<howanList.size(); i++) {
+				howanList.get(i).getHistory().deleteUser(user);
+			}
+			
+			for(int i=0; i<gapList.size(); i++) {
+				gapList.get(i).getHistory().deleteUser(user);
+			}
+			
+			for(int i=0; i<gapsangList.size(); i++) {
+				gapsangList.get(i).getHistory().deleteUser(user);
 			}
 		}
 	

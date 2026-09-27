@@ -33,8 +33,37 @@ public class Equipment_RepairHistory {
 	private String result;
 	private Equipment_Shinai shinai = null;
 	private Equipment_Hogu hogu = null;
+	private Equipment_Homen homen = null;
+	private Equipment_Howan howan = null;
+	private Equipment_Gap gap = null;
+	private Equipment_Gapsang gapsang = null;
 	
 	private ArrayList <Equipment_RepairHistory> history = new ArrayList<>();
+	
+	public void setHogu(Equipment_Hogu hogu) {
+		this.hogu = hogu;
+		this.user = hogu.getMember();
+	}
+	
+	public void setOffHogu() {
+		this.hogu = null;
+	}
+	
+	public Equipment_Homen getHomen() {
+		return homen;
+	}
+	
+	public Equipment_Howan getHowan() {
+		return howan;
+	}
+	
+	public Equipment_Gap getGap() {
+		return gap;
+	}
+	
+	public Equipment_Gapsang getGapsang() {
+		return gapsang;
+	}
 	
 	public Equipment_Shinai getShinai() {
 		return shinai;
@@ -61,14 +90,62 @@ public class Equipment_RepairHistory {
 	}
 	
 	public void showHistory() {
-		if(hogu != null) {
+		if(homen != null) {
 			for(int i=0; i<history.size(); i++) {
 				System.out.println("수리일자 : " + history.get(i).date);
-				System.out.println("수리부위 : " + history.get(i).hogu.getNumber());
+				System.out.println("수리부위 : " + history.get(i).homen.getNumber());
 				System.out.println("수리내용 : " + history.get(i).details);
 				System.out.println("수리결과 : " + history.get(i).result);
 				if(history.get(i).user == null) {
-					System.out.println("이용자 : 탈퇴");
+					System.out.println("이용자 : 탈퇴 또는 미등록");
+				}
+				else {
+				System.out.println("이용자 : " + history.get(i).user.getName() + " " + history.get(i).user.getStudentID());
+				}
+				System.out.println("*********************************************");
+			}
+		}
+		
+		else if(howan != null) {
+			for(int i=0; i<history.size(); i++) {
+				System.out.println("수리일자 : " + history.get(i).date);
+				System.out.println("수리부위 : " + history.get(i).howan.getNumber());
+				System.out.println("수리내용 : " + history.get(i).details);
+				System.out.println("수리결과 : " + history.get(i).result);
+				if(history.get(i).user == null) {
+					System.out.println("이용자 : 탈퇴 또는 미등록");
+				}
+				else {
+				System.out.println("이용자 : " + history.get(i).user.getName() + " " + history.get(i).user.getStudentID());
+				}
+				System.out.println("*********************************************");
+			}
+		}
+		
+		else if(gap != null) {
+			for(int i=0; i<history.size(); i++) {
+				System.out.println("수리일자 : " + history.get(i).date);
+				System.out.println("수리부위 : " + history.get(i).gap.getNumber());
+				System.out.println("수리내용 : " + history.get(i).details);
+				System.out.println("수리결과 : " + history.get(i).result);
+				if(history.get(i).user == null) {
+					System.out.println("이용자 : 탈퇴 또는 미등록");
+				}
+				else {
+				System.out.println("이용자 : " + history.get(i).user.getName() + " " + history.get(i).user.getStudentID());
+				}
+				System.out.println("*********************************************");
+			}
+		}
+		
+		else if(gapsang != null) {
+			for(int i=0; i<history.size(); i++) {
+				System.out.println("수리일자 : " + history.get(i).date);
+				System.out.println("수리부위 : " + history.get(i).gapsang.getNumber());
+				System.out.println("수리내용 : " + history.get(i).details);
+				System.out.println("수리결과 : " + history.get(i).result);
+				if(history.get(i).user == null) {
+					System.out.println("이용자 : 탈퇴 또는 미등록");
 				}
 				else {
 				System.out.println("이용자 : " + history.get(i).user.getName() + " " + history.get(i).user.getStudentID());
@@ -93,27 +170,29 @@ public class Equipment_RepairHistory {
 			}
 		}
 		
-	}
-	
-	/*
-	public void firstHistory(Equipment_Hogu hogu, Equipment_Shinai shinai,
-							 String date, String details, String result) {
 		
-		if(hogu != null) {
-			Equipment_RepairHistory newHistory = new Equipment_RepairHistory(hogu, date, details, result);
-			history.add(newHistory);
-		}
 		
-		else if(shinai != null) {
-			Equipment_RepairHistory newHistory = new Equipment_RepairHistory(shinai, date, details, result);
-			history.add(newHistory);
-		}
 	}
-	*/
 	
 	public void addHistory(String date, String details, String result) {
-		if(hogu != null) {
-			Equipment_RepairHistory newHistory = new Equipment_RepairHistory(this.hogu, date, details, result);
+		
+		if(homen != null) {
+			Equipment_RepairHistory newHistory = new Equipment_RepairHistory(this.hogu, this.homen, date, details, result);
+			history.add(newHistory);
+		}
+		
+		else if(howan != null) {
+			Equipment_RepairHistory newHistory = new Equipment_RepairHistory(this.hogu, this.howan, date, details, result);
+			history.add(newHistory);
+		}
+		
+		else if(gap != null) {
+			Equipment_RepairHistory newHistory = new Equipment_RepairHistory(this.hogu, this.gap, date, details, result);
+			history.add(newHistory);
+		}
+		
+		else if(gapsang != null) {
+			Equipment_RepairHistory newHistory = new Equipment_RepairHistory(this.hogu, this.gapsang, date, details, result);
 			history.add(newHistory);
 		}
 		
@@ -123,10 +202,40 @@ public class Equipment_RepairHistory {
 		}
 	}
 	
-	public Equipment_RepairHistory(Equipment_Hogu hogu) {
+	public Equipment_RepairHistory(Equipment_Homen homen) {
 
-		this.hogu = hogu;
-		this.user = hogu.getMember();
+		this.homen = homen;
+		this.user = null;
+		this.date = "이력 없음";
+		this.details = "이력 없음";
+		this.result = "이력 없음";
+
+	}
+	
+	public Equipment_RepairHistory(Equipment_Howan howan) {
+		
+		this.howan = howan;
+		this.user = null;
+		this.date = "이력 없음";
+		this.details = "이력 없음";
+		this.result = "이력 없음";
+
+	}
+	
+	public Equipment_RepairHistory(Equipment_Gap gap) {
+
+		this.gap = gap;
+		this.user = null;
+		this.date = "이력 없음";
+		this.details = "이력 없음";
+		this.result = "이력 없음";
+
+	}
+	
+	public Equipment_RepairHistory(Equipment_Gapsang gapsang) {
+
+		this.gapsang = gapsang;
+		this.user = null;
 		this.date = "이력 없음";
 		this.details = "이력 없음";
 		this.result = "이력 없음";
@@ -143,16 +252,6 @@ public class Equipment_RepairHistory {
 		 
 	}
 	
-	public Equipment_RepairHistory(Equipment_Hogu hogu, String date,String details, String result) {
-
-		this.hogu = hogu;
-		this.user = hogu.getMember();
-		this.date = date;
-		this.details = details;
-		this.result = result;
-
-	}
-	
 	public Equipment_RepairHistory(Equipment_Shinai shinai, String date,  String details, String result) {
 		
 		this.shinai = shinai;
@@ -161,6 +260,50 @@ public class Equipment_RepairHistory {
 		this.details = details;
 		this.result = result;
 		 
+	}
+	
+	public Equipment_RepairHistory(Equipment_Hogu hogu, Equipment_Homen homen,  String date,String details, String result) {
+
+		this.hogu = hogu;
+		this.homen = homen;
+		this.user = hogu.getMember();
+		this.date = date;
+		this.details = details;
+		this.result = result;
+
+	}
+	
+	public Equipment_RepairHistory(Equipment_Hogu hogu, Equipment_Howan howan,  String date,String details, String result) {
+
+		this.hogu = hogu;
+		this.howan = howan;
+		this.user = hogu.getMember();
+		this.date = date;
+		this.details = details;
+		this.result = result;
+
+	}
+	
+	public Equipment_RepairHistory(Equipment_Hogu hogu, Equipment_Gap gap,  String date,String details, String result) {
+
+		this.hogu = hogu;
+		this.gap = gap;
+		this.user = hogu.getMember();
+		this.date = date;
+		this.details = details;
+		this.result = result;
+
+	}
+	
+	public Equipment_RepairHistory(Equipment_Hogu hogu, Equipment_Gapsang gapsang,  String date,String details, String result) {
+
+		this.hogu = hogu;
+		this.gapsang = gapsang;
+		this.user = hogu.getMember();
+		this.date = date;
+		this.details = details;
+		this.result = result;
+
 	}
 	
 	public void deleteUser(KKC_Member user) {

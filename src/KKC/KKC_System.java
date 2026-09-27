@@ -1396,6 +1396,7 @@ public class KKC_System {
 					if(answer == 1) { // 수리내역 등록
 						
 						String equipmentType, number, date, detail, result;
+						String partNumber = "장비-000";
 						
 						System.out.println("장비 수리 내역을 등록합니다.");
 						while (true) {
@@ -1439,7 +1440,7 @@ public class KKC_System {
 								System.out.print("수리 결과를 입력하세요 >>");
 								result = scanner.nextLine();
 								
-								equipmentManager.addRepairHistory(equipmentType, number, date, detail, result);
+								equipmentManager.addShinaiRepairHistory(number, date, detail, result);
 								
 								System.out.println("죽도-"+ number + " 기록 완료");
 								
@@ -1453,9 +1454,13 @@ public class KKC_System {
 							case "호구" : {
 
 								while (true) {
-								System.out.print("호구 번호를 입력하세요 >>");
+								System.out.print("호구 번호를 입력하세요(개별 장비라면 Enter) >>");
 								number = scanner.nextLine();
-								if(equipmentManager.findHogu(number) == null) {
+								
+								if(number.isEmpty())
+									break;
+								
+								else if(equipmentManager.findHogu(number) == null) {
 									System.out.println("등록된 장비를 찾을 수 없습니다. 다시 입력하세요.");
 									continue;
 								}
@@ -1465,19 +1470,89 @@ public class KKC_System {
 								
 								}
 								
+								while (true) {
+									System.out.print("기록할 부위를 입력하세요(호면 / 호완 / 갑 / 갑상) >>");
+									equipmentType = scanner.nextLine();
+									
+									if(equipmentType.equals("호면") || equipmentType.equals("호완") || equipmentType.equals("갑") || equipmentType.equals("갑상")) {
+										break;
+									}
+									
+									else {
+										System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+										continue;
+									}
+								}
+								
+								if(number.isEmpty()) {
+									while (true) {
+										System.out.print("세부 장비 번호를 입력하세요 >>");
+										partNumber = scanner.nextLine();
+										
+										if(equipmentType.equals("호면")) {
+											if(equipmentManager.findHomen(partNumber) == null) {
+												System.out.println("장비를 찾을 수 없습니다. 다시 입력하세요.");
+												continue;
+										}
+											else
+												break;
+									
+										}
+										
+										else if(equipmentType.equals("호완")) {
+											if(equipmentManager.findHowan(partNumber) == null) {
+												System.out.println("장비를 찾을 수 없습니다. 다시 입력하세요.");
+												continue;
+										}
+											else
+												break;
+									
+										}
+										
+										else if(equipmentType.equals("갑")) {
+											if(equipmentManager.findGap(partNumber) == null) {
+												System.out.println("장비를 찾을 수 없습니다. 다시 입력하세요.");
+												continue;
+										}
+											else
+												break;
+									
+										}
+										
+										else if(equipmentType.equals("갑상")) {
+											if(equipmentManager.findGapsang(partNumber) == null) {
+												System.out.println("장비를 찾을 수 없습니다. 다시 입력하세요.");
+												continue;
+										}
+											else
+												break;
+									
+										}
+										
+									}
+								}
+								
 								System.out.print("등록일을 작성하세요 >>");
 								date = scanner.nextLine();
 								
-								System.out.println("예시) 갑상 | 줄 끊어짐으로 다시 연결");
-								System.out.print("기록할 부위와 세부 내용을 작성하세요 >>");
+								System.out.println("예시) 줄 끊어짐으로 다시 연결");
+								System.out.print("세부 내용을 작성하세요 >>");
 								detail = scanner.nextLine();
 								
 								System.out.print("수리 결과를 입력하세요 >>");
 								result = scanner.nextLine();
 								
-								equipmentManager.addRepairHistory(equipmentType, number, date, detail, result);
+								if(number.isEmpty()) {
+									equipmentManager.addNullHoguRepairHistory(partNumber, equipmentType, date, detail, result);
+									System.out.println(equipmentType+"-"+partNumber+" 기록 완료");
+								}
 								
-								System.out.println("호구-"+ number + " 기록 완료");
+								else {
+								equipmentManager.addHoguRepairHistory(number, equipmentType, date, detail, result);
+								
+								System.out.println("호구-"+ number + " " + equipmentType + " 기록 완료");
+								}
+								
 								System.out.print("Enter to back...");
 								scanner.nextLine();
 								
@@ -1497,10 +1572,10 @@ public class KKC_System {
 						System.out.println("수리 기록을 열람합니다.");
 						
 						while (true) {
-							System.out.print("등록할 장비 종류를 입력하세요( 죽도 / 호구 ) >>");
+							System.out.print("열람할 장비 종류를 입력하세요( 죽도 / 호면 / 호완 / 갑 / 갑상 ) >>");
 							equipmentType = scanner.nextLine();
 							
-							if(equipmentType.equals("죽도") || equipmentType.equals("호구")) {
+							if(equipmentType.equals("죽도") || equipmentType.equals("호완") || equipmentType.equals("갑") || equipmentType.equals("갑상")) {
 								break;
 							}
 							
@@ -1535,12 +1610,12 @@ public class KKC_System {
 							
 						}
 						
-						case "호구" : {
+						case "호면" : {
 							while (true) {
 								System.out.print("열람할 장비 번호를 입력하세요 >>");
 								number = scanner.nextLine();
 							
-								if(equipmentManager.findHogu(number) == null) {
+								if(equipmentManager.findHomen(number) == null) {
 									System.out.println("장비를 찾을 수 없습니다. 다시 입력하세요.");
 									continue;
 								}
