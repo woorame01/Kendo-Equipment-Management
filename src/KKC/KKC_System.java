@@ -1575,7 +1575,7 @@ public class KKC_System {
 							System.out.print("열람할 장비 종류를 입력하세요( 죽도 / 호면 / 호완 / 갑 / 갑상 ) >>");
 							equipmentType = scanner.nextLine();
 							
-							if(equipmentType.equals("죽도") || equipmentType.equals("호완") || equipmentType.equals("갑") || equipmentType.equals("갑상")) {
+							if(equipmentType.equals("죽도") || equipmentType.equals("호면") || equipmentType.equals("호완") || equipmentType.equals("갑") || equipmentType.equals("갑상")) {
 								break;
 							}
 							
@@ -1616,6 +1616,75 @@ public class KKC_System {
 								number = scanner.nextLine();
 							
 								if(equipmentManager.findHomen(number) == null) {
+									System.out.println("장비를 찾을 수 없습니다. 다시 입력하세요.");
+									continue;
+								}
+								
+								else
+									break;
+							
+							}
+							
+							equipmentManager.showRepairHistory(equipmentType, number);
+							
+							System.out.print("Enter to back...");
+							scanner.nextLine();
+							break;
+							
+						}
+						
+						case "호완" : {
+							while (true) {
+								System.out.print("열람할 장비 번호를 입력하세요 >>");
+								number = scanner.nextLine();
+							
+								if(equipmentManager.findHowan(number) == null) {
+									System.out.println("장비를 찾을 수 없습니다. 다시 입력하세요.");
+									continue;
+								}
+								
+								else
+									break;
+							
+							}
+							
+							equipmentManager.showRepairHistory(equipmentType, number);
+							
+							System.out.print("Enter to back...");
+							scanner.nextLine();
+							break;
+							
+						}
+						
+						case "갑" : {
+							while (true) {
+								System.out.print("열람할 장비 번호를 입력하세요 >>");
+								number = scanner.nextLine();
+							
+								if(equipmentManager.findGap(number) == null) {
+									System.out.println("장비를 찾을 수 없습니다. 다시 입력하세요.");
+									continue;
+								}
+								
+								else
+									break;
+							
+							}
+							
+							equipmentManager.showRepairHistory(equipmentType, number);
+							
+							System.out.print("Enter to back...");
+							scanner.nextLine();
+							break;
+							
+						}
+						
+						case "갑상" : {
+							while (true) {
+								System.out.print("열람할 장비 번호를 입력하세요 >>");
+								number = scanner.nextLine();
+							
+								if(equipmentManager.findGapsang(number) == null) {
 									System.out.println("장비를 찾을 수 없습니다. 다시 입력하세요.");
 									continue;
 								}

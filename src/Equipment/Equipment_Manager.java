@@ -438,42 +438,46 @@ public class Equipment_Manager {
 		for(int i=0; i<hoguList.size(); i++) {
 			if(hoguList.get(i).getNumber().equals(setHogu_Number)) {
 				switch (setPart) {
-				case "호면" :
+				case "호면" : {
 					
 					for(int ii=0; ii<hoguList.size(); ii++) {
 						if(hoguList.get(ii).getHomen().getNumber().equals(setEquipment_Number)) {
 							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
 							break;
 						}
+					}
 						
-						if(hoguList.get(i).getHomen() != null) {
-							hoguList.get(i).getHomen().getHistory().setOffHogu();
-						}
 						
-						for(int iii=0; iii<homenList.size(); iii++) {
-							if(homenList.get(iii).getNumber().equals(setEquipment_Number)) {
-								Equipment_Homen setEquipment = homenList.get(iii);
-								hoguList.get(i).setHomen(setEquipment);
-								setEquipment.getHistory().setHogu(hoguList.get(i));
-								System.out.println("구성 변경 완료");
-								okey = true;
-								break;
-							}
+					if(hoguList.get(i).getHomen() != null) {
+						hoguList.get(i).getHomen().getHistory().setOffHogu();
+					}
+						
+					for(int iii=0; iii<homenList.size(); iii++) {
+						if(homenList.get(iii).getNumber().equals(setEquipment_Number)) {
+							Equipment_Homen setEquipment = homenList.get(iii);
+							hoguList.get(i).setHomen(setEquipment);
+							setEquipment.getHistory().setHogu(hoguList.get(i));
+							System.out.println("구성 변경 완료");
+							okey = true;
+							break;
 						}
 					}
+					
 					
 					if(okey == false) 
 					System.out.println("변경 실패 | 장비 번호를 확인하세요.");
 					
 					break;
+				}
 					
-				case "호완" :
+				case "호완" : {
 					
 					for(int ii=0; ii<hoguList.size(); ii++) {
 						if(hoguList.get(ii).getHowan().getNumber().equals(setEquipment_Number)) {
 							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
 							break;
 						}
+					}
 				
 						if(hoguList.get(i).getHowan() != null) {
 							hoguList.get(i).getHowan().getHistory().setOffHogu();
@@ -489,20 +493,22 @@ public class Equipment_Manager {
 								break;
 							}
 						}
-					}
+					
 					
 					if(okey == false) 
 					System.out.println("변경 실패 | 장비 번호를 확인하세요.");
 					
 					break;
+				}
 					
-				case "갑" :
+				case "갑" : {
 					
 					for(int ii=0; ii<hoguList.size(); ii++) {
 						if(hoguList.get(ii).getGap().getNumber().equals(setEquipment_Number)) {
 							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
 							break;
 						}
+					}
 					
 						if(hoguList.get(i).getGap() != null) {
 							hoguList.get(i).getGap().getHistory().setOffHogu();
@@ -518,20 +524,22 @@ public class Equipment_Manager {
 								break;
 							}
 						}
-					}
+					
 					
 					if(okey == false) 
 					System.out.println("변경 실패 | 장비 번호를 확인하세요.");
 					
 					break;
+				}
 					
-				case "갑상" :
+				case "갑상" : {
 					
 					for(int ii=0; ii<hoguList.size(); ii++) {
 						if(hoguList.get(ii).getGapsang().getNumber().equals(setEquipment_Number)) {
 							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
 							break;
 						}
+					}
 						
 						if(hoguList.get(i).getGapsang() != null) {
 							hoguList.get(i).getGapsang().getHistory().setOffHogu();
@@ -547,12 +555,13 @@ public class Equipment_Manager {
 								break;
 							}
 						}
-					}
+					
 					
 					if(okey == false) 
 					System.out.println("변경 실패 | 장비 번호를 확인하세요.");
 					
 					break;
+				}
 					
 				} break;
 			}
