@@ -109,9 +109,18 @@ public class KKC_System {
 					memberManager.deleteMember(findMember);
 					for(int i=0; i<equipmentManager.getHoguList().size(); i++) {
 						if(equipmentManager.getHoguList().get(i).getMember() == findMember) {
-							equipmentManager.deleteHomen(equipmentManager.getHoguList().get(i).getNumber());
+							equipmentManager.deleteHogu(equipmentManager.getHoguList().get(i).getNumber());
 						}
 					}
+					
+					for(int i=0; i<equipmentManager.getShinaiList().size(); i++) {
+						if(equipmentManager.getShinaiList().get(i).getMember() == findMember) {
+							equipmentManager.deleteShinai(equipmentManager.getShinaiList().get(i).getNumber());
+						}
+					}
+					
+					equipmentManager.deleteRepairUser(findMember);
+					
 					break;
 				}
 				
@@ -261,7 +270,8 @@ public class KKC_System {
 							break; }
 						
 						case "종료" : {
-							running = false; }
+							running = false;
+							break;}
 							
 						default :
 							System.out.println("잘못된 입력입니다. 다시 입력하세요.");
@@ -287,7 +297,7 @@ public class KKC_System {
 							String number = scanner.nextLine();
 							System.out.print("등록일 >>");
 							String date = scanner.nextLine();
-							while (true)
+							while (true) {
 							System.out.print("이용자 학번 (없다면 Enter)>>");
 							String studentID = scanner.nextLine();
 							if(studentID.isEmpty()) {
@@ -305,6 +315,8 @@ public class KKC_System {
 								else {
 									continue;
 								}
+							}
+							
 							} 
 							break;
 					}
@@ -366,7 +378,7 @@ public class KKC_System {
 									break;
 								}
 							
-							while (true)
+							while (true) {
 							System.out.print("이용자 학번>>");
 							String studentID = scanner.nextLine();
 							KKC_Member setMember = memberManager.findMember(studentID);
@@ -379,6 +391,8 @@ public class KKC_System {
 								else {
 									continue;
 								}
+							}
+							
 							break;
 					}
 					
@@ -470,6 +484,14 @@ public class KKC_System {
 						
 					}
 					
+
+					case "종료" : {
+						break;
+					}
+					
+					default :
+						System.out.println("잘못된 입력입니다.");
+					
 				}
 					
 					System.out.print("Enter to back...");
@@ -500,16 +522,16 @@ public class KKC_System {
 						break;
 					}
 					if(answer == 1) {
-					System.out.println("장비 이용자를 등록합니다.");
+					System.out.println("죽도 이용자를 등록합니다.");
 					while (true) {
-					System.out.print("이용자 미등록 장비 목록을 보시겠습니까? (Y/N) >>");
+					System.out.print("이용자 미등록 죽도 목록을 보시겠습니까? (Y/N) >>");
 					String YesOrNo = scanner.nextLine();
 					
 					if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
-						System.out.println("현재 이용자 미등록 장비는 "+equipmentMenu.EquipmentNullUserCount()+"개 입니다.");
+						System.out.println("현재 이용자 미등록 장비는 "+equipmentManager.getShinaiNullUserCount()+"개 입니다.");
 						System.out.println("            미등록 장비 목록");
 						System.out.println();
-						equipmentMenu.showEquipmentNullUserList();
+						equipmentManager.showShinaiNullUserList();
 						System.out.print("Enter to continue...");
 						scanner.nextLine();
 						break;
@@ -527,7 +549,7 @@ public class KKC_System {
 					
 					}
 					
-					if(equipmentMenu.EquipmentNullUserCount() == 0) {
+					if(equipmentManager.getShinaiNullUserCount() == 0) {
 						System.out.println("현재 모든 장비 이용자가 등록되어 있습니다.");
 						System.out.print("Enter to back...");
 						scanner.nextLine();
@@ -536,10 +558,19 @@ public class KKC_System {
 					
 					System.out.print("등록할 장비 번호를 입력하세요 >>");
 					String number = scanner.nextLine();
+					while (true) {
 					System.out.print("등록할 사용자의 학번을 입력하세요 >>");
 					String studentID = scanner.nextLine();
+					KKC_Member member = memberManager.findMember(studentID); 
+					if(member == null) {
+						continue;
+					}
+					else {
+						equipmentManager.setEquipment_User("죽도", number, member);
+						break;
+						}
+					}
 					
-					equipmentMenu.addEquipmentUser(number, studentID);
 					System.out.print("Enter to back...");
 					scanner.nextLine();
 					continue;
@@ -547,68 +578,104 @@ public class KKC_System {
 					
 					else if(answer == 2) {
 						System.out.println("장비 이용자를 변경합니다.");
-						KKC_Equipment findEquipment;
-						String studentID;
-						
-						while (true) {
-						System.out.print("변경할 장비 번호를 입력하세요 >>");
-						String number = scanner.nextLine();
-						
-						if(number.equals("취소")) {
-							findEquipment = null;
-							break;
-						}
-						
-						findEquipment = equipmentMenu.findEquipmentNoComment(number);
-						
-						if(findEquipment == null) {
-							System.out.println();
-							continue;
-						}
-						
-						findEquipment.showEquipment();
-						break;
-						
-						}
-						
-						if(findEquipment == null) {
-							System.out.print("Enter to back...");
-							scanner.nextLine();
-							continue;
-						}
-						
-						while (true) {
-						System.out.print("새로 등록할 이용자의 학번을 입력하세요(미등록으로 변경 시 미등록 입력) >>");
-						studentID = scanner.nextLine();
-						
-						if(studentID.equals("미등록")) {
-							findEquipment.setUser(null);
-						}
-						
-						else {
-							KKC_Member findMember = memberManager.findMemberNoComment(studentID);
-							if(findMember == null) {
-								System.out.println("등록할 이용자를 찾을 수 없습니다. 다시 입력하세요.");
-								System.out.println();
-								continue;
+						System.out.print("변경할 장비 종류를 입력하세요 (죽도 / 호구) >>");
+						String EquipmentType = scanner.nextLine();
+						switch (EquipmentType) {
+						case "죽도" : {
+							while (true) {
+								System.out.print("변경할 장비 번호를 입력하세요 >>");
+								String number = scanner.nextLine();
+								
+								if(equipmentManager.findShinai(number) == null) {
+									System.out.println("장비를 찾을 수 없습니다. 장비 번호를 확인하세요.");
+									continue;
+								}
+								
+								if(number.equals("취소")) {
+									break;
+								}
+								
+								System.out.print("변경할 이용자의 학번를 입력하세요 >>");
+								String StudentID = scanner.nextLine();
+								
+
+								if(memberManager.findMemberNoComment(StudentID) == null) {
+									System.out.println("이용자를 찾을 수 없습니다. 학번을 확인하세요.");
+									continue;
+								}
+								
+								if(StudentID.equals("취소")) {
+									break;
+								}
+								
+								equipmentManager.setEquipment_User(EquipmentType, number, memberManager.findMemberNoComment(StudentID));
+								
+								
+								System.out.println("변경 완료");
+								equipmentManager.showShinai(number);
+								break;
+							
 							}
+						}
 							
-							findMember.showMember();
+						
+						
+						case "호구" : {
+							while (true) {
+								System.out.print("변경할 장비 번호를 입력하세요 >>");
+								String number = scanner.nextLine();
+								
+								if(equipmentManager.findHogu(number) == null) {
+									System.out.println("장비를 찾을 수 없습니다. 장비 번호를 확인하세요.");
+									continue;
+								}
+								
+								if(number.equals("취소")) {
+									break;
+								}
+								
+								System.out.print("변경할 이용자의 학번를 입력하세요 >>");
+								String StudentID = scanner.nextLine();
+								
+								if(memberManager.findMemberNoComment(StudentID) == null) {
+									System.out.println("이용자를 찾을 수 없습니다. 학번을 확인하세요.");
+									continue;
+								}
+								
+								
+								if(StudentID.equals("취소")) {
+									break;
+								}
+								
+								equipmentManager.setEquipment_User(EquipmentType, number, memberManager.findMemberNoComment(StudentID));
+								
+								
+								System.out.println("변경 완료");
+								equipmentManager.showHogu(number);
+								break;
 							
-							findEquipment.setUser(findMember);
+							}
+
 							
+						}
+						
+						case "종료" : {
 							break;
 						}
 						
+						default :
+							System.out.println("잘못된 입력입니다.");
+						
+						
 						}
 						
-						System.out.println("변경 완료");
-						findEquipment.showEquipment();
 						System.out.print("Enter to back...");
 						scanner.nextLine();
 						continue;
-					
+						
 					}
+						
+						
 					
 					else if(answer == 3)
 						break;
@@ -624,39 +691,230 @@ public class KKC_System {
 				
 				else if(answer == 4) { // Changer Status
 					System.out.println("장비 상태를 변경합니다.");
-					System.out.print("변경할 장비 번호를 입력하세요 >>");
-					String number = scanner.nextLine();
-					
-					int nowStatus;
-					while (true) {
-					statusList.showStatusList();
-					System.out.print("장비 상태를 입력하세요 >>");
-					try {
-					nowStatus = scanner.nextInt();
+					System.out.print("변경할 장비 종류를 입력하세요 (죽도 / 호면 / 호완 / 갑 / 갑상) >>");
+					String EquipmentType = scanner.nextLine();
+					String number, part, statusType;
+					switch (EquipmentType) {
+					case "죽도" : {
+						while (true) {
+							System.out.print("변경할 장비 번호를 입력하세요 >>");
+						 	number = scanner.nextLine();
+						 	
+						 	if(equipmentManager.findHogu(number) == null) {
+								System.out.println("장비를 찾을 수 없습니다. 장비 번호를 확인하세요.");
+								continue;
+							}
+						 	
+						 	break;
+						 	
+						}
+						 	
+						while (true) {
+						 	System.out.println("| 선혁 | 선고무 | 중혁 | 병혁 | 등줄 | 코등이 | 코등이 받침 |");
+						 	System.out.print("변경할 장비 부위를 선택하세요>>");
+						 	part = scanner.nextLine();
+						 	
+						 	if(part.equals("선혁") || part.equals("선고무") || part.equals("중혁") || part.equals("병혁")
+						 	|| part.equals("등줄") || part.equals("코등이") || part.equals("코등이 받침")) {
+						 		break;
+						 	}
+						 	
+						 	else {
+						 		System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+						 		continue;
+						 	}
+						 	
+						}
+						
+						while (true) {
+						 	System.out.println("| 사용가능 | 수리필요 | 수리불가능 | 폐기 |");
+						 	System.out.print("지정할 상태를 입력하세요 >>");
+						 	statusType = scanner.nextLine();
+						 
+						 	if(statusType.equals("사용가능") || statusType.equals("수리필요") 
+						 	|| statusType.equals("수리불가능") || statusType.equals("폐기")) {
+						 		break;
+						 	}
+						 	
+						 	else {
+						 		System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+						 		continue;
+						 	}
+			
+						}
+						
+						equipmentManager.setShinai_Status(number, part, statusType);
+						System.out.println("변경 완료");
+						equipmentManager.showShinai(number);
+						break;
 					}
 					
-					catch (InputMismatchException e) {
-						System.out.println();
+					case "호면" : {
+						while (true) {
+							System.out.print("변경할 장비 번호를 입력하세요 >>");
+						 	number = scanner.nextLine();
+						 	
+						 	if(equipmentManager.findHomen(number) == null) {
+								System.out.println("장비를 찾을 수 없습니다. 장비 번호를 확인하세요.");
+								continue;
+							}
+						 	
+						 	break;
+						 	
+						}
+						
+						while (true) {
+						 	System.out.println("| 사용가능 | 수리필요 | 수리불가능 | 폐기 |");
+						 	System.out.print("지정할 상태를 입력하세요 >>");
+						 	statusType = scanner.nextLine();
+						 
+						 	if(statusType.equals("사용가능") || statusType.equals("수리필요") 
+						 	|| statusType.equals("수리불가능") || statusType.equals("폐기")) {
+						 		break;
+						 	}
+						 	
+						 	else {
+						 		System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+						 		continue;
+						 	}
+			
+						}
+						
+						equipmentManager.setHomen_Status(number, statusType);
+						System.out.println("변경 완료");
+						equipmentManager.showHomen(number);
+						break;
+						
+					}
+					
+
+					case "호완" : {
+						while (true) {
+							System.out.print("변경할 장비 번호를 입력하세요 >>");
+						 	number = scanner.nextLine();
+						 	
+						 	if(equipmentManager.findHowan(number) == null) {
+								System.out.println("장비를 찾을 수 없습니다. 장비 번호를 확인하세요.");
+								continue;
+							}
+						 	
+						 	break;
+						 	
+						}
+						
+						while (true) {
+						 	System.out.println("| 사용가능 | 수리필요 | 수리불가능 | 폐기 |");
+						 	System.out.print("지정할 상태를 입력하세요 >>");
+						 	statusType = scanner.nextLine();
+						 
+						 	if(statusType.equals("사용가능") || statusType.equals("수리필요") 
+						 	|| statusType.equals("수리불가능") || statusType.equals("폐기")) {
+						 		break;
+						 	}
+						 	
+						 	else {
+						 		System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+						 		continue;
+						 	}
+			
+						}
+						
+						equipmentManager.setHowan_Status(number, statusType);
+						System.out.println("변경 완료");
+						equipmentManager.showHowan(number);
+						break;
+						
+					}
+					
+
+					case "갑" : {
+						while (true) {
+							System.out.print("변경할 장비 번호를 입력하세요 >>");
+						 	number = scanner.nextLine();
+						 	
+						 	if(equipmentManager.findGap(number) == null) {
+								System.out.println("장비를 찾을 수 없습니다. 장비 번호를 확인하세요.");
+								continue;
+							}
+						 	
+						 	break;
+						 	
+						}
+						
+						while (true) {
+						 	System.out.println("| 사용가능 | 수리필요 | 수리불가능 | 폐기 |");
+						 	System.out.print("지정할 상태를 입력하세요 >>");
+						 	statusType = scanner.nextLine();
+						 
+						 	if(statusType.equals("사용가능") || statusType.equals("수리필요") 
+						 	|| statusType.equals("수리불가능") || statusType.equals("폐기")) {
+						 		break;
+						 	}
+						 	
+						 	else {
+						 		System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+						 		continue;
+						 	}
+			
+						}
+						
+						equipmentManager.setGap_Status(number, statusType);
+						System.out.println("변경 완료");
+						equipmentManager.showGap(number);
+						break;
+						
+					}
+					
+
+					case "갑상" : {
+						while (true) {
+							System.out.print("변경할 장비 번호를 입력하세요 >>");
+						 	number = scanner.nextLine();
+						 	
+						 	if(equipmentManager.findGapsang(number) == null) {
+								System.out.println("장비를 찾을 수 없습니다. 장비 번호를 확인하세요.");
+								continue;
+							}
+						 	
+						 	break;
+						 	
+						}
+						
+						while (true) {
+						 	System.out.println("| 사용가능 | 수리필요 | 수리불가능 | 폐기 |");
+						 	System.out.print("지정할 상태를 입력하세요 >>");
+						 	statusType = scanner.nextLine();
+						 
+						 	if(statusType.equals("사용가능") || statusType.equals("수리필요") 
+						 	|| statusType.equals("수리불가능") || statusType.equals("폐기")) {
+						 		break;
+						 	}
+						 	
+						 	else {
+						 		System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+						 		continue;
+						 	}
+			
+						}
+						
+						equipmentManager.setGapsang_Status(number, statusType);
+						System.out.println("변경 완료");
+						equipmentManager.showGapsang(number);
+						break;
+						
+					}
+					
+
+					case "종료" : {
+						break;
+					}
+					
+					default :
 						System.out.println("잘못된 입력입니다.");
-						System.out.println("다시 입력하세요.");
-						scanner.nextLine();
-						continue;
-					}
 					
-					if(nowStatus > statusList.getSize() || nowStatus < 0) {
-						System.out.println();
-						System.out.println("잘못된 입력입니다.");
-						System.out.println("다시 입력하세요.");
-						scanner.nextLine();
-						continue;
-					}
-					
-					break;
 					
 					}
-					scanner.nextLine();
 					
-					equipmentMenu.setEquipmentStauts(number, nowStatus);
 					System.out.print("Enter to back...");
 					scanner.nextLine();
 					continue;
@@ -664,11 +922,115 @@ public class KKC_System {
 				}
 				
 				else if(answer == 5) { //Find Equipment
+					
+					String EquipmentType, number;
+					
 					System.out.println("등록된 장비 정보를 찾습니다.");
-					System.out.print("찾을 장비 번호를 입력하세요 >>");
-					String number = scanner.nextLine();
-					System.out.println();
-					equipmentMenu.findEquipment(number);
+					System.out.print("찾을 장비 종류를 입력하세요 (죽도 / 호구 / 호면 / 호완 / 갑 / 갑상) >>");
+					EquipmentType = scanner.nextLine();
+					
+					switch (EquipmentType) {
+					case "죽도" : {
+						System.out.print("찾을 장비 번호를 입력하세요>>");
+						number = scanner.nextLine();
+						if(equipmentManager.findShinai(number) != null) {
+							equipmentManager.showShinai(number);
+						}
+						
+						else
+							System.out.println("등록된 장비가 없습니다.");
+						
+						break;
+						
+					}
+				
+					case "호구" : {
+						System.out.print("찾을 장비 번호를 입력하세요>>");
+						number = scanner.nextLine();
+						if(equipmentManager.findHogu(number) != null) {
+							equipmentManager.showHogu(number);
+						}
+						
+						else
+							System.out.println("등록된 장비가 없습니다.");
+						
+						break;
+						
+						
+					}
+
+					case "호면" : {
+						System.out.print("찾을 장비 번호를 입력하세요>>");
+						number = scanner.nextLine();
+						if(equipmentManager.findHomen(number) != null) {
+							equipmentManager.showHomen(number);
+						}
+						
+						else
+							System.out.println("등록된 장비가 없습니다.");
+						
+						break;
+						
+						
+					}
+
+					case "호완" : {
+						System.out.print("찾을 장비 번호를 입력하세요>>");
+						number = scanner.nextLine();
+						if(equipmentManager.findHowan(number) != null) {
+							equipmentManager.showHowan(number);
+						}
+						
+						else
+							System.out.println("등록된 장비가 없습니다.");
+						
+						break;
+						
+						
+						
+					}
+
+					case "갑" : {
+						System.out.print("찾을 장비 번호를 입력하세요>>");
+						number = scanner.nextLine();
+						if(equipmentManager.findGap(number) != null) {
+							equipmentManager.showGap(number);
+						}
+						
+						else
+							System.out.println("등록된 장비가 없습니다.");
+						
+						break;
+						
+						
+						
+					}
+
+					case "갑상" : {
+						System.out.print("찾을 장비 번호를 입력하세요>>");
+						number = scanner.nextLine();
+						if(equipmentManager.findGapsang(number) != null) {
+							equipmentManager.showGapsang(number);
+						}
+						
+						else
+							System.out.println("등록된 장비가 없습니다.");
+						
+						break;
+						
+						
+					}
+				
+					case "종료" : {
+						break;
+					}
+					
+					default :
+						System.out.println("잘못된 입력입니다.");
+					
+					
+					}
+					
 					System.out.print("Enter to back...");
 					scanner.nextLine();
 					continue;
@@ -676,76 +1038,281 @@ public class KKC_System {
  				}
 				
 				else if(answer == 6) { //Delete Equipment
+					String EquipmentType, number;
+					
 					System.out.println("등록된 장비 정보를 삭제합니다.");
-					System.out.print("삭제할 장비 번호를 입력하세요 >>");
-					String number = scanner.nextLine();
-					KKC_Equipment findEquipment = equipmentMenu.findEquipment(number);
+					System.out.print("삭제할 장비 종류를 입력하세요 (죽도 / 호구 / 호면 / 호완 / 갑 / 갑상 / 도복) >>");
+					EquipmentType = scanner.nextLine();
 					
-					if(findEquipment == null) {
-						System.out.print("Enter to back...");
-						scanner.nextLine();
-						continue;
+					switch (EquipmentType) {
+					case "죽도" : {
+						System.out.print("삭제할 장비 번호를 입력하세요>>");
+						number = scanner.nextLine();
+						if(equipmentManager.findShinai(number) != null) {
+							equipmentManager.showShinai(number);
+							
+							while (true) {
+								System.out.print("위 장비의 정보를 삭제하시겠습니까? (Y/N)");
+								String YesOrNo = scanner.nextLine();
+								if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
+									equipmentManager.deleteShinai(number);
+									System.out.print("Enter to back...");
+									scanner.nextLine();
+									break;
+								}
+								
+								else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
+									System.out.println("장비 삭제를 취소하였습니다.");
+									System.out.print("Enter to back...");
+									scanner.nextLine();
+									break;
+								}
+								
+								else {
+									System.out.println();
+									System.out.println("잘못된 입력입니다.");
+									System.out.println("다시 입력하세요.");
+									continue;
+								}
+								}
+							
+							
+						}
+						
+						else
+							System.out.println("등록된 장비가 없습니다.");
+						
+						break;
+						
 					}
-					while (true) {
-					System.out.print("위 장비의 정보를 삭제하시겠습니까? (Y/N)");
-					String YesOrNo = scanner.nextLine();
-					if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
-						equipmentMenu.deleteEquipment(findEquipment);
-						System.out.print("Enter to back...");
-						scanner.nextLine();
+				
+					case "호구" : {
+						System.out.print("삭제할 장비 번호를 입력하세요>>");
+						number = scanner.nextLine();
+						if(equipmentManager.findHogu(number) != null) {
+							equipmentManager.showHogu(number);
+							
+							while (true) {
+								System.out.print("위 장비의 정보를 삭제하시겠습니까? (Y/N)");
+								String YesOrNo = scanner.nextLine();
+								if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
+									equipmentManager.deleteHogu(number);
+									System.out.print("Enter to back...");
+									scanner.nextLine();
+									break;
+								}
+								
+								else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
+									System.out.println("장비 삭제를 취소하였습니다.");
+									System.out.print("Enter to back...");
+									scanner.nextLine();
+									break;
+								}
+								
+								else {
+									System.out.println();
+									System.out.println("잘못된 입력입니다.");
+									System.out.println("다시 입력하세요.");
+									continue;
+								}
+								}
+							
+							
+						}
+						
+						else
+							System.out.println("등록된 장비가 없습니다.");
+						
+						break;
+						
+						
+					}
+
+					case "호면" : {
+						System.out.print("삭제할 장비 번호를 입력하세요>>");
+						number = scanner.nextLine();
+						if(equipmentManager.findHomen(number) != null) {
+							equipmentManager.showHomen(number);
+							
+							while (true) {
+								System.out.print("위 장비의 정보를 삭제하시겠습니까? (Y/N)");
+								String YesOrNo = scanner.nextLine();
+								if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
+									equipmentManager.deleteHomen(number);
+									System.out.print("Enter to back...");
+									scanner.nextLine();
+									break;
+								}
+								
+								else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
+									System.out.println("장비 삭제를 취소하였습니다.");
+									System.out.print("Enter to back...");
+									scanner.nextLine();
+									break;
+								}
+								
+								else {
+									System.out.println();
+									System.out.println("잘못된 입력입니다.");
+									System.out.println("다시 입력하세요.");
+									continue;
+								}
+								}
+							
+						}
+						
+						else
+							System.out.println("등록된 장비가 없습니다.");
+						
+						break;
+						
+						
+					}
+
+					case "호완" : {
+						System.out.print("찾을 장비 번호를 입력하세요>>");
+						number = scanner.nextLine();
+						if(equipmentManager.findHowan(number) != null) {
+							equipmentManager.showHowan(number);
+							
+							while (true) {
+								System.out.print("위 장비의 정보를 삭제하시겠습니까? (Y/N)");
+								String YesOrNo = scanner.nextLine();
+								if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
+									equipmentManager.deleteHowan(number);
+									System.out.print("Enter to back...");
+									scanner.nextLine();
+									break;
+								}
+								
+								else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
+									System.out.println("장비 삭제를 취소하였습니다.");
+									System.out.print("Enter to back...");
+									scanner.nextLine();
+									break;
+								}
+								
+								else {
+									System.out.println();
+									System.out.println("잘못된 입력입니다.");
+									System.out.println("다시 입력하세요.");
+									continue;
+								}
+								}
+							
+						}
+						
+						else
+							System.out.println("등록된 장비가 없습니다.");
+						
+						break;
+						
+						
+						
+					}
+
+					case "갑" : {
+						System.out.print("찾을 장비 번호를 입력하세요>>");
+						number = scanner.nextLine();
+						if(equipmentManager.findGap(number) != null) {
+							equipmentManager.showGap(number);
+							
+							while (true) {
+								System.out.print("위 장비의 정보를 삭제하시겠습니까? (Y/N)");
+								String YesOrNo = scanner.nextLine();
+								if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
+									equipmentManager.deleteGap(number);
+									System.out.print("Enter to back...");
+									scanner.nextLine();
+									break;
+								}
+								
+								else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
+									System.out.println("장비 삭제를 취소하였습니다.");
+									System.out.print("Enter to back...");
+									scanner.nextLine();
+									break;
+								}
+								
+								else {
+									System.out.println();
+									System.out.println("잘못된 입력입니다.");
+									System.out.println("다시 입력하세요.");
+									continue;
+								}
+								}
+							
+						}
+						
+						else
+							System.out.println("등록된 장비가 없습니다.");
+						
+						break;
+						
+						
+						
+					}
+
+					case "갑상" : {
+						System.out.print("찾을 장비 번호를 입력하세요>>");
+						number = scanner.nextLine();
+						if(equipmentManager.findGapsang(number) != null) {
+							equipmentManager.showGapsang(number);
+							
+							while (true) {
+								System.out.print("위 장비의 정보를 삭제하시겠습니까? (Y/N)");
+								String YesOrNo = scanner.nextLine();
+								if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
+									equipmentManager.deleteGapsang(number);
+									System.out.print("Enter to back...");
+									scanner.nextLine();
+									break;
+								}
+								
+								else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
+									System.out.println("장비 삭제를 취소하였습니다.");
+									System.out.print("Enter to back...");
+									scanner.nextLine();
+									break;
+								}
+								
+								else {
+									System.out.println();
+									System.out.println("잘못된 입력입니다.");
+									System.out.println("다시 입력하세요.");
+									continue;
+								}
+								}
+							
+						}
+						
+						else
+							System.out.println("등록된 장비가 없습니다.");
+						
+						break;
+						
+						
+					}
+				
+					case "종료" : {
 						break;
 					}
 					
-					else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
-						System.out.println("장비 삭제를 취소하였습니다.");
-						System.out.print("Enter to back...");
-						scanner.nextLine();
-						break;
-					}
-					
-					else {
-						System.out.println();
+					default :
 						System.out.println("잘못된 입력입니다.");
-						System.out.println("다시 입력하세요.");
-						continue;
-					}
+					
+					
 					}
 					
-				}
+					System.out.print("Enter to back...");
+					scanner.nextLine();
+					continue;
+	
+ 				}
+				
 				
 				else if(answer == 7) { //Back to main
 					break;
-				}
-				
-				else if(answer == 0) {
-					System.out.println("장비 상태를 등록합니다.");
-					System.out.print("등록할 상태 입력 >>");
-					String statusType = scanner.nextLine();
-					boolean canUsing;
-					while (true) {
-						System.out.print("상태에 대한 사용 가능 여부를 입력하세요(O/X).");
-						String OorX = scanner.nextLine();
-						if(OorX.equals("O") || OorX.equals("o")) {
-							canUsing = true;
-							break;
-						}
-					
-						else if(OorX.equals("X") || OorX.equals("x")) {
-							canUsing = false;
-							break;
-						}
-						
-						else {
-							System.out.println();
-							System.out.println("잘못된 입력입니다.");
-							System.out.println("다시 입력하세요.");
-							continue;
-						}
-					}
-					
-					equipmentMenu.statusList.addStatus(statusType, canUsing);
-					continue;
-					
 				}
 				
 				else {
@@ -773,6 +1340,7 @@ public class KKC_System {
 		
 	}
 	
+
 	/*
 	public void testSet() {
 		memberMenu.addMember("김우람", "남성", "5753764", "010-6645-3909");

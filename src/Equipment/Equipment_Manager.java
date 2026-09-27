@@ -91,8 +91,74 @@ public class Equipment_Manager {
 		dobokList.add(newDobok);
 	}
 	
+	public int getShinaiNullUserCount() {
+		int count = 0;
+		for(int i=0; i<shinaiList.size(); i++) {
+			if(shinaiList.get(i).getMember() == null)
+				count++;
+		}
+		
+		return count;
+	}
+	
+	public void showHogu(String EquipmentNumber) {
+		for(int i=0; i<hoguList.size(); i++) {
+			if(hoguList.get(i).getNumber().equals(EquipmentNumber)) {
+				hoguList.get(i).checkStatus();
+				
+				System.out.println("장비번호 : " + hoguList.get(i).getNumber() +
+								   " | 장비상태 : " + hoguList.get(i).getStatus() +
+								   " | 이용자 : " + hoguList.get(i).getMember().getName()+"("+hoguList.get(i).getMember().getStudentID()+")");
+				
+				System.out.println("세부정보 | 호면 : " + hoguList.get(i).getHomen().getNumber() +"("+ hoguList.get(i).getHomen().getStatus() +")"+
+								   "| 호완 : " + hoguList.get(i).getHowan().getNumber() +"("+ hoguList.get(i).getHowan().getStatus() +")"+
+								   "| 갑 : " + hoguList.get(i).getGap().getNumber() +"("+ hoguList.get(i).getGap().getStatus() +")"+
+								   "| 갑상 : " + hoguList.get(i).getGapsang().getNumber() +"("+ hoguList.get(i).getGapsang().getStatus()+")"); 
+				
+				System.out.println();
+				break;
+			}
+		}
+	}
+	
+	public void showShinai(String EquipmentNumber) {
+		for(int i=0; i<shinaiList.size(); i++) {
+			if(shinaiList.get(i).getNumber().equals(EquipmentNumber)) {
+				shinaiList.get(i).shinaiStatus();
+				System.out.println("장비번호 : " + shinaiList.get(i).getNumber() +
+						   "| 등록일자 : " + shinaiList.get(i).getDate() +
+						   "| 장비상태 : " + shinaiList.get(i).getStatus() +
+						   "| 이용자 : 미등록");
+
+				System.out.println("장비세부상태 | 선혁 : " + shinaiList.get(i).getSakiawa() +
+						   " 선고무 : " + shinaiList.get(i).getSakigomu() +
+						   " 중혁 : " + shinaiList.get(i).getNakayui() +
+						   " 병혁 : " + shinaiList.get(i).getTsukagawa() +
+						   " 등줄 : " + shinaiList.get(i).getTsuru() +
+						   " 코등이 : " + shinaiList.get(i).getTsuba() +
+						   " 코등이 받침 : " + shinaiList.get(i).getTsubaDome());
+		
+				System.out.println();
+					break;
+			}
+		}
+	}
+	
+	public void showShinaiNullUserList() {
+		for(int i=0; i<shinaiList.size(); i++) {
+			if(shinaiList.get(i).getMember() == null) {
+				shinaiList.get(i).shinaiStatus();
+				System.out.println("장비번호 : " + shinaiList.get(i).getNumber() +
+								   "| 등록일자 : " + shinaiList.get(i).getDate() +
+								   "| 장비상태 : " + shinaiList.get(i).getStatus() +
+								   "| 이용자 : 미등록");
+			}
+		}
+	}
+	
 	public void showShinaiList() {
 		for(int i=0; i<shinaiList.size(); i++) {
+			shinaiList.get(i).shinaiStatus();
 			if(shinaiList.get(i).getMember() == null) {
 				System.out.println("장비번호 : " + shinaiList.get(i).getNumber() +
 								   "| 등록일자 : " + shinaiList.get(i).getDate() +
@@ -149,35 +215,93 @@ public class Equipment_Manager {
 	public void showHomenList() {
 		for(int i=0; i<homenList.size(); i++) {
 			System.out.println("장비번호 : " + homenList.get(i).getNumber() +
-							   " | 등록일자 : " + homenList.get(i).getDate());
+					" | 등록일자 : " + homenList.get(i).getDate() +
+					" | 장비상태 : " + homenList.get(i).getStatus());
+
 			
 			System.out.println();
+		}
+	}
+	
+	public void showHomen(String EquipmentNumber) {
+		for(int i=0; i<homenList.size(); i++) {
+			if(homenList.get(i).getNumber().equals(EquipmentNumber)) {
+				System.out.println("장비번호 : " + homenList.get(i).getNumber() +
+								" | 등록일자 : " + homenList.get(i).getDate() +
+								" | 장비상태 : " + homenList.get(i).getStatus());
+			
+				System.out.println();
+				break;
+			}
 		}
 	}
 	
 	public void showHowanList() {
 		for(int i=0; i<howanList.size(); i++) {
-			System.out.println("장비번호 : " + howanList.get(i).getNumber() +
-							   " | 등록일자 : " + howanList.get(i).getDate());
-			
+			System.out.println("장비번호 : " + homenList.get(i).getNumber() +
+					" | 등록일자 : " + homenList.get(i).getDate() +
+					" | 장비상태 : " + homenList.get(i).getStatus());
+
 			System.out.println();
+		}
+	}
+	
+	public void showHowan(String EquipmentNumber) {
+		for(int i=0; i<howanList.size(); i++) {
+			if(howanList.get(i).getNumber().equals(EquipmentNumber)) {
+				System.out.println("장비번호 : " + howanList.get(i).getNumber() +
+								" | 등록일자 : " + howanList.get(i).getDate() +
+								" | 장비상태 : " + howanList.get(i).getStatus());
+			
+				System.out.println();
+				break;
+			}
 		}
 	}
 	
 	public void showGapList() {
 		for(int i=0; i<gapList.size(); i++) {
-			System.out.println("장비번호 : " + gapList.get(i).getNumber() +
-							   " | 등록일자 : " + gapList.get(i).getDate());
-			
+			System.out.println("장비번호 : " + homenList.get(i).getNumber() +
+					" | 등록일자 : " + homenList.get(i).getDate() +
+					" | 장비상태 : " + homenList.get(i).getStatus());
+
 			System.out.println();
 		}
 	}
+	
+	public void showGap(String EquipmentNumber) {
+		for(int i=0; i<gapList.size(); i++) {
+			if(gapList.get(i).getNumber().equals(EquipmentNumber)) {
+				System.out.println("장비번호 : " + gapList.get(i).getNumber() +
+								" | 등록일자 : " + gapList.get(i).getDate() +
+								" | 장비상태 : " + gapList.get(i).getStatus());
+			
+				System.out.println();
+				break;
+			}
+		}
+	}
+	
 	public void showGapsangList() {
 		for(int i=0; i<gapsangList.size(); i++) {
-			System.out.println("장비번호 : " + gapsangList.get(i).getNumber() +
-							   " | 등록일자 : " + gapsangList.get(i).getDate());
-			
+			System.out.println("장비번호 : " + homenList.get(i).getNumber() +
+					" | 등록일자 : " + homenList.get(i).getDate() +
+					" | 장비상태 : " + homenList.get(i).getStatus());
+
 			System.out.println();
+		}
+	}
+	
+	public void showGapsang(String EquipmentNumber) {
+		for(int i=0; i<gapsangList.size(); i++) {
+			if(gapsangList.get(i).getNumber().equals(EquipmentNumber)) {
+				System.out.println("장비번호 : " + gapsangList.get(i).getNumber() +
+								" | 등록일자 : " + gapsangList.get(i).getDate() +
+								" | 장비상태 : " + gapsangList.get(i).getStatus());
+			
+				System.out.println();
+				break;
+			}
 		}
 	}
 	
@@ -420,20 +544,34 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void deleteRepairUser(String EquipmentType, KKC_Member user) {
-		switch (EquipmentType) {
-		case "죽도" :
+	public void deleteRepairUser(KKC_Member user) {
 			for(int i=0; i<shinaiList.size(); i++) {
 				shinaiList.get(i).getHistory().deleteUser(user);
-			} break; 
+			}
 			
-			
-		case "호구" :
 			for(int i=0; i<hoguList.size(); i++) {
 				hoguList.get(i).getHistory().deleteUser(user);
-			} break;
+			}
 		}
+	
+	public Equipment_Shinai findShinai(String find_EquipmentNumber) {
+		for(int i=0; i<shinaiList.size(); i++) {
+			if(shinaiList.get(i).getNumber().equals(find_EquipmentNumber)) {
+				return shinaiList.get(i);
+			}
+		}
+		return null;
 	}
+	
+	public Equipment_Hogu findHogu(String find_EquipmentNumber) {
+		for(int i=0; i<hoguList.size(); i++) {
+			if(hoguList.get(i).getNumber().equals(find_EquipmentNumber)) {
+				return hoguList.get(i);
+			}
+		}
+		return null;
+	}
+	
 	
 	public Equipment_Homen findHomen(String find_EquipmentNumber) {
 		for(int i=0; i<homenList.size(); i++) {
