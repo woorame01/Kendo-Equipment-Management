@@ -263,10 +263,18 @@ public class Equipment_RepairHistory {
 	}
 	
 	public Equipment_RepairHistory(Equipment_Hogu hogu, Equipment_Homen homen,  String date,String details, String result) {
-
-		this.hogu = hogu;
+		
+		if(hogu == null) {
+			this.hogu = null;
+			this.user = null;
+		}
+		
+		else {
+			this.hogu = hogu;
+			this.user = hogu.getMember(); 
+		}
+		
 		this.homen = homen;
-		this.user = hogu.getMember();
 		this.date = date;
 		this.details = details;
 		this.result = result;
@@ -275,9 +283,17 @@ public class Equipment_RepairHistory {
 	
 	public Equipment_RepairHistory(Equipment_Hogu hogu, Equipment_Howan howan,  String date,String details, String result) {
 
-		this.hogu = hogu;
+		if(hogu == null) {
+			this.hogu = null;
+			this.user = null;
+		}
+		
+		else {
+			this.hogu = hogu;
+			this.user = hogu.getMember(); 
+		}
+		
 		this.howan = howan;
-		this.user = hogu.getMember();
 		this.date = date;
 		this.details = details;
 		this.result = result;
@@ -286,9 +302,17 @@ public class Equipment_RepairHistory {
 	
 	public Equipment_RepairHistory(Equipment_Hogu hogu, Equipment_Gap gap,  String date,String details, String result) {
 
-		this.hogu = hogu;
+		if(hogu == null) {
+			this.hogu = null;
+			this.user = null;
+		}
+		
+		else {
+			this.hogu = hogu;
+			this.user = hogu.getMember(); 
+		}
+
 		this.gap = gap;
-		this.user = hogu.getMember();
 		this.date = date;
 		this.details = details;
 		this.result = result;
@@ -297,9 +321,17 @@ public class Equipment_RepairHistory {
 	
 	public Equipment_RepairHistory(Equipment_Hogu hogu, Equipment_Gapsang gapsang,  String date,String details, String result) {
 
-		this.hogu = hogu;
+		if(hogu == null) {
+			this.hogu = null;
+			this.user = null;
+		}
+		
+		else {
+			this.hogu = hogu;
+			this.user = hogu.getMember(); 
+		}
+		
 		this.gapsang = gapsang;
-		this.user = hogu.getMember();
 		this.date = date;
 		this.details = details;
 		this.result = result;

@@ -644,7 +644,7 @@ public class Equipment_Manager {
 							homenList.get(i).getHistory().addHistory(date, details, result);
 							break;
 						}
-					}
+					} break;
 				}
 			
 				case "호완" : {
@@ -653,7 +653,7 @@ public class Equipment_Manager {
 							howanList.get(i).getHistory().addHistory(date, details, result);
 							break;
 						}
-					}
+					} break;
 				}
 
 				case "갑" : {
@@ -662,7 +662,7 @@ public class Equipment_Manager {
 							gapList.get(i).getHistory().addHistory(date, details, result);
 							break;
 						}
-					}
+					} break;
 				}
 
 				case "갑상" : {
@@ -671,7 +671,7 @@ public class Equipment_Manager {
 							gapsangList.get(i).getHistory().addHistory(date, details, result);
 							break;
 						}
-					}
+					} break;
 				}
 				
 				} 
