@@ -424,6 +424,9 @@ public class Equipment_Manager {
 	}
 	
 	public void setHogu(String setHogu_Number, String setPart, String setEquipment_Number) {
+		
+		boolean okey = false;
+		
 		for(int i=0; i<hoguList.size(); i++) {
 			if(hoguList.get(i).getNumber().equals(setHogu_Number)) {
 				switch (setPart) {
@@ -432,39 +435,64 @@ public class Equipment_Manager {
 						if(homenList.get(ii).getNumber().equals(setEquipment_Number)) {
 							Equipment_Homen setEquipment = homenList.get(ii);
 							hoguList.get(i).setHomen(setEquipment);
+							System.out.println("구성 변경 완료");
+							okey = true;
 							break;
 						}
-					} break;
+					}
+					
+					if(okey == false) 
+					System.out.println("변경 실패 | 장비 번호를 확인하세요.");
+					
+					break;
 					
 				case "호완" :
 					for(int ii=0; ii<howanList.size(); ii++) {
 						if(howanList.get(ii).getNumber().equals(setEquipment_Number)) {
 							Equipment_Howan setEquipment = howanList.get(ii);
 							hoguList.get(i).setHowan(setEquipment);
+							System.out.println("구성 변경 완료");
+							okey = true;
 							break;
 						}
-					} break;
+					}
+					
+					if(okey == false) 
+					System.out.println("변경 실패 | 장비 번호를 확인하세요.");
+					
+					break;
 					
 				case "갑" :
 					for(int ii=0; ii<gapList.size(); ii++) {
 						if(gapList.get(ii).getNumber().equals(setEquipment_Number)) {
 							Equipment_Gap setEquipment = gapList.get(ii);
 							hoguList.get(i).setGap(setEquipment);
+							System.out.println("구성 변경 완료");
+							okey = true;
 							break;
 						}
-					} break;
+					}
+					
+					if(okey == false) 
+					System.out.println("변경 실패 | 장비 번호를 확인하세요.");
+					
+					break;
 					
 				case "갑상" :
 					for(int ii=0; ii<gapsangList.size(); ii++) {
 						if(gapsangList.get(ii).getNumber().equals(setEquipment_Number)) {
 							Equipment_Gapsang setEquipment = gapsangList.get(ii);
 							hoguList.get(i).setGapsang(setEquipment);
+							System.out.println("구성 변경 완료");
+							okey = true;
 							break;
 						}
-					} break;
+					} 
 					
-				default:
-					System.out.println("잘못된 입력입니다.");
+					if(okey == false) 
+					System.out.println("변경 실패 | 장비 번호를 확인하세요.");
+					
+					break;
 					
 				} break;
 			}
