@@ -20,7 +20,7 @@ public class Equipment_Shinai extends KKC_Equipment {
 	public Equipment_RepairHistory getHistory() {
 		return this.history;
 	}
-	public Equipment_Shinai(String number, String date) {
+	public Equipment_Shinai(int number, String date) {
 		super(number, date);
 		
 		this.member = null;
@@ -33,7 +33,7 @@ public class Equipment_Shinai extends KKC_Equipment {
 		this.TsubaDome = Equipment_Status.사용가능;
 	}
 	
-	public Equipment_Shinai(KKC_Member member, String number, String date) {
+	public Equipment_Shinai(KKC_Member member, int number, String date) {
 		super(number, date);
 		
 		this.member = member;

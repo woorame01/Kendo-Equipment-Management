@@ -7,7 +7,7 @@ import KKC.KKC_Member;
 ④ 새로운 장비로 변경할 수 있지만 구성된 장비가 'null'이 될 수 없음*/
 
 public class Equipment_Hogu {
-	private String number;
+	private int number;
 	private Equipment_Status status;
 	private Equipment_Homen homen;
 	private Equipment_Howan howan;
@@ -15,7 +15,7 @@ public class Equipment_Hogu {
 	private Equipment_Gapsang gapsang;
 	private KKC_Member member;
 	
-	public Equipment_Hogu(String number, Equipment_Homen homen, 
+	public Equipment_Hogu(int number, Equipment_Homen homen, 
 						  Equipment_Howan howan, Equipment_Gap gap, 
 						  Equipment_Gapsang gapsang, KKC_Member member) {
 		
@@ -70,7 +70,7 @@ public class Equipment_Hogu {
 			this.gapsang = gapsang;
 	}
 	
-	public String getNumber() {
+	public int getNumber() {
 		return number;
 	}
 	

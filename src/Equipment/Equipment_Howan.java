@@ -3,7 +3,7 @@ package Equipment;
 public class Equipment_Howan extends KKC_Equipment {
 	private Equipment_RepairHistory history = new Equipment_RepairHistory(this);;
 	
-	public Equipment_Howan(String number, String date) {
+	public Equipment_Howan(int number, String date) {
 		super(number, date);
 	}
 	

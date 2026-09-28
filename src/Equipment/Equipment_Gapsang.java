@@ -3,7 +3,7 @@ package Equipment;
 public class Equipment_Gapsang extends KKC_Equipment {
 	private Equipment_RepairHistory history = new Equipment_RepairHistory(this);;
 	
-	public Equipment_Gapsang(String number, String date) {
+	public Equipment_Gapsang(int number, String date) {
 		super(number, date);
 	}
 	

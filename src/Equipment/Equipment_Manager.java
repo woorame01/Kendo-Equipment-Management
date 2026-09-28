@@ -20,6 +20,14 @@ public class Equipment_Manager {
 	private ArrayList <Equipment_Gapsang> gapsangList = new ArrayList <Equipment_Gapsang>();
 	private ArrayList <Equipment_Hogu> hoguList = new ArrayList <Equipment_Hogu>();
 	private ArrayList <Equipment_Dobok> dobokList = new ArrayList <Equipment_Dobok>();
+	private int shinaiNumber = 1;
+	private int homenNumber = 1;
+	private int howanNumber = 1;
+	private int gapNumber = 1;
+	private int gapsangNumber = 1;
+	private int hoguNumber = 1;
+	private int dobokNumber = 1;
+	
 	
 	public ArrayList <Equipment_Shinai> getShinaiList() {
 		return shinaiList;
@@ -49,50 +57,58 @@ public class Equipment_Manager {
 		return dobokList;
 	}
 	
-	public void addShinai(KKC_Member member, String number, String date) {
-		Equipment_Shinai newShinai = new Equipment_Shinai(member, number, date);
-		shinaiList.add(newShinai);	
+	public void addShinai(KKC_Member member, String date) {
+		Equipment_Shinai newShinai = new Equipment_Shinai(member, shinaiNumber, date);
+		shinaiList.add(newShinai);
+		shinaiNumber++;
 	}
 	
-	public void addShinai(String number, String date) {
-		Equipment_Shinai newShinai = new Equipment_Shinai(number, date);
-		shinaiList.add(newShinai);	
+	public void addShinai(String date) {
+		Equipment_Shinai newShinai = new Equipment_Shinai(shinaiNumber, date);
+		shinaiList.add(newShinai);
+		shinaiNumber++;
 	}
 	
-	public void addHomen(String number, String date) {
-		Equipment_Homen newHomen = new Equipment_Homen(number, date);
+	public void addHomen(String date) {
+		Equipment_Homen newHomen = new Equipment_Homen(homenNumber, date);
 		homenList.add(newHomen);
+		homenNumber++;
 	}
 	
-	public void addHowan(String number, String date) {
-		Equipment_Howan newHowan = new Equipment_Howan(number, date);
+	public void addHowan(String date) {
+		Equipment_Howan newHowan = new Equipment_Howan(howanNumber, date);
 		howanList.add(newHowan);
+		howanNumber++;
 	}
 	
-	public void addGap(String number, String date) {
-		Equipment_Gap newGap = new Equipment_Gap(number, date);
+	public void addGap(String date) {
+		Equipment_Gap newGap = new Equipment_Gap(gapNumber, date);
 		gapList.add(newGap);
+		gapNumber++;
 	}
 	
-	public void addGapsang(String number, String date) {
-		Equipment_Gapsang newGapsang = new Equipment_Gapsang(number, date);
+	public void addGapsang(String date) {
+		Equipment_Gapsang newGapsang = new Equipment_Gapsang(gapsangNumber, date);
 		gapsangList.add(newGapsang);
+		gapsangNumber++;
 	}
 	
-	public void addHogu(String number, Equipment_Homen homen, 
+	public void addHogu(Equipment_Homen homen, 
 						Equipment_Howan howan, Equipment_Gap gap, 
 						Equipment_Gapsang gapsang, KKC_Member member) {
-		Equipment_Hogu newHogu = new Equipment_Hogu(number, homen, howan, gap, gapsang, member);
+		Equipment_Hogu newHogu = new Equipment_Hogu(hoguNumber, homen, howan, gap, gapsang, member);
 		hoguList.add(newHogu);
 		homen.getHistory().setHogu(newHogu);
 		howan.getHistory().setHogu(newHogu);
 		gap.getHistory().setHogu(newHogu);
 		gapsang.getHistory().setHogu(newHogu);
+		hoguNumber++;
 	}
 	
-	public void addDobok(String number, String date) {
-		Equipment_Dobok newDobok = new Equipment_Dobok(number, date);
+	public void addDobok(String date) {
+		Equipment_Dobok newDobok = new Equipment_Dobok(dobokNumber, date);
 		dobokList.add(newDobok);
+		dobokNumber++;
 	}
 	
 	public int getShinaiNullUserCount() {
@@ -105,9 +121,9 @@ public class Equipment_Manager {
 		return count;
 	}
 	
-	public void showHogu(String EquipmentNumber) {
+	public void showHogu(int EquipmentNumber) {
 		for(int i=0; i<hoguList.size(); i++) {
-			if(hoguList.get(i).getNumber().equals(EquipmentNumber)) {
+			if(hoguList.get(i).getNumber() == EquipmentNumber) {
 				hoguList.get(i).checkStatus();
 				
 				System.out.println("장비번호 : " + hoguList.get(i).getNumber() +
@@ -125,9 +141,9 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void showShinai(String EquipmentNumber) {
+	public void showShinai(int EquipmentNumber) {
 		for(int i=0; i<shinaiList.size(); i++) {
-			if(shinaiList.get(i).getNumber().equals(EquipmentNumber)) {
+			if(shinaiList.get(i).getNumber() == EquipmentNumber) {
 				shinaiList.get(i).shinaiStatus();
 				System.out.println("장비번호 : " + shinaiList.get(i).getNumber() +
 						   "| 등록일자 : " + shinaiList.get(i).getDate() +
@@ -227,9 +243,9 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void showHomen(String EquipmentNumber) {
+	public void showHomen(int EquipmentNumber) {
 		for(int i=0; i<homenList.size(); i++) {
-			if(homenList.get(i).getNumber().equals(EquipmentNumber)) {
+			if(homenList.get(i).getNumber() == EquipmentNumber) {
 				System.out.println("장비번호 : " + homenList.get(i).getNumber() +
 								" | 등록일자 : " + homenList.get(i).getDate() +
 								" | 장비상태 : " + homenList.get(i).getStatus());
@@ -250,9 +266,9 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void showHowan(String EquipmentNumber) {
+	public void showHowan(int EquipmentNumber) {
 		for(int i=0; i<howanList.size(); i++) {
-			if(howanList.get(i).getNumber().equals(EquipmentNumber)) {
+			if(howanList.get(i).getNumber() == EquipmentNumber) {
 				System.out.println("장비번호 : " + howanList.get(i).getNumber() +
 								" | 등록일자 : " + howanList.get(i).getDate() +
 								" | 장비상태 : " + howanList.get(i).getStatus());
@@ -273,9 +289,9 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void showGap(String EquipmentNumber) {
+	public void showGap(int EquipmentNumber) {
 		for(int i=0; i<gapList.size(); i++) {
-			if(gapList.get(i).getNumber().equals(EquipmentNumber)) {
+			if(gapList.get(i).getNumber() == EquipmentNumber) {
 				System.out.println("장비번호 : " + gapList.get(i).getNumber() +
 								" | 등록일자 : " + gapList.get(i).getDate() +
 								" | 장비상태 : " + gapList.get(i).getStatus());
@@ -296,9 +312,9 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void showGapsang(String EquipmentNumber) {
+	public void showGapsang(int EquipmentNumber) {
 		for(int i=0; i<gapsangList.size(); i++) {
-			if(gapsangList.get(i).getNumber().equals(EquipmentNumber)) {
+			if(gapsangList.get(i).getNumber() == EquipmentNumber) {
 				System.out.println("장비번호 : " + gapsangList.get(i).getNumber() +
 								" | 등록일자 : " + gapsangList.get(i).getDate() +
 								" | 장비상태 : " + gapsangList.get(i).getStatus());
@@ -318,18 +334,18 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void deleteShinai(String delete_EquipmentNumber) {
+	public void deleteShinai(int delete_EquipmentNumber) {
 		for(int i=0; i<shinaiList.size(); i++) {
-			if(shinaiList.get(i).getNumber().equals(delete_EquipmentNumber)) {
+			if(shinaiList.get(i).getNumber() == delete_EquipmentNumber) {
 				shinaiList.remove(i);
 				break;
 			}
 		}
 	}
 	
-	public void deleteHogu(String delete_EquipmentNumber) {
+	public void deleteHogu(int delete_EquipmentNumber) {
 		for(int i=0; i<hoguList.size(); i++) {
-			if(hoguList.get(i).getNumber().equals(delete_EquipmentNumber)) {
+			if(hoguList.get(i).getNumber() == delete_EquipmentNumber) {
 				hoguList.get(i).getHomen().getHistory().setOffHogu();
 				hoguList.get(i).getHowan().getHistory().setOffHogu();
 				hoguList.get(i).getGap().getHistory().setOffHogu();
@@ -340,54 +356,54 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void deleteHomen(String delete_EquipmentNumber) {
+	public void deleteHomen(int delete_EquipmentNumber) {
 		for(int i=0; i<homenList.size(); i++) {
-			if(homenList.get(i).getNumber().equals(delete_EquipmentNumber)) {
+			if(homenList.get(i).getNumber() == delete_EquipmentNumber) {
 				homenList.remove(i);
 				break;
 			}
 		}
 	}
 	
-	public void deleteHowan(String delete_EquipmentNumber) {
+	public void deleteHowan(int delete_EquipmentNumber) {
 		for(int i=0; i<howanList.size(); i++) {
-			if(howanList.get(i).getNumber().equals(delete_EquipmentNumber)) {
+			if(howanList.get(i).getNumber() == delete_EquipmentNumber) {
 				howanList.remove(i);
 				break;
 			}
 		}
 	}
 	
-	public void deleteGap(String delete_EquipmentNumber) {
+	public void deleteGap(int delete_EquipmentNumber) {
 		for(int i=0; i<gapList.size(); i++) {
-			if(gapList.get(i).getNumber().equals(delete_EquipmentNumber)) {
+			if(gapList.get(i).getNumber() == delete_EquipmentNumber) {
 				gapList.remove(i);
 				break;
 			}
 		}
 	}
 	
-	public void deleteGapsang(String delete_EquipmentNumber) {
+	public void deleteGapsang(int delete_EquipmentNumber) {
 		for(int i=0; i<gapsangList.size(); i++) {
-			if(gapsangList.get(i).getNumber().equals(delete_EquipmentNumber)) {
+			if(gapsangList.get(i).getNumber() == delete_EquipmentNumber) {
 				gapsangList.remove(i);
 				break;
 			}
 		}
 	}
 	
-	public void deleteDobok(String delete_EquipmentNumber) {
+	public void deleteDobok(int delete_EquipmentNumber) {
 		for(int i=0; i<dobokList.size(); i++) {
-			if(dobokList.get(i).getNumber().equals(delete_EquipmentNumber)) {
+			if(dobokList.get(i).getNumber() == delete_EquipmentNumber) {
 				dobokList.remove(i);
 				break;
 			}
 		}
 	}
 	
-	public void setShinai_Status(String number, String part, String statusType) {
+	public void setShinai_Status(int number, String part, String statusType) {
 		for(int i=0; i<shinaiList.size(); i++) {
-			if(shinaiList.get(i).getNumber().equals(number)) {
+			if(shinaiList.get(i).getNumber() == number) {
 				shinaiList.get(i).setStatus(part, statusType);
 				shinaiList.get(i).shinaiStatus();
 				break;
@@ -395,54 +411,54 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void setHomen_Status(String number, String statusType) {
+	public void setHomen_Status(int number, String statusType) {
 		for(int i=0; i<homenList.size(); i++) {
-			if(homenList.get(i).getNumber().equals(number)) {
+			if(homenList.get(i).getNumber() == number) {
 				homenList.get(i).setStatus(statusType);
 				break;
 			}
 		}
 	}
 	
-	public void setHowan_Status(String number, String statusType) {
+	public void setHowan_Status(int number, String statusType) {
 		for(int i=0; i<howanList.size(); i++) {
-			if(howanList.get(i).getNumber().equals(number)) {
+			if(howanList.get(i).getNumber() == number) {
 				howanList.get(i).setStatus(statusType);
 				break;
 			}
 		}
 	}
 	
-	public void setGap_Status(String number, String statusType) {
+	public void setGap_Status(int number, String statusType) {
 		for(int i=0; i<gapList.size(); i++) {
-			if(gapList.get(i).getNumber().equals(number)) {
+			if(gapList.get(i).getNumber() == number) {
 				gapList.get(i).setStatus(statusType);
 				break;
 			}
 		}
 	}
 	
-	public void setGapsang_Status(String number, String statusType) {
+	public void setGapsang_Status(int number, String statusType) {
 		for(int i=0; i<gapsangList.size(); i++) {
-			if(gapsangList.get(i).getNumber().equals(number)) {
+			if(gapsangList.get(i).getNumber() == number) {
 				gapsangList.get(i).setStatus(statusType);
 				break;
 			}
 		}
 	}
 	
-	public void setHogu(String setHogu_Number, String setPart, String setEquipment_Number) {
+	public void setHogu(int setHogu_Number, String setPart, int setEquipment_Number) {
 		
 		boolean Nooo = false;
 		boolean okey = false;
 		
 		for(int i=0; i<hoguList.size(); i++) {
-			if(hoguList.get(i).getNumber().equals(setHogu_Number)) {
+			if(hoguList.get(i).getNumber() == setHogu_Number) {
 				switch (setPart) {
 				case "호면" : {
 					
 					for(int ii=0; ii<hoguList.size(); ii++) {
-						if(hoguList.get(ii).getHomen().getNumber().equals(setEquipment_Number)) {
+						if(hoguList.get(ii).getHomen().getNumber() == setEquipment_Number) {
 							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
 							Nooo = true;
 							break;
@@ -458,7 +474,7 @@ public class Equipment_Manager {
 					}
 						
 					for(int iii=0; iii<homenList.size(); iii++) {
-						if(homenList.get(iii).getNumber().equals(setEquipment_Number)) {
+						if(homenList.get(iii).getNumber() == setEquipment_Number) {
 							Equipment_Homen setEquipment = homenList.get(iii);
 							hoguList.get(i).setHomen(setEquipment);
 							setEquipment.getHistory().setHogu(hoguList.get(i));
@@ -478,7 +494,7 @@ public class Equipment_Manager {
 				case "호완" : {
 					
 					for(int ii=0; ii<hoguList.size(); ii++) {
-						if(hoguList.get(ii).getHowan().getNumber().equals(setEquipment_Number)) {
+						if(hoguList.get(ii).getHowan().getNumber() == setEquipment_Number) {
 							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
 							Nooo = true;
 							break;
@@ -493,7 +509,7 @@ public class Equipment_Manager {
 						}
 						
 						for(int iii=0; iii<howanList.size(); iii++) {
-							if(howanList.get(iii).getNumber().equals(setEquipment_Number)) {
+							if(howanList.get(iii).getNumber() == setEquipment_Number) {
 								Equipment_Howan setEquipment = howanList.get(iii);
 								hoguList.get(i).setHowan(setEquipment);
 								setEquipment.getHistory().setHogu(hoguList.get(i));
@@ -513,7 +529,7 @@ public class Equipment_Manager {
 				case "갑" : {
 					
 					for(int ii=0; ii<hoguList.size(); ii++) {
-						if(hoguList.get(ii).getGap().getNumber().equals(setEquipment_Number)) {
+						if(hoguList.get(ii).getGap().getNumber() == setEquipment_Number) {
 							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
 							Nooo = true;
 							break;
@@ -528,7 +544,7 @@ public class Equipment_Manager {
 						}
 						
 						for(int iii=0; iii<gapList.size(); iii++) {
-							if(gapList.get(iii).getNumber().equals(setEquipment_Number)) {
+							if(gapList.get(iii).getNumber() == setEquipment_Number) {
 								Equipment_Gap setEquipment = gapList.get(iii);
 								hoguList.get(i).setGap(setEquipment);
 								setEquipment.getHistory().setHogu(hoguList.get(i));
@@ -548,7 +564,7 @@ public class Equipment_Manager {
 				case "갑상" : {
 					
 					for(int ii=0; ii<hoguList.size(); ii++) {
-						if(hoguList.get(ii).getGapsang().getNumber().equals(setEquipment_Number)) {
+						if(hoguList.get(ii).getGapsang().getNumber() == setEquipment_Number) {
 							System.out.println("이미 등록된 장비입니다. 다른 장비를 입력하세요.");
 							Nooo = true;
 							break;
@@ -563,7 +579,7 @@ public class Equipment_Manager {
 						}
 						
 						for(int iii=0; iii<gapsangList.size(); iii++) {
-							if(gapsangList.get(iii).getNumber().equals(setEquipment_Number)) {
+							if(gapsangList.get(iii).getNumber() == setEquipment_Number) {
 								Equipment_Gapsang setEquipment = gapsangList.get(iii);
 								hoguList.get(i).setGapsang(setEquipment);
 								setEquipment.getHistory().setHogu(hoguList.get(i));
@@ -585,14 +601,14 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void setEquipment_User(String EquipmentType, String EquipmentNumber, KKC_Member member) {
+	public void setEquipment_User(String EquipmentType, int setEquipment_Number, KKC_Member member) {
 		
 		boolean okey = false;
 		
 		switch (EquipmentType) {
 		case "죽도" :
 			for(int i=0; i<shinaiList.size(); i++) {
-				if(shinaiList.get(i).getNumber().equals(EquipmentNumber)) {
+				if(shinaiList.get(i).getNumber() == setEquipment_Number) {
 					shinaiList.get(i).setMember(member);
 					okey = true;
 					break;
@@ -609,7 +625,7 @@ public class Equipment_Manager {
 		
 		case "호구" :
 			for(int i=0; i<hoguList.size(); i++) {
-				if(hoguList.get(i).getNumber().equals(EquipmentNumber)) {
+				if(hoguList.get(i).getNumber() == setEquipment_Number) {
 					hoguList.get(i).setMember(member);
 					okey = true;
 					break;
@@ -624,18 +640,18 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void addShinaiRepairHistory(String Number, String date, String detail, String result) {
+	public void addShinaiRepairHistory(int shinaiNumber, String date, String detail, String result) {
 			for(int i=0; i<shinaiList.size(); i++) {
-				if(shinaiList.get(i).getNumber().equals(Number)) {
+				if(shinaiList.get(i).getNumber() == shinaiNumber) {
 					shinaiList.get(i).getHistory().addHistory(date, detail, result);
 					break;
 				}
 			} 
 	}
 	
-	public void addHoguRepairHistory(String hoguNumber, String part, String date, String details, String result) {
+	public void addHoguRepairHistory(int hoguNumber, String part, String date, String details, String result) {
 		for(int i=0; i<hoguList.size(); i++) {
-			if(hoguList.get(i).getNumber().equals(hoguNumber)) {
+			if(hoguList.get(i).getNumber() == hoguNumber) {
 				switch (part) {
 				case "호면" : {
 					hoguList.get(i).getHomen().getHistory().addHistory(date, details, result);
@@ -662,11 +678,11 @@ public class Equipment_Manager {
 		}
 	}
 	
-	public void addNullHoguRepairHistory(String number, String part, String date, String details, String result) {
+	public void addNullHoguRepairHistory(int hoguNumber, String part, String date, String details, String result) {
 				switch (part) {
 				case "호면" : {
 					for(int i=0; i<homenList.size(); i++) {
-						if(homenList.get(i).getNumber().equals(number)) {
+						if(homenList.get(i).getNumber() == hoguNumber) {
 							homenList.get(i).getHistory().addHistory(date, details, result);
 							break;
 						}
@@ -675,7 +691,7 @@ public class Equipment_Manager {
 			
 				case "호완" : {
 					for(int i=0; i<howanList.size(); i++) {
-						if(howanList.get(i).getNumber().equals(number)) {
+						if(howanList.get(i).getNumber() == hoguNumber) {
 							howanList.get(i).getHistory().addHistory(date, details, result);
 							break;
 						}
@@ -684,7 +700,7 @@ public class Equipment_Manager {
 
 				case "갑" : {
 					for(int i=0; i<gapList.size(); i++) {
-						if(gapList.get(i).getNumber().equals(number)) {
+						if(gapList.get(i).getNumber() == hoguNumber) {
 							gapList.get(i).getHistory().addHistory(date, details, result);
 							break;
 						}
@@ -693,7 +709,7 @@ public class Equipment_Manager {
 
 				case "갑상" : {
 					for(int i=0; i<gapsangList.size(); i++) {
-						if(gapsangList.get(i).getNumber().equals(number)) {
+						if(gapsangList.get(i).getNumber() == hoguNumber) {
 							gapsangList.get(i).getHistory().addHistory(date, details, result);
 							break;
 						}
@@ -705,11 +721,11 @@ public class Equipment_Manager {
 		
 	
 	
-	public void showRepairHistory(String EquipmentType, String Number) {
+	public void showRepairHistory(String EquipmentType, int equipmentNumber) {
 		switch (EquipmentType) {
 		case "죽도" :
 			for(int i=0; i<shinaiList.size(); i++) {
-				if(shinaiList.get(i).getNumber().equals(Number)) {
+				if(shinaiList.get(i).getNumber() == equipmentNumber) {
 					shinaiList.get(i).getHistory().showHistory();
 					break;
 				}
@@ -718,7 +734,7 @@ public class Equipment_Manager {
 			
 		case "호면" :
 			for(int i=0; i<homenList.size(); i++) {
-				if(homenList.get(i).getNumber().equals(Number)) {
+				if(homenList.get(i).getNumber() == equipmentNumber) {
 					homenList.get(i).getHistory().showHistory();
 					break;
 				}
@@ -726,7 +742,7 @@ public class Equipment_Manager {
 			
 		case "호완" :
 			for(int i=0; i<howanList.size(); i++) {
-				if(howanList.get(i).getNumber().equals(Number)) {
+				if(howanList.get(i).getNumber() == equipmentNumber) {
 					howanList.get(i).getHistory().showHistory();
 					break;
 				}
@@ -734,7 +750,7 @@ public class Equipment_Manager {
 			
 		case "갑" :
 			for(int i=0; i<gapList.size(); i++) {
-				if(gapList.get(i).getNumber().equals(Number)) {
+				if(gapList.get(i).getNumber() == equipmentNumber) {
 					gapList.get(i).getHistory().showHistory();
 					break;
 				}
@@ -742,7 +758,7 @@ public class Equipment_Manager {
 			
 		case "갑상" :
 			for(int i=0; i<gapsangList.size(); i++) {
-				if(gapsangList.get(i).getNumber().equals(Number)) {
+				if(gapsangList.get(i).getNumber() == equipmentNumber) {
 					gapsangList.get(i).getHistory().showHistory();
 					break;
 				}
@@ -773,18 +789,18 @@ public class Equipment_Manager {
 			}
 		}
 	
-	public Equipment_Shinai findShinai(String find_EquipmentNumber) {
+	public Equipment_Shinai findShinai(int find_EquipmentNumber) {
 		for(int i=0; i<shinaiList.size(); i++) {
-			if(shinaiList.get(i).getNumber().equals(find_EquipmentNumber)) {
+			if(shinaiList.get(i).getNumber() == find_EquipmentNumber) {
 				return shinaiList.get(i);
 			}
 		}
 		return null;
 	}
 	
-	public Equipment_Hogu findHogu(String find_EquipmentNumber) {
+	public Equipment_Hogu findHogu(int find_EquipmentNumber) {
 		for(int i=0; i<hoguList.size(); i++) {
-			if(hoguList.get(i).getNumber().equals(find_EquipmentNumber)) {
+			if(hoguList.get(i).getNumber() == find_EquipmentNumber) {
 				return hoguList.get(i);
 			}
 		}
@@ -792,36 +808,36 @@ public class Equipment_Manager {
 	}
 	
 	
-	public Equipment_Homen findHomen(String find_EquipmentNumber) {
+	public Equipment_Homen findHomen(int find_EquipmentNumber) {
 		for(int i=0; i<homenList.size(); i++) {
-			if(homenList.get(i).getNumber().equals(find_EquipmentNumber)) {
+			if(homenList.get(i).getNumber() == find_EquipmentNumber) {
 				return homenList.get(i);
 			}
 		}
 		return null;
 	}
 	
-	public Equipment_Howan findHowan(String find_EquipmentNumber) {
+	public Equipment_Howan findHowan(int find_EquipmentNumber) {
 		for(int i=0; i<howanList.size(); i++) {
-			if(howanList.get(i).getNumber().equals(find_EquipmentNumber)) {
+			if(howanList.get(i).getNumber() == find_EquipmentNumber) {
 				return howanList.get(i);
 			}
 		}
 		return null;
 	}
 	
-	public Equipment_Gap findGap(String find_EquipmentNumber) {
+	public Equipment_Gap findGap(int find_EquipmentNumber) {
 		for(int i=0; i<gapList.size(); i++) {
-			if(gapList.get(i).getNumber().equals(find_EquipmentNumber)) {
+			if(gapList.get(i).getNumber() == find_EquipmentNumber) {
 				return gapList.get(i);
 			}
 		}
 		return null;
 	}
 	
-	public Equipment_Gapsang findGapsang(String find_EquipmentNumber) {
+	public Equipment_Gapsang findGapsang(int find_EquipmentNumber) {
 		for(int i=0; i<gapsangList.size(); i++) {
-			if(gapsangList.get(i).getNumber().equals(find_EquipmentNumber)) {
+			if(gapsangList.get(i).getNumber() == find_EquipmentNumber) {
 				return gapsangList.get(i);
 			}
 		}

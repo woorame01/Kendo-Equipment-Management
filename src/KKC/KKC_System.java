@@ -589,6 +589,11 @@ public class KKC_System {
 					}
 					
 					else if(answer == 2) {
+						
+						String StudentID, number;
+						boolean okey1 = false;
+						boolean okey2 = false;
+						
 						System.out.println("장비 이용자를 변경합니다.");
 						System.out.print("변경할 장비 종류를 입력하세요 (죽도 / 호구) >>");
 						String EquipmentType = scanner.nextLine();
@@ -596,29 +601,49 @@ public class KKC_System {
 						case "죽도" : {
 							while (true) {
 								System.out.print("변경할 장비 번호를 입력하세요 >>");
-								String number = scanner.nextLine();
+								number = scanner.nextLine();
+								
+								if(number.equals("취소")) {
+									break;
+								}
 								
 								if(equipmentManager.findShinai(number) == null) {
 									System.out.println("장비를 찾을 수 없습니다. 장비 번호를 확인하세요.");
 									continue;
 								}
 								
-								if(number.equals("취소")) {
+								else {
+									okey1 = true;
 									break;
 								}
 								
-								System.out.print("변경할 이용자의 학번를 입력하세요 >>");
-								String StudentID = scanner.nextLine();
+							}
+							
+								if(okey1 == false)
+									break;
 								
-
+								while (true) {
+								System.out.print("변경할 이용자의 학번를 입력하세요 >>");
+								StudentID = scanner.nextLine();
+								
+								if(StudentID.equals("취소")) {
+									break;
+								}
+								
 								if(memberManager.findMemberNoComment(StudentID) == null) {
 									System.out.println("이용자를 찾을 수 없습니다. 학번을 확인하세요.");
 									continue;
 								}
 								
-								if(StudentID.equals("취소")) {
+								else {
+									okey2 = true;
 									break;
 								}
+								
+								}
+								
+								if(okey2 == false)
+									break;
 								
 								equipmentManager.setEquipment_User(EquipmentType, number, memberManager.findMemberNoComment(StudentID));
 								
@@ -627,37 +652,57 @@ public class KKC_System {
 								equipmentManager.showShinai(number);
 								break;
 							
-							}
-						}
+							} 
+						
 							
 						
 						
 						case "호구" : {
 							while (true) {
 								System.out.print("변경할 장비 번호를 입력하세요 >>");
-								String number = scanner.nextLine();
+								number = scanner.nextLine();
+								
+								if(number.equals("취소")) {
+									break;
+								}
 								
 								if(equipmentManager.findHogu(number) == null) {
 									System.out.println("장비를 찾을 수 없습니다. 장비 번호를 확인하세요.");
 									continue;
 								}
 								
-								if(number.equals("취소")) {
+								else {
+									okey1 = true;
 									break;
 								}
 								
+							}
+							
+								if(okey1 == false)
+									break;
+								
+								while (true) {
 								System.out.print("변경할 이용자의 학번를 입력하세요 >>");
-								String StudentID = scanner.nextLine();
+								StudentID = scanner.nextLine();
+								
+								if(StudentID.equals("취소")) {
+									break;
+								}
 								
 								if(memberManager.findMemberNoComment(StudentID) == null) {
 									System.out.println("이용자를 찾을 수 없습니다. 학번을 확인하세요.");
 									continue;
 								}
 								
-								
-								if(StudentID.equals("취소")) {
+								else {
+									okey2 = true;
 									break;
 								}
+								
+								}
+								
+								if(okey2 == false)
+									break;
 								
 								equipmentManager.setEquipment_User(EquipmentType, number, memberManager.findMemberNoComment(StudentID));
 								
@@ -665,10 +710,7 @@ public class KKC_System {
 								System.out.println("변경 완료");
 								equipmentManager.showHogu(number);
 								break;
-							
-							}
-
-							
+					
 						}
 						
 						case "종료" : {
@@ -1867,25 +1909,25 @@ public class KKC_System {
 
 	    equipmentManager.addShinai(
 	        memberManager.findMemberNoComment("1111111"),
-	        "죽도-001",
+	        "죽도-011",
 	        "26-09-27"
 	    );
 
 	    equipmentManager.addShinai(
 	        memberManager.findMemberNoComment("2222222"),
-	        "죽도-002",
+	        "죽도-012",
 	        "26-09-27"
 	    );
 
 	    equipmentManager.addShinai(
 	        memberManager.findMemberNoComment("3333333"),
-	        "죽도-003",
+	        "죽도-013",
 	        "26-09-27"
 	    );
 
 	    equipmentManager.addShinai(
 	        memberManager.findMemberNoComment("4444444"),
-	        "죽도-004",
+	        "죽도-014",
 	        "26-09-27"
 	    );
 

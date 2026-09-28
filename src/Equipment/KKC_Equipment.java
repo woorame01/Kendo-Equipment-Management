@@ -1,17 +1,17 @@
 package Equipment;
 
 public class KKC_Equipment {
-	
-	private String number, date;
+	private int number;
+	private String date;
 	private Equipment_Status status;
 	
-	public KKC_Equipment(String number, String date) {
+	public KKC_Equipment(int number, String date) {
 		this.number = number;
 		this.date = date;
 		this.status = Equipment_Status.사용가능;
 	}
 
-	public void setNumber(String number) {
+	public void setNumber(int number) {
 		this.number = number;
 	}
 	
@@ -40,7 +40,7 @@ public class KKC_Equipment {
 		
 	}
 	
-	public String getNumber() {
+	public int getNumber() {
 		return number;
 	}
 	

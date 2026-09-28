@@ -1,15 +1,15 @@
 package Equipment;
 
 public class Equipment_Dobok {
-	private String number;
+	private int number;
 	private String date;
 	
-	public Equipment_Dobok(String number, String date) {
+	public Equipment_Dobok(int number, String date) {
 		this.number = number;
 		this.date = date;
 	}
 	
-	public String getNumber() {
+	public int getNumber() {
 		return number;
 	}
 	
