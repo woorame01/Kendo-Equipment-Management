@@ -301,7 +301,7 @@ public class KKC_System {
 					switch (EquipmentType) {
 					case "죽도" : {
 						if(equipmentManager.getShinaiList().size() != 0) {
-							System.out.println("등록할 장비 번호는 "+equipmentManager.getShinaiList().size()+1 +" 입니다."); }
+							System.out.println("등록할 장비 번호는 "+ (equipmentManager.getShinaiList().size()+1) +" 입니다."); }
 							
 							else {System.out.println("첫 장비 등록입니다. 장비번호는 1 입니다.");}
 							
@@ -338,7 +338,7 @@ public class KKC_System {
 						int setGapsangNumber;
 						
 						if(equipmentManager.getHoguList().size() != 0) {
-							System.out.println("등록할 장비 번호는 "+equipmentManager.getHoguList().size()+1 +" 입니다."); }
+							System.out.println("등록할 장비 번호는 "+ (equipmentManager.getHoguList().size()+1) +" 입니다."); }
 							
 							else {System.out.println("첫 장비 등록입니다. 장비번호는 1 입니다.");}
 							
@@ -406,7 +406,7 @@ public class KKC_System {
 					
 					case "호면" : {
 						if(equipmentManager.getHomenList().size() != 0) {
-							System.out.println("등록할 장비 번호는 "+equipmentManager.getHomenList().size()+1 +" 입니다."); }
+							System.out.println("등록할 장비 번호는 "+ (equipmentManager.getHomenList().size()+1) +" 입니다."); }
 							
 							else {System.out.println("첫 장비 등록입니다. 장비번호는 1 입니다.");}
 							
@@ -421,7 +421,7 @@ public class KKC_System {
 
 					case "호완" : {
 						if(equipmentManager.getHowanList().size() != 0) {
-							System.out.println("등록할 장비 번호는 "+equipmentManager.getHowanList().size()+1 +" 입니다."); }
+							System.out.println("등록할 장비 번호는 "+ (equipmentManager.getHowanList().size()+1) +" 입니다."); }
 							
 							else {System.out.println("첫 장비 등록입니다. 장비번호는 1 입니다.");}
 							
@@ -437,7 +437,7 @@ public class KKC_System {
 
 					case "갑" : {
 						if(equipmentManager.getGapList().size() != 0) {
-							System.out.println("등록할 장비 번호는 "+equipmentManager.getGapList().size()+1 +" 입니다."); }
+							System.out.println("등록할 장비 번호는 "+ (equipmentManager.getGapList().size()+1) +" 입니다."); }
 							
 							else {System.out.println("첫 장비 등록입니다. 장비번호는 1 입니다.");}
 							
@@ -453,7 +453,7 @@ public class KKC_System {
 
 					case "갑상" : {
 						if(equipmentManager.getGapsangList().size() != 0) {
-							System.out.println("등록할 장비 번호는 "+equipmentManager.getGapsangList().size()+1 +" 입니다."); }
+							System.out.println("등록할 장비 번호는 "+ (equipmentManager.getGapsangList().size()+1) +" 입니다."); }
 							
 							else {System.out.println("첫 장비 등록입니다. 장비번호는 1 입니다.");}
 					
@@ -469,7 +469,7 @@ public class KKC_System {
 
 					case "도복" : {
 						if(equipmentManager.getDobokList().size() != 0) {
-							System.out.println("등록할 장비 번호는 "+equipmentManager.getDobokList().size()+1 +" 입니다."); }
+							System.out.println("등록할 장비 번호는 "+ (equipmentManager.getDobokList().size()+1) +" 입니다."); }
 							
 							else {System.out.println("첫 장비 등록입니다. 장비번호는 1 입니다.");}
 							

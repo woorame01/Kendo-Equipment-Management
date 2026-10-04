@@ -184,15 +184,15 @@ public class Equipment_Manager {
 								   "| 등록일자 : " + shinaiList.get(i).getDate() +
 								   "| 장비상태 : " + shinaiList.get(i).getStatus() +
 								   "| 이용자 : 미등록");
-		
-				System.out.println("장비세부상태 | 선혁 : " + shinaiList.get(i).getSakiawa() +
-								   " 선고무 : " + shinaiList.get(i).getSakigomu() +
-								   " 중혁 : " + shinaiList.get(i).getNakayui() +
-								   " 병혁 : " + shinaiList.get(i).getTsukagawa() +
-								   " 등줄 : " + shinaiList.get(i).getTsuru() +
-								   " 코등이 : " + shinaiList.get(i).getTsuba() +
-								   " 코등이 받침 : " + shinaiList.get(i).getTsubaDome());
 				
+				System.out.println("장비세부상태 | 선혁 : " + shinaiList.get(i).getSakiawa() +
+								   "| 선고무 : " + shinaiList.get(i).getSakigomu() +
+								   "| 중혁 : " + shinaiList.get(i).getNakayui() +
+								   "| 병혁 : " + shinaiList.get(i).getTsukagawa() +
+								   "| 등줄 : " + shinaiList.get(i).getTsuru() +
+								   "| 코등이 : " + shinaiList.get(i).getTsuba() +
+								   "| 코등이 받침 : " + shinaiList.get(i).getTsubaDome());
+			
 				System.out.println();
 			}
 			
