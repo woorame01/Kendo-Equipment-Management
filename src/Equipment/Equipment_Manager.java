@@ -361,6 +361,19 @@ public class Equipment_Manager {
 		}
 	}
 	
+	public void showDobok(int EquipmentNumber) {
+		for(int i=0; i<dobokList.size(); i++) {
+			if(dobokList.get(i).getNumber() == EquipmentNumber) {
+				System.out.println("장비번호 : " + dobokList.get(i).getNumber() +
+								   " | 등록일자 : " + dobokList.get(i).getDate());
+		
+				System.out.println();
+				break;
+			}
+		}
+	}
+	
+	
 	public void deleteShinai(int delete_EquipmentNumber) {
 		for(int i=0; i<shinaiList.size(); i++) {
 			if(shinaiList.get(i).getNumber() == delete_EquipmentNumber) {
@@ -866,6 +879,16 @@ public class Equipment_Manager {
 		for(int i=0; i<gapsangList.size(); i++) {
 			if(gapsangList.get(i).getNumber() == find_EquipmentNumber) {
 				return gapsangList.get(i);
+			}
+		}
+		return null;
+	}
+	
+
+	public Equipment_Dobok findDobok(int find_EquipmentNumber) {
+		for(int i=0; i<dobokList.size(); i++) {
+			if(dobokList.get(i).getNumber() == find_EquipmentNumber) {
+				return dobokList.get(i);
 			}
 		}
 		return null;

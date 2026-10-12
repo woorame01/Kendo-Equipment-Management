@@ -40,6 +40,8 @@ public class KKC_System {
 			continue;
 		}
 		
+		scanner.nextLine();
+		
 		if(answer == 1) {
 			while (true) {
 			System.out.println();
@@ -345,6 +347,7 @@ public class KKC_System {
 							while (true) {
 								System.out.print("등록할 호면번호 >>");
 								setHomenNumber = scanner.nextInt();
+								scanner.nextLine();
 								if(equipmentManager.findHomen(setHomenNumber) == null) {
 									System.out.println("찾을 수 없습니다. 장비번호를 확인하세요.");
 									continue;
@@ -356,6 +359,7 @@ public class KKC_System {
 							while (true) {
 								System.out.print("등록할 호완번호 >>");
 								setHowanNumber = scanner.nextInt();
+								scanner.nextLine();
 								if(equipmentManager.findHowan(setHowanNumber) == null) {
 									System.out.println("찾을 수 없습니다. 장비번호를 확인하세요.");
 									continue;
@@ -367,6 +371,7 @@ public class KKC_System {
 							while (true) {
 								System.out.print("등록할 갑번호 >>");
 								setGapNumber = scanner.nextInt();
+								scanner.nextLine();
 								if(equipmentManager.findGap(setGapNumber) == null) {
 									System.out.println("찾을 수 없습니다. 장비번호를 확인하세요.");
 									continue;
@@ -378,6 +383,7 @@ public class KKC_System {
 							while (true) {
 								System.out.print("등록할 갑상번호 >>");
 								setGapsangNumber = scanner.nextInt();
+								scanner.nextLine();
 								if(equipmentManager.findGapsang(setGapsangNumber) == null) {
 									System.out.println("찾을 수 없습니다. 장비번호를 확인하세요.");
 									continue;
@@ -558,6 +564,7 @@ public class KKC_System {
 					
 					System.out.print("등록할 장비 번호를 입력하세요 >>");
 					int number = scanner.nextInt();
+					scanner.nextLine();
 					while (true) {
 					System.out.print("등록할 사용자의 학번을 입력하세요 >>");
 					String studentID = scanner.nextLine();
@@ -592,6 +599,7 @@ public class KKC_System {
 							while (true) {
 								System.out.print("변경할 장비 번호를 입력하세요 >>");
 								number = scanner.nextInt();
+								scanner.nextLine();
 								
 							
 								if(equipmentManager.findShinai(number) == null) {
@@ -656,6 +664,7 @@ public class KKC_System {
 							while (true) {
 								System.out.print("변경할 장비 번호를 입력하세요 >>");
 								number = scanner.nextInt();
+								scanner.nextLine();
 								
 								if(equipmentManager.findHogu(number) == null) {
 									++count;
@@ -749,6 +758,7 @@ public class KKC_System {
 					while (true) {
 						System.out.print("변경할 호구 번호를 입력하세요 >>");
 						setHogu_Number = scanner.nextInt();
+						scanner.nextLine();
 						
 						if(equipmentManager.findHogu(setHogu_Number) == null) {
 							System.out.println("장비를 찾을 수 없습니다. 다시 입력하세요.");
@@ -774,9 +784,11 @@ public class KKC_System {
 					
 					System.out.print("변경할 " + setPart + " 번호를 입력하세요 >>");
 					setEquipment_Number = scanner.nextInt();
+					scanner.nextLine();
 					
 					equipmentManager.setHogu(setHogu_Number, setPart, setEquipment_Number);
 				
+					scanner.nextLine();
 					System.out.print("Enter to back...");
 					scanner.nextLine();
 					continue;
@@ -796,6 +808,7 @@ public class KKC_System {
 						while (true) {
 							System.out.print("변경할 장비 번호를 입력하세요 >>");
 						 	number = scanner.nextInt();
+						 	scanner.nextLine();
 						 	
 						 	if(equipmentManager.findShinai(number) == null) {
 								System.out.println("장비를 찾을 수 없습니다. 장비 번호를 확인하세요.");
@@ -850,6 +863,7 @@ public class KKC_System {
 						while (true) {
 							System.out.print("변경할 장비 번호를 입력하세요 >>");
 						 	number = scanner.nextInt();
+						 	scanner.nextLine();
 						 	
 						 	if(equipmentManager.findHomen(number) == null) {
 								System.out.println("장비를 찾을 수 없습니다. 장비 번호를 확인하세요.");
@@ -889,6 +903,7 @@ public class KKC_System {
 						while (true) {
 							System.out.print("변경할 장비 번호를 입력하세요 >>");
 						 	number = scanner.nextInt();
+						 	scanner.nextLine();
 						 	
 						 	if(equipmentManager.findHowan(number) == null) {
 								System.out.println("장비를 찾을 수 없습니다. 장비 번호를 확인하세요.");
@@ -928,6 +943,7 @@ public class KKC_System {
 						while (true) {
 							System.out.print("변경할 장비 번호를 입력하세요 >>");
 						 	number = scanner.nextInt();
+						 	scanner.nextLine();
 						 	
 						 	if(equipmentManager.findGap(number) == null) {
 								System.out.println("장비를 찾을 수 없습니다. 장비 번호를 확인하세요.");
@@ -967,6 +983,7 @@ public class KKC_System {
 						while (true) {
 							System.out.print("변경할 장비 번호를 입력하세요 >>");
 						 	number = scanner.nextInt();
+						 	scanner.nextLine();
 						 	
 						 	if(equipmentManager.findGapsang(number) == null) {
 								System.out.println("장비를 찾을 수 없습니다. 장비 번호를 확인하세요.");
@@ -1029,8 +1046,19 @@ public class KKC_System {
 					
 					switch (EquipmentType) {
 					case "죽도" : {
-						System.out.print("찾을 장비 번호를 입력하세요>>");
-						number = scanner.nextInt();
+						while (true) {
+							System.out.print("찾을 장비 번호를 입력하세요>>");
+							try {
+							number = scanner.nextInt(); }
+							catch (InputMismatchException e) {
+								System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+								scanner.nextLine();
+								continue;
+							}
+							break;
+							}
+							
+						scanner.nextLine();
 						if(equipmentManager.findShinai(number) != null) {
 							equipmentManager.showShinai(number);
 						}
@@ -1045,8 +1073,19 @@ public class KKC_System {
 					}
 				
 					case "호구" : {
-						System.out.print("찾을 장비 번호를 입력하세요>>");
-						number = scanner.nextInt();
+						while (true) {
+							System.out.print("찾을 장비 번호를 입력하세요>>");
+							try {
+							number = scanner.nextInt(); }
+							catch (InputMismatchException e) {
+								System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+								scanner.nextLine();
+								continue;
+							}
+							break;
+							}
+							
+						scanner.nextLine();
 						if(equipmentManager.findHogu(number) != null) {
 							equipmentManager.showHogu(number);
 						}
@@ -1062,8 +1101,19 @@ public class KKC_System {
 					}
 
 					case "호면" : {
-						System.out.print("찾을 장비 번호를 입력하세요>>");
-						number = scanner.nextInt();
+						while (true) {
+							System.out.print("찾을 장비 번호를 입력하세요>>");
+							try {
+							number = scanner.nextInt(); }
+							catch (InputMismatchException e) {
+								System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+								scanner.nextLine();
+								continue;
+							}
+							break;
+							}
+							
+						scanner.nextLine();
 						if(equipmentManager.findHomen(number) != null) {
 							equipmentManager.showHomen(number);
 						}
@@ -1079,8 +1129,19 @@ public class KKC_System {
 					}
 
 					case "호완" : {
-						System.out.print("찾을 장비 번호를 입력하세요>>");
-						number = scanner.nextInt();
+						while (true) {
+							System.out.print("찾을 장비 번호를 입력하세요>>");
+							try {
+							number = scanner.nextInt(); }
+							catch (InputMismatchException e) {
+								System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+								scanner.nextLine();
+								continue;
+							}
+							break;
+							}
+							
+						scanner.nextLine();
 						if(equipmentManager.findHowan(number) != null) {
 							equipmentManager.showHowan(number);
 						}
@@ -1097,8 +1158,19 @@ public class KKC_System {
 					}
 
 					case "갑" : {
-						System.out.print("찾을 장비 번호를 입력하세요>>");
-						number = scanner.nextInt();
+						while (true) {
+							System.out.print("찾을 장비 번호를 입력하세요>>");
+							try {
+							number = scanner.nextInt(); }
+							catch (InputMismatchException e) {
+								System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+								scanner.nextLine();
+								continue;
+							}
+							break;
+							}
+							
+						scanner.nextLine();
 						if(equipmentManager.findGap(number) != null) {
 							equipmentManager.showGap(number);
 						}
@@ -1115,8 +1187,19 @@ public class KKC_System {
 					}
 
 					case "갑상" : {
-						System.out.print("찾을 장비 번호를 입력하세요>>");
-						number = scanner.nextInt();
+						while (true) {
+							System.out.print("찾을 장비 번호를 입력하세요>>");
+							try {
+							number = scanner.nextInt(); }
+							catch (InputMismatchException e) {
+								System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+								scanner.nextLine();
+								continue;
+							}
+							break;
+							}
+							
+						scanner.nextLine();
 						if(equipmentManager.findGapsang(number) != null) {
 							equipmentManager.showGapsang(number);
 						}
@@ -1132,6 +1215,8 @@ public class KKC_System {
 					}
 				
 					case "종료" : {
+						System.out.print("Enter to back...");
+						scanner.nextLine();
 						break;
 					}
 					
@@ -1140,10 +1225,6 @@ public class KKC_System {
 					
 					
 					}
-					
-					System.out.print("Enter to back...");
-					scanner.nextLine();
-					continue;
 	
  				}
 				
@@ -1159,6 +1240,7 @@ public class KKC_System {
 					case "죽도" : {
 						System.out.print("삭제할 장비 번호를 입력하세요>>");
 						number = scanner.nextInt();
+						scanner.nextLine();
 						if(equipmentManager.findShinai(number) != null) {
 							equipmentManager.showShinai(number);
 							
@@ -1167,15 +1249,11 @@ public class KKC_System {
 								String YesOrNo = scanner.nextLine();
 								if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
 									equipmentManager.deleteShinai(number);
-									System.out.print("Enter to back...");
-									scanner.nextLine();
 									break;
 								}
 								
 								else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
 									System.out.println("장비 삭제를 취소하였습니다.");
-									System.out.print("Enter to back...");
-									scanner.nextLine();
 									break;
 								}
 								
@@ -1200,6 +1278,7 @@ public class KKC_System {
 					case "호구" : {
 						System.out.print("삭제할 장비 번호를 입력하세요>>");
 						number = scanner.nextInt();
+						scanner.nextLine();
 						if(equipmentManager.findHogu(number) != null) {
 							equipmentManager.showHogu(number);
 							
@@ -1208,15 +1287,11 @@ public class KKC_System {
 								String YesOrNo = scanner.nextLine();
 								if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
 									equipmentManager.deleteHogu(number);
-									System.out.print("Enter to back...");
-									scanner.nextLine();
 									break;
 								}
 								
 								else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
 									System.out.println("장비 삭제를 취소하였습니다.");
-									System.out.print("Enter to back...");
-									scanner.nextLine();
 									break;
 								}
 								
@@ -1242,6 +1317,7 @@ public class KKC_System {
 					case "호면" : {
 						System.out.print("삭제할 장비 번호를 입력하세요>>");
 						number = scanner.nextInt();
+						scanner.nextLine();
 						if(equipmentManager.findHomen(number) != null) {
 							equipmentManager.showHomen(number);
 							
@@ -1250,15 +1326,11 @@ public class KKC_System {
 								String YesOrNo = scanner.nextLine();
 								if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
 									equipmentManager.deleteHomen(number);
-									System.out.print("Enter to back...");
-									scanner.nextLine();
 									break;
 								}
 								
 								else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
 									System.out.println("장비 삭제를 취소하였습니다.");
-									System.out.print("Enter to back...");
-									scanner.nextLine();
 									break;
 								}
 								
@@ -1283,6 +1355,7 @@ public class KKC_System {
 					case "호완" : {
 						System.out.print("찾을 장비 번호를 입력하세요>>");
 						number = scanner.nextInt();
+						scanner.nextLine();
 						if(equipmentManager.findHowan(number) != null) {
 							equipmentManager.showHowan(number);
 							
@@ -1291,15 +1364,11 @@ public class KKC_System {
 								String YesOrNo = scanner.nextLine();
 								if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
 									equipmentManager.deleteHowan(number);
-									System.out.print("Enter to back...");
-									scanner.nextLine();
 									break;
 								}
 								
 								else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
 									System.out.println("장비 삭제를 취소하였습니다.");
-									System.out.print("Enter to back...");
-									scanner.nextLine();
 									break;
 								}
 								
@@ -1325,6 +1394,7 @@ public class KKC_System {
 					case "갑" : {
 						System.out.print("찾을 장비 번호를 입력하세요>>");
 						number = scanner.nextInt();
+						scanner.nextLine();
 						if(equipmentManager.findGap(number) != null) {
 							equipmentManager.showGap(number);
 							
@@ -1333,15 +1403,11 @@ public class KKC_System {
 								String YesOrNo = scanner.nextLine();
 								if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
 									equipmentManager.deleteGap(number);
-									System.out.print("Enter to back...");
-									scanner.nextLine();
 									break;
 								}
 								
 								else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
 									System.out.println("장비 삭제를 취소하였습니다.");
-									System.out.print("Enter to back...");
-									scanner.nextLine();
 									break;
 								}
 								
@@ -1367,6 +1433,8 @@ public class KKC_System {
 					case "갑상" : {
 						System.out.print("찾을 장비 번호를 입력하세요>>");
 						number = scanner.nextInt();
+						scanner.nextLine();
+						
 						if(equipmentManager.findGapsang(number) != null) {
 							equipmentManager.showGapsang(number);
 							
@@ -1375,15 +1443,50 @@ public class KKC_System {
 								String YesOrNo = scanner.nextLine();
 								if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
 									equipmentManager.deleteGapsang(number);
-									System.out.print("Enter to back...");
-									scanner.nextLine();
 									break;
 								}
 								
 								else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
 									System.out.println("장비 삭제를 취소하였습니다.");
-									System.out.print("Enter to back...");
-									scanner.nextLine();
+									break;
+								}
+								
+								else {
+									System.out.println();
+									System.out.println("잘못된 입력입니다.");
+									System.out.println("다시 입력하세요.");
+									continue;
+								}
+								}
+							
+						}
+						
+						else
+							System.out.println("등록된 장비가 없습니다.");
+						
+						break;
+						
+						
+					}
+					
+					case "도복" : {
+						System.out.print("찾을 장비 번호를 입력하세요>>");
+						number = scanner.nextInt();
+						scanner.nextLine();
+						
+						if(equipmentManager.findDobok(number) != null) {
+							equipmentManager.showDobok(number);
+							
+							while (true) {
+								System.out.print("위 장비의 정보를 삭제하시겠습니까? (Y/N)");
+								String YesOrNo = scanner.nextLine();
+								if(YesOrNo.equals("y") || YesOrNo.equals("Y")) {
+									equipmentManager.deleteDobok(number);
+									break;
+								}
+								
+								else if(YesOrNo.equals("n") || YesOrNo.equals("N")){
+									System.out.println("장비 삭제를 취소하였습니다.");
 									break;
 								}
 								
@@ -1472,6 +1575,7 @@ public class KKC_System {
 								while (true) {
 								System.out.print("죽도 번호를 입력하세요 >>");
 								number = scanner.nextInt();
+								scanner.nextLine();
 								if(equipmentManager.findShinai(number) == null) {
 									System.out.println("등록된 장비를 찾을 수 없습니다. 다시 입력하세요.");
 									continue;
@@ -1508,6 +1612,7 @@ public class KKC_System {
 								while (true) {
 								System.out.print("호구 번호를 입력하세요(개별 장비라면 0 입력) >>");
 								number = scanner.nextInt();
+								scanner.nextLine();
 								
 								if(number == 0)
 									break;
@@ -1540,6 +1645,7 @@ public class KKC_System {
 									while (true) {
 										System.out.print("세부 장비 번호를 입력하세요 >>");
 										partNumber = scanner.nextInt();
+										scanner.nextLine();
 										
 										if(equipmentType.equals("호면")) {
 											if(equipmentManager.findHomen(partNumber) == null) {
@@ -1644,6 +1750,7 @@ public class KKC_System {
 							while (true) {
 								System.out.print("열람할 장비 번호를 입력하세요 >>");
 								number = scanner.nextInt();
+								scanner.nextLine();
 							
 								if(equipmentManager.findShinai(number) == null) {
 									System.out.println("장비를 찾을 수 없습니다. 다시 입력하세요.");
@@ -1667,6 +1774,7 @@ public class KKC_System {
 							while (true) {
 								System.out.print("열람할 장비 번호를 입력하세요 >>");
 								number = scanner.nextInt();
+								scanner.nextLine();
 							
 								if(equipmentManager.findHomen(number) == null) {
 									System.out.println("장비를 찾을 수 없습니다. 다시 입력하세요.");
@@ -1690,6 +1798,7 @@ public class KKC_System {
 							while (true) {
 								System.out.print("열람할 장비 번호를 입력하세요 >>");
 								number = scanner.nextInt();
+								scanner.nextLine();
 							
 								if(equipmentManager.findHowan(number) == null) {
 									System.out.println("장비를 찾을 수 없습니다. 다시 입력하세요.");
@@ -1713,6 +1822,7 @@ public class KKC_System {
 							while (true) {
 								System.out.print("열람할 장비 번호를 입력하세요 >>");
 								number = scanner.nextInt();
+								scanner.nextLine();
 							
 								if(equipmentManager.findGap(number) == null) {
 									System.out.println("장비를 찾을 수 없습니다. 다시 입력하세요.");
@@ -1736,6 +1846,7 @@ public class KKC_System {
 							while (true) {
 								System.out.print("열람할 장비 번호를 입력하세요 >>");
 								number = scanner.nextInt();
+								scanner.nextLine();
 							
 								if(equipmentManager.findGapsang(number) == null) {
 									System.out.println("장비를 찾을 수 없습니다. 다시 입력하세요.");

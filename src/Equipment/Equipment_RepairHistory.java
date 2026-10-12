@@ -91,6 +91,12 @@ public class Equipment_RepairHistory {
 	
 	public void showHistory() {
 		if(homen != null) {
+			
+			if(history.size() == 0) {
+				System.out.println("등록된 수리이력이 없습니다.");
+			}
+			
+			else {
 			for(int i=0; i<history.size(); i++) {
 				System.out.println("수리일자 : " + history.get(i).date);
 				System.out.println("수리부위 : " + history.get(i).homen.getNumber());
@@ -104,9 +110,16 @@ public class Equipment_RepairHistory {
 				}
 				System.out.println("*********************************************");
 			}
+			}
 		}
 		
 		else if(howan != null) {
+
+			if(history.size() == 0) {
+				System.out.println("등록된 수리이력이 없습니다.");
+			}
+			
+			else {
 			for(int i=0; i<history.size(); i++) {
 				System.out.println("수리일자 : " + history.get(i).date);
 				System.out.println("수리부위 : " + history.get(i).howan.getNumber());
@@ -120,9 +133,16 @@ public class Equipment_RepairHistory {
 				}
 				System.out.println("*********************************************");
 			}
+			}
 		}
 		
 		else if(gap != null) {
+
+			if(history.size() == 0) {
+				System.out.println("등록된 수리이력이 없습니다.");
+			}
+			
+			else {
 			for(int i=0; i<history.size(); i++) {
 				System.out.println("수리일자 : " + history.get(i).date);
 				System.out.println("수리부위 : " + history.get(i).gap.getNumber());
@@ -136,9 +156,16 @@ public class Equipment_RepairHistory {
 				}
 				System.out.println("*********************************************");
 			}
+			}
 		}
 		
 		else if(gapsang != null) {
+
+			if(history.size() == 0) {
+				System.out.println("등록된 수리이력이 없습니다.");
+			}
+			
+			else {
 			for(int i=0; i<history.size(); i++) {
 				System.out.println("수리일자 : " + history.get(i).date);
 				System.out.println("수리부위 : " + history.get(i).gapsang.getNumber());
@@ -152,9 +179,16 @@ public class Equipment_RepairHistory {
 				}
 				System.out.println("*********************************************");
 			}
+			}
 		}
 		
 		else if(shinai != null) {
+
+			if(history.size() == 0) {
+				System.out.println("등록된 수리이력이 없습니다.");
+			}
+			
+			else {
 			for(int i=0; i<history.size(); i++) {
 				System.out.println("수리일자 : " + history.get(i).date);
 				System.out.println("수리부위 : " + history.get(i).shinai.getNumber());
@@ -168,9 +202,8 @@ public class Equipment_RepairHistory {
 				}
 				System.out.println("*********************************************");
 			}
+			}
 		}
-		
-		
 		
 	}
 	
