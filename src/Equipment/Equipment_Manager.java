@@ -28,6 +28,33 @@ public class Equipment_Manager {
 	private int hoguNumber = 1;
 	private int dobokNumber = 1;
 	
+	public int getNowShinaiNumber() {
+		return shinaiNumber;
+	}
+	
+	public int getNowHomenNumber() {
+		return homenNumber;
+	}
+	
+	public int getNowHowanNumber() {
+		return howanNumber;
+	}
+	
+	public int getNowGapNumber() {
+		return gapNumber;
+	}
+	
+	public int getNowGapsangNumber() {
+		return gapsangNumber;
+	}
+	
+	public int getNowHoguNumber() {
+		return hoguNumber;
+	}
+	
+	public int getNowDobokNumber() {
+		return dobokNumber;
+	}
 	
 	public ArrayList <Equipment_Shinai> getShinaiList() {
 		return shinaiList;
