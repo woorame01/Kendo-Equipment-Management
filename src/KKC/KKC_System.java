@@ -1238,9 +1238,18 @@ public class KKC_System {
 					
 					switch (EquipmentType) {
 					case "죽도" : {
+						while (true) {
 						System.out.print("삭제할 장비 번호를 입력하세요>>");
-						number = scanner.nextInt();
+						try {
+						number = scanner.nextInt(); }
+						catch (InputMismatchException e) {
+							System.out.println("\n잘못된 입력입니다.\n다시입력하세요.\n");
+							scanner.nextLine();
+							continue;
+						}
 						scanner.nextLine();
+						break;
+						}
 						if(equipmentManager.findShinai(number) != null) {
 							equipmentManager.showShinai(number);
 							
@@ -1276,9 +1285,18 @@ public class KKC_System {
 					}
 				
 					case "호구" : {
-						System.out.print("삭제할 장비 번호를 입력하세요>>");
-						number = scanner.nextInt();
-						scanner.nextLine();
+						while (true) {
+							System.out.print("삭제할 장비 번호를 입력하세요>>");
+							try {
+							number = scanner.nextInt(); }
+							catch (InputMismatchException e) {
+								System.out.println("\n잘못된 입력입니다.\n다시입력하세요.\n");
+								scanner.nextLine();
+								continue;
+							}
+							scanner.nextLine();
+							break;
+							}
 						if(equipmentManager.findHogu(number) != null) {
 							equipmentManager.showHogu(number);
 							
@@ -1315,9 +1333,18 @@ public class KKC_System {
 					}
 
 					case "호면" : {
-						System.out.print("삭제할 장비 번호를 입력하세요>>");
-						number = scanner.nextInt();
-						scanner.nextLine();
+						while (true) {
+							System.out.print("삭제할 장비 번호를 입력하세요>>");
+							try {
+							number = scanner.nextInt(); }
+							catch (InputMismatchException e) {
+								System.out.println("\n잘못된 입력입니다.\n다시입력하세요.\n");
+								scanner.nextLine();
+								continue;
+							}
+							scanner.nextLine();
+							break;
+							}
 						if(equipmentManager.findHomen(number) != null) {
 							equipmentManager.showHomen(number);
 							
@@ -1353,9 +1380,18 @@ public class KKC_System {
 					}
 
 					case "호완" : {
-						System.out.print("찾을 장비 번호를 입력하세요>>");
-						number = scanner.nextInt();
-						scanner.nextLine();
+						while (true) {
+							System.out.print("삭제할 장비 번호를 입력하세요>>");
+							try {
+							number = scanner.nextInt(); }
+							catch (InputMismatchException e) {
+								System.out.println("\n잘못된 입력입니다.\n다시입력하세요.\n");
+								scanner.nextLine();
+								continue;
+							}
+							scanner.nextLine();
+							break;
+							}
 						if(equipmentManager.findHowan(number) != null) {
 							equipmentManager.showHowan(number);
 							
@@ -1392,9 +1428,18 @@ public class KKC_System {
 					}
 
 					case "갑" : {
-						System.out.print("찾을 장비 번호를 입력하세요>>");
-						number = scanner.nextInt();
-						scanner.nextLine();
+						while (true) {
+							System.out.print("삭제할 장비 번호를 입력하세요>>");
+							try {
+							number = scanner.nextInt(); }
+							catch (InputMismatchException e) {
+								System.out.println("\n잘못된 입력입니다.\n다시입력하세요.\n");
+								scanner.nextLine();
+								continue;
+							}
+							scanner.nextLine();
+							break;
+							}
 						if(equipmentManager.findGap(number) != null) {
 							equipmentManager.showGap(number);
 							
@@ -1431,9 +1476,18 @@ public class KKC_System {
 					}
 
 					case "갑상" : {
-						System.out.print("찾을 장비 번호를 입력하세요>>");
-						number = scanner.nextInt();
-						scanner.nextLine();
+						while (true) {
+							System.out.print("삭제할 장비 번호를 입력하세요>>");
+							try {
+							number = scanner.nextInt(); }
+							catch (InputMismatchException e) {
+								System.out.println("\n잘못된 입력입니다.\n다시입력하세요.\n");
+								scanner.nextLine();
+								continue;
+							}
+							scanner.nextLine();
+							break;
+							}
 						
 						if(equipmentManager.findGapsang(number) != null) {
 							equipmentManager.showGapsang(number);
@@ -1470,9 +1524,18 @@ public class KKC_System {
 					}
 					
 					case "도복" : {
-						System.out.print("찾을 장비 번호를 입력하세요>>");
-						number = scanner.nextInt();
-						scanner.nextLine();
+						while (true) {
+							System.out.print("삭제할 장비 번호를 입력하세요>>");
+							try {
+							number = scanner.nextInt(); }
+							catch (InputMismatchException e) {
+								System.out.println("\n잘못된 입력입니다.\n다시입력하세요.\n");
+								scanner.nextLine();
+								continue;
+							}
+							scanner.nextLine();
+							break;
+							}
 						
 						if(equipmentManager.findDobok(number) != null) {
 							equipmentManager.showDobok(number);
