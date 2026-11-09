@@ -894,4 +894,56 @@ public class Equipment_Manager {
 		return null;
 	}
 	
+	public Equipment_Hogu checkComponents(Equipment_Homen homen) {
+		if(hoguList.size() == 0) {
+			return null;
+		}
+		
+		for(int i=0; i<hoguList.size(); i++) {
+			if(hoguList.get(i).getHomen() == homen) {
+				return hoguList.get(i);
+			}
+		}
+		return null;
+	}
+	
+	public Equipment_Hogu checkComponents(Equipment_Howan howan) {
+		if(hoguList.size() == 0) {
+			return null;
+		}
+		
+		for(int i=0; i<hoguList.size(); i++) {
+			if(hoguList.get(i).getHowan() == howan) {
+				return hoguList.get(i);
+			}
+		}
+		return null;
+	}
+	
+	public Equipment_Hogu checkComponents(Equipment_Gap gap) {
+		if(hoguList.size() == 0) {
+			return null;
+		}
+		
+		for(int i=0; i<hoguList.size(); i++) {
+			if(hoguList.get(i).getGap() == gap) {
+				return hoguList.get(i);
+			}
+		}
+		return null;
+	}
+	
+	public Equipment_Hogu checkComponents(Equipment_Gapsang gapsang) {
+		if(hoguList.size() == 0) {
+			return null;
+		}
+		
+		for(int i=0; i<hoguList.size(); i++) {
+			if(hoguList.get(i).getGapsang() == gapsang) {
+				return hoguList.get(i);
+			}
+		}
+		return null;
+	}
+	
 }

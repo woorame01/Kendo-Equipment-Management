@@ -124,6 +124,5 @@ public class Equipment_Hogu {
 		}
 	}
 	
-	
 
 }

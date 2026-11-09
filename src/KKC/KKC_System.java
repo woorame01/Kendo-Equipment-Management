@@ -1348,6 +1348,12 @@ public class KKC_System {
 						if(equipmentManager.findHomen(number) != null) {
 							equipmentManager.showHomen(number);
 							
+							if(equipmentManager.checkComponents(equipmentManager.findHomen(number)) != null) {
+								System.out.println("현재 호구 " + equipmentManager.checkComponents(equipmentManager.findHomen(number)).getNumber() + " 에 구성된 장비입니다.");
+								System.out.println("구성요소를 변경 또는 제거 후 다시 시도해주세요.");
+								break;
+							}
+							
 							while (true) {
 								System.out.print("위 장비의 정보를 삭제하시겠습니까? (Y/N)");
 								String YesOrNo = scanner.nextLine();
@@ -1394,6 +1400,12 @@ public class KKC_System {
 							}
 						if(equipmentManager.findHowan(number) != null) {
 							equipmentManager.showHowan(number);
+							
+							if(equipmentManager.checkComponents(equipmentManager.findHowan(number)) != null) {
+								System.out.println("현재 호구 " + equipmentManager.checkComponents(equipmentManager.findHowan(number)).getNumber() + " 에 구성된 장비입니다.");
+								System.out.println("구성요소를 변경 또는 제거 후 다시 시도해주세요.");
+								break;
+							}
 							
 							while (true) {
 								System.out.print("위 장비의 정보를 삭제하시겠습니까? (Y/N)");
@@ -1443,6 +1455,12 @@ public class KKC_System {
 						if(equipmentManager.findGap(number) != null) {
 							equipmentManager.showGap(number);
 							
+							if(equipmentManager.checkComponents(equipmentManager.findGap(number)) != null) {
+								System.out.println("현재 호구 " + equipmentManager.checkComponents(equipmentManager.findGap(number)).getNumber() + " 에 구성된 장비입니다.");
+								System.out.println("구성요소를 변경 또는 제거 후 다시 시도해주세요.");
+								break;
+							}
+							
 							while (true) {
 								System.out.print("위 장비의 정보를 삭제하시겠습니까? (Y/N)");
 								String YesOrNo = scanner.nextLine();
@@ -1491,6 +1509,12 @@ public class KKC_System {
 						
 						if(equipmentManager.findGapsang(number) != null) {
 							equipmentManager.showGapsang(number);
+							
+							if(equipmentManager.checkComponents(equipmentManager.findGapsang(number)) != null) {
+								System.out.println("현재 호구 " + equipmentManager.checkComponents(equipmentManager.findGapsang(number)).getNumber() + " 에 구성된 장비입니다.");
+								System.out.println("구성요소를 변경 또는 제거 후 다시 시도해주세요.");
+								break;
+							}
 							
 							while (true) {
 								System.out.print("위 장비의 정보를 삭제하시겠습니까? (Y/N)");
