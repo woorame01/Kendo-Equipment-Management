@@ -99,7 +99,7 @@ public class Equipment_RepairHistory {
 			else {
 			for(int i=0; i<history.size(); i++) {
 				System.out.println("수리일자 : " + history.get(i).date);
-				System.out.println("수리부위 : " + history.get(i).homen.getNumber());
+				System.out.println("장비정보 : 호면 - " + history.get(i).homen.getNumber());
 				System.out.println("수리내용 : " + history.get(i).details);
 				System.out.println("수리결과 : " + history.get(i).result);
 				if(history.get(i).user == null) {
@@ -122,7 +122,7 @@ public class Equipment_RepairHistory {
 			else {
 			for(int i=0; i<history.size(); i++) {
 				System.out.println("수리일자 : " + history.get(i).date);
-				System.out.println("수리부위 : " + history.get(i).howan.getNumber());
+				System.out.println("장비정보 : 호완 - " + history.get(i).howan.getNumber());
 				System.out.println("수리내용 : " + history.get(i).details);
 				System.out.println("수리결과 : " + history.get(i).result);
 				if(history.get(i).user == null) {
@@ -145,7 +145,7 @@ public class Equipment_RepairHistory {
 			else {
 			for(int i=0; i<history.size(); i++) {
 				System.out.println("수리일자 : " + history.get(i).date);
-				System.out.println("수리부위 : " + history.get(i).gap.getNumber());
+				System.out.println("장비번호 : 갑 - " + history.get(i).gap.getNumber());
 				System.out.println("수리내용 : " + history.get(i).details);
 				System.out.println("수리결과 : " + history.get(i).result);
 				if(history.get(i).user == null) {
@@ -168,7 +168,7 @@ public class Equipment_RepairHistory {
 			else {
 			for(int i=0; i<history.size(); i++) {
 				System.out.println("수리일자 : " + history.get(i).date);
-				System.out.println("수리부위 : " + history.get(i).gapsang.getNumber());
+				System.out.println("장비정보 : 갑상 - " + history.get(i).gapsang.getNumber());
 				System.out.println("수리내용 : " + history.get(i).details);
 				System.out.println("수리결과 : " + history.get(i).result);
 				if(history.get(i).user == null) {
@@ -191,7 +191,7 @@ public class Equipment_RepairHistory {
 			else {
 			for(int i=0; i<history.size(); i++) {
 				System.out.println("수리일자 : " + history.get(i).date);
-				System.out.println("수리부위 : " + history.get(i).shinai.getNumber());
+				System.out.println("장비정보 : 죽도 - " + history.get(i).shinai.getNumber());
 				System.out.println("수리내용 : " + history.get(i).details);
 				System.out.println("수리결과 : " + history.get(i).result);
 				if(history.get(i).user == null) {
