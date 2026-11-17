@@ -60,6 +60,7 @@ public class KKC_System {
 				scanner.nextLine();
 				continue;
 			}
+			
 			scanner.nextLine();
 			
 			if(answer == 1) {
@@ -167,7 +168,7 @@ public class KKC_System {
 			
 		}
 		
-		if(answer == 2) {
+		else if(answer == 2) {
 			while (true) {
 				System.out.println();
 				System.out.println("            View Equipment list");
@@ -1631,8 +1632,6 @@ public class KKC_System {
 							continue;
 						}
 						scanner.nextLine();
-						break;
-					}
 					
 					if(answer == 1) { // 수리내역 등록
 						
@@ -1969,7 +1968,7 @@ public class KKC_System {
 						System.out.println("다시 입력하세요.");
 						continue;
 					}
-						
+				}	
 						
 				}
 				
@@ -1986,7 +1985,7 @@ public class KKC_System {
 			}
 		}
 		
-		if(answer == 3) {
+		else if(answer == 3) {
 			System.out.println("KKC Management Close");
 			break;
 		}
